@@ -1,0 +1,103 @@
+{% extends "apprein/plantilla.html" %}
+{% load humanize %}
+{% load static %}
+
+
+
+{% block title %} blog ReIN {% endblock %}
+
+{% include "apprein/cabecera.html" %}
+  
+      {% block content %}
+
+
+          <div class="row">
+            {% if messages %}
+
+                {% for mensaje in messages  %}
+                
+                  <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ mensaje }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                {% endfor %}
+          
+            {% endif %}
+            <div class="col-12">
+              <p class="h2 mb-2 fw-bold py-2">blog ReIN</p>
+            </div>
+            <div class="col-5">
+              <div class="input-group flex-nowrap my-2">
+                <input type="text" class="form-control border-0" placeholder="Buscar en el blog" aria-label="Username"
+                  aria-describedby="addon-wrapping">
+                <span class="input-group-text bg-white border-0" id="addon-wrapping"><a href=""><i class="fas fa-search fs-3 text-dark"></i></a></span>
+              </div>
+            </div>
+            <div class="col-4 text-danger">
+
+              <select class="form-select my-2 p-2 border-0 w-50" aria-label="Default select example">
+                <option selected>Filtrar por...</option>
+               
+                    {% for categoria in categorias %}
+                            <option value="{{categoria.id}}">{{categoria.nombre}}</option>
+                    {% endfor %}
+               
+                
+              </select>
+             
+            </div>
+            
+            {% for entradablog in blogs %}
+            
+            <div class="col-12 col-lg-6 mb-2">
+              <div class="accordion" id="accordionPanelsStayOpenExample">
+                <div class="card">
+                  <img src="{{ entradablog.imagen.url }}" class="img-fluid rounded-3" alt="..." style="width:100%; height:220px;">
+
+                </div>
+                <div class="accordion-item border-0">
+                  <h2 class="accordion-header" id="panelsStayOpen-heading{{entradablog.id}}">
+                    <div class="container d-flex">
+                      <div class="w-100">
+                        <p class="h5 fw-bold p-2">{{entradablog.titulo}}</p>
+                      </div>
+                      <div class="flex-shrink-1 m-auto">
+                        <button class="accordion-button bg-white text-dark p-0" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#panelsStayOpen-collapse{{entradablog.id}}" aria-expanded="true"
+                          aria-controls="panelsStayOpen-collapse{{entradablog.id}}">
+                        </button>
+                      </div>
+                    </div>
+                  </h2>
+                  <div id="panelsStayOpen-collapse{{entradablog.id}}" class="accordion-collapse collapse border-0"
+                    aria-labelledby="panelsStayOpen-heading{{entradablog.id}}">
+                    <div class="accordion-body">
+                      <p style="text-align:justify;">{{entradablog.descripcion}}</p>
+                      <p style="text-align:justify;">Categoria: {{entradablog.categoria}}</p>
+                      <p style="text-align:right;">Creado {{entradablog.created|naturaltime }}</p>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {% endfor %}
+          </div>  
+      {% endblock  %}
+      <!-- Columna derecha -->
+      {% include "apprein/sidebarderecho.html" %}    
+          
+          
+          
+          
+          
+          
+          
+     
+      
+     
+            
+          
+
+    

@@ -1,0 +1,1 @@
+web: gunicorn reindev.wsgi --log-file -

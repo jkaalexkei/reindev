@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/reinestilo.css">
+
+    <title>Calendario</title>
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12">
+                        <nav class="navbar navbar-expand-lg navbar-light">
+                            <div class="container-fluid d-flex justify-content-around  p-3 mb-3 bg-body rounded">
+                                <a class="navbar-brand" href="#"><img src="../img/logo.jpg" class="img-fluid w-50"
+                                        alt="..."></a>
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                    aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse border-end border-dark"
+                                    id="navbarSupportedContent">
+                                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                        <li class="nav-item mx-4 item rounded-1">
+                                            <a class="nav-link fw-bolder" aria-current="page" href="#">Inicio</a>
+                                        </li>
+                                        <li class="nav-item mx-4 item rounded-1">
+                                            <a class="nav-link fw-bolder" href="#">blog</a>
+                                        </li>
+                                        <li class="nav-item mx-4 item rounded-1">
+                                            <a class="nav-link fw-bolder" href="#">foro</a>
+                                        </li>
+                                        <li class="nav-item mx-4 item rounded-1">
+                                            <a class="nav-link fw-bolder" href="#">Calendario</a>
+                                        </li>
+                                </div>
+                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center d-flex align-items-center">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" aria-current="page" href="#"><img
+                                                    src="../img/carnet.jpg" class="img-fluid w-50 rounded-circle"
+                                                    alt="..."></a>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle fw-bolder" href="#" id="navbarDropdown"
+                                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                4768 pts
+                                            </a>
+                                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <li><a class="dropdown-item" href="#">Item 1</a></li>
+                                                <li><a class="dropdown-item" href="#">Item 2</a></li>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li><a class="dropdown-item" href="#">Item 3</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#"><img src="../img/notificaciones.png"
+                                                    class="img-fluid w-50" alt="..."></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container d-flex align-items-center justify-content-center p-4 my-1">
+        <div class="row">
+            <div class="col-8">
+                <p class="h2 mb-3 fw-bold py-2">Calendario ReIN</p>
+                <p class="fs-4 mb-3 py-1">La agenda de trabajo es aquella donde se asientan, disponen y programan, de
+                    manera
+                    ordenada y jerárquica</p>
+            </div>
+            <div class="col-12">
+                <div class="container d-flex justify-content-around align-items-center flex-nowrap">
+                    <div class="">
+                        <div class="input-group my-2">
+                            <input type="text" class="form-control fs-5 fw-bolder border-0" placeholder="Buscar"
+                                aria-label="Username" aria-describedby="addon-wrapping">
+                            <span class="input-group-text bg-white border-0" id="addon-wrapping"><a href=""><img
+                                        src="../img/lupa.jpg" alt=""></a></span>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <label for="exampleFormControlInput1" class="form-label me-3 fs-4 fw-bolder p-1">FECHA:</label>
+                        <select class="form-select m-1 fs-4 fw-bolder border-0 pt-0"
+                            aria-label="Default select example">
+                            <option selected>Mes</option>
+                            <option value="1">ENERO</option>
+                            <option value="2">FEBRERO</option>
+                            <option value="3">MARZO</option>
+                        </select>
+                        <select class="form-select m-1 fs-4 fw-bolder border-0 pt-0"
+                            aria-label="Default select example">
+                            <option selected>Año</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-3 pb-4">
+                <img src="../img/racismo.jpg" alt="" class="img-fluid fotoimg caja1 rounded-3">
+                <div class="d-flex flex-column align-items-center bg-gris caja2">
+                    <span class="fs-5 fw-bolder">Evento</span>
+                    <span class="fs-6 fw-bolder">Hora</span>
+                </div>
+            </div>
+            <div class="col-3 pb-4">
+                <img src="../img/autismo.jpg" alt="" class="img-fluid fotoimg caja1 rounded-3">
+                <div class="d-flex flex-column align-items-center bg-gris caja2">
+                    <span class="fs-5 fw-bolder">Evento</span>
+                    <span class="fs-6 fw-bolder">Hora</span>
+                </div>
+            </div>
+            <div class="col-3 pb-4">
+                <img src="../img/down.jpg" alt="" class="img-fluid fotoimg caja1 rounded-3">
+                <div class="d-flex flex-column align-items-center bg-gris caja2">
+                    <span class="fs-5 fw-bolder">Evento</span>
+                    <span class="fs-6 fw-bolder">Hora</span>
+                </div>
+            </div>
+            <div class="col-3 pb-4">
+                <img src="../img/eventos.jpg" alt="" class="img-fluid fotoimg caja1 rounded-3">
+                <div class="d-flex flex-column align-items-center bg-gris caja2">
+                    <span class="fs-5 fw-bolder">Evento</span>
+                    <span class="fs-6 fw-bolder">Hora</span>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

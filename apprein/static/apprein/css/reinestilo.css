@@ -1,0 +1,80 @@
+
+.bg-boton{
+    background-color:#831367;
+  }
+
+  main{
+    background-image: url('../img/bg_01_1-1.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid;
+    
+  }
+  .categoria{
+    background-color: #831367;
+    color:#fff
+  }
+
+  .item:hover{
+    background-color: #883b753c;
+    color: #fff;
+  }
+
+  .tarjeta{
+      background-color: #eb521b35;
+  }
+
+  .borders{
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+
+.bg-boton-categoria{
+  background-color: #eb490ef3 !important
+}
+
+
+
+.border-card{
+  border-radius: 15px 15px !important;
+  -webkit-border-radius: 15px 15px !important;
+  -moz-border-radius: 15px 15px !important;
+  -ms-border-radius: 15px 15px !important;
+  -o-border-radius: 15px 15px !important;
+}
+
+.caja1{
+  position: relative;
+  
+}
+.caja2{
+  position:absolute;
+  top:530px;
+  width: 19.1%;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+.fotoimg{
+  width: 100%;
+  height: 150px;
+  border-radius: 10px !important;
+  -webkit-border-radius: 10px !important;
+  -moz-border-radius: 10px !important;
+  -ms-border-radius: 10px !important;
+  -o-border-radius: 10px !important;
+}
+
+.bg-gris{
+  background-color: #c7b7b7;
+}
+
+
