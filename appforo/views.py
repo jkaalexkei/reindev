@@ -14,6 +14,8 @@ def foro(request):
     foropublicacion=forom.objects.all()
     categoriaforo=categoria_foro.objects.get(id='1')
     entradaforo = forom.objects.filter(categoriasforo=categoriaforo)
+
+    
     
 
 

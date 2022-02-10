@@ -3,14 +3,14 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-class categoria_foro(models.Model):
+class categoria_forom(models.Model):
     nombre=models.CharField(max_length=20)
     created=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        verbose_name='categoria_foro'
-        verbose_name_plural='categoria_foros'
+        verbose_name='categoria_forom'
+        verbose_name_plural='categoria_foroms'
     
     def __str__(self):
         return self.nombre

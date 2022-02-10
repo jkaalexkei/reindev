@@ -54,7 +54,7 @@ def iniciarsesion(request):
           
      
 
-     return render(request,"appRein/login.html")
+     return render(request,"apprein/login.html")
 
 def cerrarsesion(request):
 
