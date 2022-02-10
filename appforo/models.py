@@ -15,7 +15,7 @@ class categoria_foro(models.Model):
     def __str__(self):
         return self.nombre
 
-class foro(models.Model):
+class forom(models.Model):
     titulo=models.CharField(max_length=50)
     contenido=models.TextField()
     imagen=models.ImageField(upload_to='foro',null=True,blank=True)
@@ -28,8 +28,8 @@ class foro(models.Model):
 
 
     class Meta:
-        verbose_name='foro'
-        verbose_name_plural='foros'
+        verbose_name='forom'
+        verbose_name_plural='foroms'
 
     def __str__(self):
         return self.titulo

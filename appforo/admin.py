@@ -1,5 +1,5 @@
 from django.contrib import admin
-from . models import categoria_foro,foro
+from appforo.models import categoria_foro,forom
 # Register your models here.
 
 class categoriaforoAdmin(admin.ModelAdmin):
@@ -10,6 +10,6 @@ class foroAdmin(admin.ModelAdmin):
 
 
 admin.site.register(categoria_foro,categoriaforoAdmin)
-admin.site.register(foro,foroAdmin)
+admin.site.register(forom,foroAdmin)
 
 
