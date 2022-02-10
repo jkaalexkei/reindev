@@ -5,14 +5,14 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login,logout
 from appforo.models import forom
-from appforo.models import categoria_foro
+from appforo.models import categoria_forom
 
 # Create your views here.
 
 def foro(request):
 
     foropublicacion=forom.objects.all()
-    categoriaforo=categoria_foro.objects.get(id='1')
+    categoriaforo=categoria_forom.objects.get(id='1')
     entradaforo = forom.objects.filter(categoriasforo=categoriaforo)
 
     

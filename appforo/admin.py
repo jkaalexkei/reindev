@@ -1,5 +1,5 @@
 from django.contrib import admin
-from appforo.models import categoria_foro,forom
+from appforo.models import categoria_forom,forom
 # Register your models here.
 
 class categoriaforoAdmin(admin.ModelAdmin):
@@ -9,7 +9,7 @@ class foroAdmin(admin.ModelAdmin):
     readonly_fields=('created','updated')
 
 
-admin.site.register(categoria_foro,categoriaforoAdmin)
+admin.site.register(categoria_forom,categoriaforoAdmin)
 admin.site.register(forom,foroAdmin)
 
 
