@@ -109,7 +109,7 @@
               if(input.files && input.files[0]){
                   var reader = new FileReader();
                   reader.onload = function(e){
-                      $('#imagePreview').html("<img src='"+ e.target.result +"' class='img- rounded img-thumbnail' name='imagenDestacada'/>");
+                      $('#imagePreview').html("<img src='"+ e.target.result +"' class='img- rounded img-fluid' name='imagenDestacada'/>");
                   }
                   reader.readAsDataURL(input.files[0]);
               }

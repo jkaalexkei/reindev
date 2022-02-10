@@ -3,15 +3,7 @@
     background-color:#831367;
   }
 
-  main{
-    background-image: url('../img/bg_01_1-1.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-    border: 1px solid;
-    
-  }
+ 
   .categoria{
     background-color: #831367;
     color:#fff
