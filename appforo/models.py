@@ -22,7 +22,7 @@ class forom(models.Model):
     like=models.IntegerField()
     nolike=models.IntegerField()
     autor=models.ForeignKey(User,on_delete=models.CASCADE)
-    categoriasforo=models.ManyToManyField(categoria_foro)
+    categoriasforo=models.ManyToManyField(categoria_forom)
     created=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField(auto_now_add=True)
 
