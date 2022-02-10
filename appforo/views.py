@@ -11,4 +11,7 @@ def foro(request):
     
 
 
-    return render(request,"appforo/foro.html",{'foro':foropublicacion,'categoria':entradaforo})
+    return render(request,"appforo/foro.html",{
+        'foro':foropublicacion,
+        'categoria':entradaforo}
+    )
