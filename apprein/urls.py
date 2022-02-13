@@ -18,5 +18,5 @@ urlpatterns = [
     
 ]
 #Agregamos la url de las imagenes para indicarle al panel de administracion de django donde estan las imagenes
-urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns+=static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
