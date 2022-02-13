@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.shortcuts import redirect
+from django.shortcuts import redirect,get_object_or_404
 from django.contrib import messages
 from appblog.models import blogm, categorias #importamos los modelos de la appblog
 from django.contrib.auth.models import User
@@ -60,13 +60,54 @@ def registrarnuevaentrada(request):
      return render(request,'appblog/nuevaentrada.html',{})    
    
 
-def modificarentradablog(request):
+def modificarentradablog(request,id):
 
-     pass
+     identrada = id
+     print(identrada)
+
+     
+
+     # if request.method == 'POST':
+     #      tituloe = request.POST['tituloe']
+     #      contenidoe = request.POST['contenidoe']
+     #      categoriae = request.POST['categoriae']
+     #      imagene = request.FILES['imagene']
+
+     #      #usuario = User.objects.filter(username = request.session['usuario'])
+     #      category=categorias.objects.filter(nombre=categoriae).exists()
+     #      if category:
+     #           #id_usuario = User.objects.get(username=request.session['usuario'])               
+     #           catg = categorias.objects.get(nombre=categoriae)
+     #           catg.nombre=categoriae
+     #           catg.save()
+     #           documento = blogm(titulo=tituloe,descripcion=contenidoe,imagen=imagene,categoria=catg)
+     #           documento.save()
+     #           if documento:
+     #                messages.success(request,'Información Actualizada')
+     #                return redirect('blog')
+     #      # else:
+          #      #id_usuario = User.objects.get(username=request.session['usuario']) 
+          #      cat = categorias.objects.create(nombre=categoriae)
+          #      cat.save()
+          #      #HACER CONSULTA MEDIANTE EL MODELO USER
+
+          #      documento = blogm.objects.create(titulo=tituloe,descripcion=contenidoe,imagen=imagene,categoria=cat)
+          #      documento.save()
+
+          #      if documento:
+          #           messages.success(request,'Información Guardada')
+          #           return redirect('blog')
+
+
+
+
      return render(request,'appblog/modificarblog.html',{
-          # 'id_blog':id
+          
 
      })
+
+
+     
 
 def vistaarticulocompleto(request,id):
      articulo = blogm.objects.get(id=id)
@@ -77,6 +118,13 @@ def vistaarticulocompleto(request,id):
           'articulo':articulo
 
      })
+
+def eliminararticulo(request, id):
+
+     articulo = blogm.objects.get(id=id)
+
+     articulo.delete()
+     return redirect ('blog')
 
 
 

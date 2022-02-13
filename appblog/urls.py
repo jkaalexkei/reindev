@@ -9,8 +9,9 @@ urlpatterns = [
     
     path('',views.blog, name='blog'),
     path('nuevaentrada/',views.registrarnuevaentrada,name='nuevaentrada'),
-    path('modificarentrada/',views.modificarentradablog,name='modificarentradablog'),
-    path('articulo/<id>',views.vistaarticulocompleto,name='articuloblog')
+    path('modificarentrada/<id>',views.modificarentradablog,name='modificarentradablog'),
+    path('articulo/<id>',views.vistaarticulocompleto,name='articuloblog'),
+    path('eliminararticulo/<id>',views.eliminararticulo,name='eliminararticulo')
    
     
 ]
