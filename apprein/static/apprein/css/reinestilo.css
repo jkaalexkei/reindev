@@ -9,6 +9,19 @@
     color:#fff
   }
 
+  .enlace{
+    text-decoration: none !important;
+    color:#eb490ef3 !important;
+  }
+  
+  .texto-justificado{
+    text-align: justify !important;
+  }
+
+  .enlace:hover{
+    color:#e9a38af3 !important;  
+  }
+
   .item:hover{
     background-color: #883b753c;
     color: #fff;

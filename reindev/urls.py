@@ -29,6 +29,7 @@ urlpatterns = [
     path('appforo/', include('appforo.urls')),
     
     
+    
        
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # https://www.youtube.com/watch?v=srOLTZYxMTc

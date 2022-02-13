@@ -50,7 +50,7 @@ def iniciarsesion(request):
                
           else:
                messages.error(request,'Usuario o Clave Inválida')
-               print('usuario no autenticado')
+               # print('usuario no autenticado')
           
      
 

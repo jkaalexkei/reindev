@@ -1,0 +1,40 @@
+{% extends "apprein/plantilla.html" %}
+{% load humanize %}
+{% load static %}
+
+
+
+{% block title %} Articulo {% endblock %}
+
+{% include "apprein/cabecera.html" %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-10">
+        <div class="card mb-3 border-0">
+            <img src="{{ articulo.imagen.url }}" class="card-img-top img-fluid" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{ articulo.titulo }}</h5>
+              <p class="card-text texto-justificado">{{ articulo.descripcion }}</p>
+              <p class="card-text"><small class="text-muted">Fecha: {{ articulo.updated }}</small></p>
+              <p class="card-text"><small class="text-muted">Autor: {{ articulo.autor }}</small></p>
+              <p class="card-text"><small class="text-muted">Categoria: {{ articulo.categoria}}</small></p>
+            </div>
+            <div class="card-footer">
+                {% if user.is_authenticated %} 
+                <div class="text-end">
+                    <a href="{% url 'modificarentradablog' %}" class="btn btn-lg text-warning"><i class="fa fa-pen"></i> Editar</a>
+                    <a href="#" class="btn btn-lg text-danger"><i class="fa fa-trash"></i> Eliminar</a>
+                    <a href="{% url 'blog' %}" class="btn btn-lg text-success "><i class="fa fa-arrow-circle-up"></i> Volver</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+    

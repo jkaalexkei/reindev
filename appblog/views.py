@@ -59,6 +59,59 @@ def registrarnuevaentrada(request):
 
      return render(request,'appblog/nuevaentrada.html',{})    
    
+
+def modificarentradablog(request):
+
+     pass
+     return render(request,'appblog/modificarblog.html',{
+          # 'id_blog':id
+
+     })
+
+def vistaarticulocompleto(request,id):
+     articulo = blogm.objects.get(id=id)
+
+     
+     return render(request,'appblog/articuloblog.html',{
+
+          'articulo':articulo
+
+     })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #    if request.method == 'POST':
 #           usuario = request.POST.get('username')
 #           clave = request.POST.get('password')
