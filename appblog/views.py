@@ -62,47 +62,52 @@ def registrarnuevaentrada(request):
 
 def modificarentradablog(request,id):
 
-     identrada = id
-     print(identrada)
+    articuloblog = blogm.objects.get(id=id)
+    categoria=categorias.objects.all()
 
-     
+    if request.method == 'POST':
+          idarticuloe = request.POST['idarticulo']
+          tituloe = request.POST['tituloe']
+          contenidoe = request.POST['contenidoe']
+          categoriae = request.POST['categoriae']
+          imagene = request.FILES['imagene']
 
-     # if request.method == 'POST':
-     #      tituloe = request.POST['tituloe']
-     #      contenidoe = request.POST['contenidoe']
-     #      categoriae = request.POST['categoriae']
-     #      imagene = request.FILES['imagene']
+               #usuario = User.objects.filter(username = request.session['usuario'])
+          category=categorias.objects.filter(nombre=categoriae).exists()
+          if category:
+                    #id_usuario = User.objects.get(username=request.session['usuario'])               
+               catg = categorias.objects.get(nombre=categoriae)
+               catg.nombre=categoriae
+               catg.save()
 
-     #      #usuario = User.objects.filter(username = request.session['usuario'])
-     #      category=categorias.objects.filter(nombre=categoriae).exists()
-     #      if category:
-     #           #id_usuario = User.objects.get(username=request.session['usuario'])               
-     #           catg = categorias.objects.get(nombre=categoriae)
-     #           catg.nombre=categoriae
-     #           catg.save()
-     #           documento = blogm(titulo=tituloe,descripcion=contenidoe,imagen=imagene,categoria=catg)
-     #           documento.save()
-     #           if documento:
-     #                messages.success(request,'Información Actualizada')
-     #                return redirect('blog')
-     #      # else:
-          #      #id_usuario = User.objects.get(username=request.session['usuario']) 
-          #      cat = categorias.objects.create(nombre=categoriae)
-          #      cat.save()
-          #      #HACER CONSULTA MEDIANTE EL MODELO USER
+               articulo = blogm.objects.filter(id=idarticuloe).exists()
+               if articulo:
+                    documento = blogm.objects.get(id=idarticuloe)
+                    documento.titulo = tituloe
+                    documento.descripcion = contenidoe
+                    documento.imagen =imagene
+                    documento.categoria=catg
+                    documento.save()
+                    messages.success(request,'Información Guardada')
+                    return redirect('blog')
+               # else:
+               #      #id_usuario = User.objects.get(username=request.session['usuario']) 
+               #      cat = categorias.objects.create(nombre=categoriae)
+               #      cat.save()
+               #      #HACER CONSULTA MEDIANTE EL MODELO USER
 
-          #      documento = blogm.objects.create(titulo=tituloe,descripcion=contenidoe,imagen=imagene,categoria=cat)
-          #      documento.save()
+               #      documento = blogm.objects.create(titulo=tituloe,descripcion=contenidoe,imagen=imagene,categoria=cat)
+               #      documento.save()
 
-          #      if documento:
-          #           messages.success(request,'Información Guardada')
-          #           return redirect('blog')
+               #      if documento:
+               #           messages.success(request,'Información Guardada')
+               #           return redirect('blog')
 
+               
 
-
-
-     return render(request,'appblog/modificarblog.html',{
-          
+    return render(request,'appblog/modificarblog.html',{
+          'articuloblog': articuloblog,
+          'categoria':categoria
 
      })
 

@@ -16,7 +16,7 @@
     {% csrf_token %}
 
     <div class="form-group my-3">
-        <input type="text" name="idarticulo" value="{{articuloblog.id}}">
+        <input type="hidden" name="idarticulo" value="{{articuloblog.id}}">
         <label class="my-3 fw-bold" for="">Titulo de la Entrada:</label>
         <input type="text" class="form-control border border-dark" name="tituloe" id="tituloe"
             placeholder="Ingrese el titulo de la entrada" value="{{articuloblog.titulo}}">
@@ -34,7 +34,7 @@
             <div class="form-group my-3">
                 <div class="mb-3">
                     <label for="formFile" class="form-label fw-bold">Seleccione la imagen de portada</label>
-                    <input class="form-control border border-dark" type="file" id="verimagen" name="imagene" value="{{ articuloblog.imagen.url }}">
+                    <input class="form-control border border-dark" type="file" id="verimagen" name="imagene" value="">
                 </div>
             </div>
 
@@ -48,7 +48,22 @@
     <button type="submit" class="btn btn-primary bg-boton">Actualizar</button>
 </form>
 
+<!-- <select class="form-select my-2 p-2 w-50 border border-dark" aria-label="Default select example" name="categoriae">
+    <option value="">Seleccione</option>
 
+    {% for categoria in categoria %}
+
+        <option 
+
+        {% if categoria.id == articuloblog.categoria.id %}
+
+        {{'selected'}}
+         
+        {% endif %}
+
+        value="{{categoria.id}}">{{categoria.nombre}}</option>
+    {% endfor %}
+  </select> -->
 <!-- <div class="row d-flex">
     <div class="col-12">
         <div class="mb-3">
