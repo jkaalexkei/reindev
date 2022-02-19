@@ -11,8 +11,8 @@ urlpatterns = [
     path('nuevaentrada/',views.registrarnuevaentrada,name='nuevaentrada'),
     path('modificarentrada/<id>',views.modificarentradablog,name='modificarentradablog'),
     path('articulo/<id>',views.vistaarticulocompleto,name='articuloblog'),
-    path('eliminararticulo/<id>',views.eliminararticulo,name='eliminararticulo')
-   
+    path('eliminararticulo/<id>',views.eliminararticulo,name='eliminararticulo'),
+    path('busquedablog/',views.busquedaarticulos,name='buscar'),
     
 ]
 

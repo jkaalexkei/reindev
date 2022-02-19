@@ -1,0 +1,89 @@
+{% extends "apprein/plantilla.html" %}
+{% load humanize %}
+{% load static %}
+{% block title %} blog ReIN {% endblock %}
+
+{% include "apprein/cabecera.html" %}
+{% block content %}
+
+
+<h2>Blog</h2>
+{% if messages %}
+
+      {% for mensaje in messages  %}
+
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              {{ mensaje }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+      {% endfor %}
+
+  {% endif %}
+{% if datosencontrados %}
+
+    <p class="h2 mb-3 fw-bold py-2">Se encontraron {{ datosencontrados|length }} coincidencias</p>
+    {% for datosblog in datosencontrados  %}
+        <div class="row mb-3 p-1 border">
+            <div class="col-3 d-flex p-1">
+                <img src="{{ datosblog.imagen.url }}" class="img-fluid rounded-2" alt="...">
+
+            </div>
+            <div class="col-9 p-2">
+                <div class="container">
+                    <p class="fs-5 fw-bold"><a href="{% url 'articuloblog' datosblog.id %}" class="enlace">{{ datosblog.titulo}}</a></p>
+                    <p class="">Categoria: {{ datosblog.categoria}}</p>
+                    <p class="">Fecha: {{ datosblog.created}}</p>
+                    <p class="">Usuario:{{user.datosblog.autor_id}}</p>
+
+                    {% if user.is_authenticated %}
+                        <div class="text-end">
+                            <a href="{% url 'modificarentradablog' datosblog.id %}" class="btn btn-lg text-warning"><i class="fa fa-pen"></i></a>
+                            <a href="{% url 'eliminararticulo' datosblog.id %}" class="btn btn-lg text-danger"><i class="fa fa-trash"></i></a>
+                        </div>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>              
+    {% endfor %}
+    <div class="row">
+        <div class="col-12">
+            <div class="card-footer">
+                {% if user.is_authenticated %}
+                    <div class="text-end">
+                            <a href="{% url 'blog' %}" class="btn btn-lg text-success "><i class="fa fa-arrow-circle-up"></i> Volver</a>
+                    </div>
+                {% else %}
+                        <div class="text-end">
+                            <a href="{% url 'blog' %}" class="btn btn-lg text-success "><i class="fa fa-arrow-circle-up"></i> Volver</a>
+                        </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% else %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <p>Se encontraron {{ datosencontrados|length }} coincidencias </p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card-footer">
+                {% if user.is_authenticated %}
+                    <div class="text-end">
+                            <a href="{% url 'blog' %}" class="btn btn-lg text-success "><i class="fa fa-arrow-circle-up"></i> Volver</a>
+                    </div>
+                {% else %}
+                        <div class="text-end">
+                            <a href="{% url 'blog' %}" class="btn btn-lg text-success "><i class="fa fa-arrow-circle-up"></i> Volver</a>
+                        </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% endblock  %}
+
+

@@ -25,7 +25,7 @@
                 {% if user.is_authenticated %} 
                 <div class="text-end">
                     <a href="{% url 'modificarentradablog' articulo.id %}" class="btn btn-lg text-warning"><i class="fa fa-pen"></i> Editar</a>
-                    <a href="#" class="btn btn-lg text-danger"><i class="fa fa-trash"></i> Eliminar</a>
+                    <a href="{% url 'eliminararticulo' articulo.id %}" class="btn btn-lg text-danger"><i class="fa fa-trash"></i> Eliminar</a>
                     <a href="{% url 'blog' %}" class="btn btn-lg text-success "><i class="fa fa-arrow-circle-up"></i> Volver</a>
                 </div>
                 {% else %}

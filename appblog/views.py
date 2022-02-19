@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.shortcuts import redirect,get_object_or_404
+from django.shortcuts import redirect
 from django.contrib import messages
 from appblog.models import blogm, categorias #importamos los modelos de la appblog
 from django.contrib.auth.models import User
@@ -12,6 +12,8 @@ def blog(request):
     
     blogs=blogm.objects.all()#importa todas las entradas de blog
     categoria=categorias.objects.all()
+
+
 
     return render(request,"appblog/blog.html",{
          'blogs':blogs,
@@ -90,18 +92,6 @@ def modificarentradablog(request,id):
                     documento.save()
                     messages.success(request,'Información Guardada')
                     return redirect('blog')
-               # else:
-               #      #id_usuario = User.objects.get(username=request.session['usuario']) 
-               #      cat = categorias.objects.create(nombre=categoriae)
-               #      cat.save()
-               #      #HACER CONSULTA MEDIANTE EL MODELO USER
-
-               #      documento = blogm.objects.create(titulo=tituloe,descripcion=contenidoe,imagen=imagene,categoria=cat)
-               #      documento.save()
-
-               #      if documento:
-               #           messages.success(request,'Información Guardada')
-               #           return redirect('blog')
 
                
 
@@ -127,9 +117,27 @@ def vistaarticulocompleto(request,id):
 def eliminararticulo(request, id):
 
      articulo = blogm.objects.get(id=id)
-
      articulo.delete()
      return redirect ('blog')
+
+def busquedaarticulos(request):
+     
+          # art = request.GET['buscar']
+
+     if request.method == 'GET':   
+          datos = request.GET['buscar']
+          if datos:
+               articuloblog = blogm.objects.filter(titulo__icontains=datos)
+          else:
+               messages.error(request,'No hay resultados con ese criterio')
+          
+     
+     return render(request,'appblog/busquedablog.html',{               
+          'datosencontrados':articuloblog               
+     })
+         
+
+          
 
 
 

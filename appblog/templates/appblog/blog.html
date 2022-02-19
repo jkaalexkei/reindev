@@ -24,37 +24,31 @@
 
   {% endif %}
   <div class="col-12">
-      <p class="h2 mb-2 fw-bold py-2">blog ReIN</p>
+      <p class="h2 mb-2 fw-bold py-2">Blog Rein</p>
   </div>
   <div class="col-5">
-    <div class="input-group flex-nowrap my-2">
-        <input type="text" class="form-control border-0" placeholder="Buscar en el blog" aria-label="Username" aria-describedby="addon-wrapping">
-        <span class="input-group-text bg-white border-0" id="addon-wrapping"><a href=""><i class="fas fa-search fs-3 text-dark"></i></a></span>
-    </div>
+        <form action="/appblog/busquedablog/" method="get" class="d-flex">
+          {% csrf_token %}
+          <input type="text" class="form-control border-0 me-2 mb-4" placeholder="Buscar en el blog" aria-label="Username" aria-describedby="addon-wrapping" name="buscar">
+          <button class="input-group-text bg-white border-0" type="submit" value=""><i class="fas fa-search fs-3 text-dark"></i></button>
+        </form>
   </div>
   <div class="col-4">
-    <select class="form-select my-2 p-2 border-0 w-50" aria-label="Default select example">
-      <option selected>Filtrar por...</option>
-
-      {% for categoria in categorias %}
-          <option value="{{categoria.id}}">{{categoria.nombre}}</option>
-      {% endfor %}
-    </select>
+    
   </div>
   
   {% if user.is_authenticated %}
-  <div class="col-3">
-    <div class="dropdown">
+  <div class="col-3 d-flex align-items-center justify-content-end">
+    <span class="enlace">Añadir Entrada&nbsp;</span>&nbsp;<a class="enlace" href="{% url 'nuevaentrada' %}"><i class="fa fa-plus-square fs-2"></i></a>
+      <!-- <li><a class="nav-link bg-boton-categoria item text-white fw-bold border-bottom border-white" href="">Modificar
+          Entrada</a></li>
+      <li><a class="nav-link bg-boton-categoria item text-white fw-bold" href="#">Eliminar Entrada</a></li> -->
+    
+    <!-- <div class="dropdown">
       <button class="btn btn-secondary bg-boton-categoria dropdown-toggle text-white fw-bold" type="button"
         id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Acciones</button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li><a class="nav-link bg-boton-categoria item text-white fw-bold border-bottom border-white"
-            href="{% url 'nuevaentrada' %}">Crear Entrada</a></li>
-        <!-- <li><a class="nav-link bg-boton-categoria item text-white fw-bold border-bottom border-white" href="">Modificar
-            Entrada</a></li>
-        <li><a class="nav-link bg-boton-categoria item text-white fw-bold" href="#">Eliminar Entrada</a></li> -->
-      </ul>
-    </div>
+      
+    </div> -->
   </div>
     
   {% endif %}
@@ -92,7 +86,7 @@
         <div id="panelsStayOpen-collapse{{entradablog.id}}" class="accordion-collapse collapse border-0"
           aria-labelledby="panelsStayOpen-heading{{entradablog.id}}">
           <div class="accordion-body">
-            <p style="text-align:justify;">{{entradablog.descripcion}}</p>
+            <p style="text-overflow: ellipsis; text-align: justify;white-space: nowrap;overflow: hidden; font-size: 1.2rem;">{{entradablog.descripcion}}</p>
             <p style="text-align:justify;">Categoria: {{entradablog.categoria}}</p>
             <p style="text-align:right;">Creado {{entradablog.created|naturaltime }}</p>
 

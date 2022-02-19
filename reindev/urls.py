@@ -37,3 +37,8 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+#pip install django-admin-interface 
+#permite modificar la interfaz del admin de django
+
+#https://pypi.org/project/django-admin-interface/ instalacion de django_interface

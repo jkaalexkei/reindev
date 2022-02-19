@@ -24,7 +24,7 @@ class categorias(models.Model):
         
 
 class blogm(models.Model):
-
+    
     titulo=models.CharField(max_length=50)
     descripcion=models.TextField()
     imagen=models.ImageField(upload_to='blogs',null=True,blank=True)
