@@ -12,7 +12,7 @@
 
     <title>
       {% block title %}
-          Login
+          Crear Cuenta
       {% endblock  %}
     </title>
     <style>
@@ -35,7 +35,7 @@
       
         
       <div class="row">
-        <div class="col-8">
+        <div class="col-9">
           <div class="container border bg-white ms-5 p-4 rounded-3 text-center">
             {% if messages %}
 
@@ -50,23 +50,44 @@
             <div class="row">
               <div class="col-12">
                   <img src="{% static 'apprein/img/logo.jpg' %}" class="img-fluid rounded mb-4 w-75" alt="...">
-                  <p class="fs-2 text-center fw-bolder">Acceso Socios</p>
+                  <p class="fs-2 text-center fw-bolder">Crear Cuenta</p>
 
                   <form class="p-4" method="post">
                     {% csrf_token %}
-                    <div class="form-group mb-3">
-                      <input type="text" name="username" class="form-control rounded-pill fs-4 fw-bolder" id="exampleInputText1" placeholder="Usuario">
-                      
-                    </div>
-                    <div class="form-group mb-3">
-                      <input type="password" name="password" class="form-control rounded-pill fs-4 fw-bolder mb-3" id="exampleInputPassword1" placeholder="Contraseña">
-                      <label class="form-label"><a href="{% url 'crearcuenta' %}" class="text-dark">Crear cuenta</a></label>
-                    </div>
-                    <button type="submit" class="btn text-white categoria w-100 rounded-pill fs-4 fw-bolder">Iniciar Sesión</button>
                     
+                        <div class="form-group">
+                          <!-- {{ form.first_name.label_tag}} -->
+                          {{ form.first_name}}
+                        </div>
+                        <div class="form-group">
+                          <!-- {{ form.last_name.label_tag}} -->
+                          {{ form.last_name}}
+                        </div>
+                        <div class="form-group">
+                          <!-- {{ form.email.label_tag}} -->
+                          {{ form.email}}
+                        </div>
+                        <div class="form-group">
+                          <!-- {{ form.username.label_tag}} -->
+                          {{ form.username}}
+                        </div>
+                        <div class="form-group">
+                          <!-- {{ form.password1.label_tag}} -->
+                          {{ form.password1}}
+                        </div>
+                        <div class="form-group">
+                          <!-- {{ form.password2.label_tag}} -->
+                          {{ form.password2}}
+                        </div>
+
+                   
+                  
+                    <button type="submit" class="btn text-white categoria w-100 rounded-pill fs-4 fw-bolder">Crear Cuenta</button>
+                    <a href="{% url 'home' %}">Volver</a>
                     
                   </form>
-
+                  
+                
               </div>
 
             </div>

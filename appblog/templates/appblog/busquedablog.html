@@ -8,17 +8,15 @@
 
 
 <h2>Blog</h2>
-{% if messages %}
 
-      {% for mensaje in messages  %}
+  <div class="container">
+        <form action="/appblog/busquedablog/" method="get" class="d-flex">
+        {% csrf_token %}
+            <input type="text" class="form-control border-0 me-2 mb-4" placeholder="Buscar en el blog" aria-label="Username" aria-describedby="addon-wrapping" name="buscar">
+            <button class="input-group-text bg-white border-0" type="submit" value=""><i class="fas fa-search fs-3 text-dark"></i></button>
+        </form>
+  </div>
 
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-              {{ mensaje }}
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-      {% endfor %}
-
-  {% endif %}
 {% if datosencontrados %}
 
     <p class="h2 mb-3 fw-bold py-2">Se encontraron {{ datosencontrados|length }} coincidencias</p>
@@ -33,7 +31,10 @@
                     <p class="fs-5 fw-bold"><a href="{% url 'articuloblog' datosblog.id %}" class="enlace">{{ datosblog.titulo}}</a></p>
                     <p class="">Categoria: {{ datosblog.categoria}}</p>
                     <p class="">Fecha: {{ datosblog.created}}</p>
-                    <p class="">Usuario:{{user.datosblog.autor_id}}</p>
+                    <p class="">Usuario: {{ datosblog.autor }}</p>
+                  
+                        
+                    
 
                     {% if user.is_authenticated %}
                         <div class="text-end">

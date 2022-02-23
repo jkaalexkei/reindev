@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login,logout
+from  .forms import crearcuentaform
 
 # from appblog.models import blog #importamos los modelos de la appblog
 # Create your views here.
@@ -63,3 +64,19 @@ def cerrarsesion(request):
      request.session['usuario'] = None
      print('sesion cerrada')
      return redirect('home')
+
+def crearcuenta(request):
+     pass
+     if request.method == 'POST':
+          form = crearcuentaform(request.POST)
+          if form.is_valid():
+               form.save()
+               username=form.cleaned_data['username']
+               messages.success(request,'Cuenta creada satisfactoriamente')
+               return redirect('home')
+     else:
+          form = crearcuentaform()
+     
+     contexto = {'form':form}
+
+     return render(request,'apprein/crearcuenta.html',contexto)

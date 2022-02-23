@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.shortcuts import redirect
 from django.contrib import messages
 from appblog.models import blogm, categorias #importamos los modelos de la appblog
@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login,logout
 # from django.http import HttpResponseRedirect
 # Create your views here.
 # from proyecto_rein.forms import Inputimagen
+
 
 def blog(request):
     
@@ -26,12 +27,15 @@ def registrarnuevaentrada(request):
 
      # sesionusuario = request.session.get('usuario')
      # print(sesionusuario)
-
+     
      if request.method == 'POST':
           tituloe = request.POST['tituloe']
           contenidoe = request.POST['contenidoe']
           categoriae = request.POST['categoriae']
           imagene = request.FILES['imagene']
+          usuarioe = request.POST['usuarioe']
+          print(usuarioe)
+          
 
           #usuario = User.objects.filter(username = request.session['usuario'])
           category=categorias.objects.filter(nombre=categoriae).exists()
@@ -40,8 +44,14 @@ def registrarnuevaentrada(request):
                catg = categorias.objects.get(nombre=categoriae)
                catg.nombre=categoriae
                catg.save()
-               documento = blogm.objects.create(titulo=tituloe,descripcion=contenidoe,imagen=imagene,categoria=catg)
+               # usr = User.objects.get(username=usuarioe)
+               # blogm.autor_id=usr.id
+               # blogm.save()
+               usuario = get_object_or_404(User,pk=request.user.id)
+               documento = blogm(titulo=tituloe,descripcion=contenidoe,imagen=imagene,autor_id=usuario.id,categoria=catg)
                documento.save()
+               
+               
                if documento:
                     messages.success(request,'Información Guardada')
                     return redirect('blog')
@@ -126,8 +136,11 @@ def busquedaarticulos(request):
 
      if request.method == 'GET':   
           datos = request.GET['buscar']
+
           if datos:
                articuloblog = blogm.objects.filter(titulo__icontains=datos)
+          elif datos=='':
+               messages.error(request,'El campo de busqueda esta vacio')
           else:
                messages.error(request,'No hay resultados con ese criterio')
           
