@@ -3,6 +3,7 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from appblog.models import blogm, categorias #importamos los modelos de la appblog
 from django.contrib.auth.models import User
+from django.views.generic.list import ListView
 from django.contrib.auth import authenticate, login,logout
 # from django.http import HttpResponseRedirect
 # Create your views here.
@@ -33,8 +34,8 @@ def registrarnuevaentrada(request):
           contenidoe = request.POST['contenidoe']
           categoriae = request.POST['categoriae']
           imagene = request.FILES['imagene']
-          usuarioe = request.POST['usuarioe']
-          print(usuarioe)
+          # usuarioe = request.POST['usuarioe']
+          # print(usuarioe)
           
 
           #usuario = User.objects.filter(username = request.session['usuario'])
@@ -130,25 +131,39 @@ def eliminararticulo(request, id):
      articulo.delete()
      return redirect ('blog')
 
-def busquedaarticulos(request):
+class busquedaarticulos(ListView):
      
           # art = request.GET['buscar']
 
-     if request.method == 'GET':   
-          datos = request.GET['buscar']
+     # if request.method == 'GET':   
+     #      datos = request.GET['buscar']
 
-          if datos:
-               articuloblog = blogm.objects.filter(titulo__icontains=datos)
-          elif datos=='':
-               messages.error(request,'El campo de busqueda esta vacio')
-          else:
-               messages.error(request,'No hay resultados con ese criterio')
-          
+     #      if datos:
+     #           articuloblog = blogm.objects.filter(titulo__icontains=datos)
+     #      elif datos=='':
+     #           messages.error(request,'El campo de busqueda esta vacio')
+     #      else:
+     #           messages.error(request,'No hay resultados con ese criterio')
+     # else:
+     #       messages.error(request,'Peticion incorrecta')
+
+     template_name = 'appblog/busquedablog.html'
+
+     def get_queryset(self):
+          return blogm.objects.filter(titulo__icontains=self.query())
      
-     return render(request,'appblog/busquedablog.html',{               
-          'datosencontrados':articuloblog               
-     })
-         
+     def query(self):
+          return self.request.GET.get('buscar') 
+     
+     def get_context_data(self, **kwargs):
+
+          context= super().get_context_data(**kwargs)
+          context['query'] = self.query()
+          context['datosencontrados'] = context['object_list']
+          context['cantidad'] = context['object_list'].count()
+
+
+          return context
 
           
 

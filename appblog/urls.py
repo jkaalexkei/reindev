@@ -2,7 +2,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views#importa desde la raiz las vistas
-
+from appblog.views import busquedaarticulos
 
 urlpatterns = [
     
@@ -12,7 +12,7 @@ urlpatterns = [
     path('modificarentrada/<id>',views.modificarentradablog,name='modificarentradablog'),
     path('articulo/<id>',views.vistaarticulocompleto,name='articuloblog'),
     path('eliminararticulo/<id>',views.eliminararticulo,name='eliminararticulo'),
-    path('busquedablog/',views.busquedaarticulos,name='buscar'),
+    path('busquedablog/',busquedaarticulos.as_view(),name='buscar'),
     
 ]
 

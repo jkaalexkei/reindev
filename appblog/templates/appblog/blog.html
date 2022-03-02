@@ -29,7 +29,7 @@
   <div class="col-5">
         <form action="/appblog/busquedablog/" method="get" class="d-flex">
           {% csrf_token %}
-          <input type="text" class="form-control border-0 me-2 mb-4" placeholder="Buscar en el blog" aria-label="Username" aria-describedby="addon-wrapping" name="buscar">
+          <input type="text" class="form-control border-0 me-2 mb-4" placeholder="Buscar en el blog" aria-label="Username" aria-describedby="addon-wrapping" name="buscar" value="{{ query }}">
           <button class="input-group-text bg-white border-0" type="submit" value=""><i class="fas fa-search fs-3 text-dark"></i></button>
         </form>
   </div>

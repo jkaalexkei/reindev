@@ -66,7 +66,7 @@ def cerrarsesion(request):
      return redirect('home')
 
 def crearcuenta(request):
-     pass
+     
      if request.method == 'POST':
           form = crearcuentaform(request.POST)
           if form.is_valid():

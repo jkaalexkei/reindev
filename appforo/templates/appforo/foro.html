@@ -14,11 +14,20 @@
           <p class="h2 mb-3 fw-bold py-2">foro REIN</p>
           <p class="fs-4 mb-3 py-1">Intercambiar ideas y opiniones sobre diversos temas sobre inclusión laboral</p>
       </div>
-      <div class="col-5 ">
-          <div class="input-group flex-nowrap my-2">
-                <input type="text" class="form-control" placeholder="Buscar Discusiones" aria-label="Username" aria-describedby="addon-wrapping">
-                <span class="input-group-text bg-white" id="addon-wrapping"><a href=""><i class="fas fa-search fs-3 text-dark"></i></a></span>
-          </div>
+      <div class="col-12 d-flex justify-content-around">
+                <div class="d-flex">
+                    <input type="text" class="form-control" placeholder="Buscar Discusiones" aria-label="Username" aria-describedby="addon-wrapping">
+                    <span class="input-group-text bg-white" id="addon-wrapping"><a href=""><i class="fas fa-search fs-3 text-dark"></i></a></span>
+                </div>
+               
+                {% if user.is_authenticated %}
+                <div class="">
+                  <span class="enlace">Añadir Foro&nbsp;</span>&nbsp;<a class="enlace" href="{% url 'crearforo' %}"><i class="fa fa-plus-square fs-2"></i></a>
+                    
+                </div>
+                  
+                {% endif %}
+            
       </div>
 
             <!-- COLUMNAS LARGAS -->
@@ -37,6 +46,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <h6 class="py-4 text-start fs-5 fw-bold">{{entradaforo.titulo}}</h6>
+                                    <p class="fs-5">Creado por: {{entradaforo.autorf}}</p>
                                 </div>
                                 <div class="col-6">
 
@@ -51,7 +61,7 @@
                                     <p class="py-3 text-muted">{{entradaforo.created|naturaltime}}</p>
                                     {% if user.is_authenticated %}
                                         <div>
-                                            <a href="" class="btn btn-lg text-warning"><i class="fa fa-pen"></i></a>
+                                            <a href="{% url 'modificarentradaforo' entradaforo.id %}" class="btn btn-lg text-warning"><i class="fa fa-pen"></i></a>
                                             <a href="" class="btn btn-lg text-danger"><i class="fa fa-trash"></i></a>
                                         </div>
                                     {% endif %}

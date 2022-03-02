@@ -18,11 +18,11 @@ class categoria_forom(models.Model):
 class forom(models.Model):
     titulo=models.CharField(max_length=50)
     contenido=models.TextField()
-    imagen=models.ImageField(upload_to='foro',null=True,blank=True)
-    like=models.IntegerField()
-    nolike=models.IntegerField()
-    autor=models.ForeignKey(User,on_delete=models.CASCADE)
-    categoriasforo=models.ManyToManyField(categoria_forom)
+    imagen=models.ImageField(default='logo.jpg', upload_to='foro')
+    like=models.IntegerField(default=0)
+    nolike=models.IntegerField(default=0)
+    autorf=models.ForeignKey(User,on_delete=models.CASCADE)
+    categoriasforo=models.ForeignKey(categoria_forom,on_delete=models.CASCADE,null=True)
     created=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField(auto_now_add=True)
 
@@ -30,7 +30,8 @@ class forom(models.Model):
     class Meta:
         verbose_name='forom'
         verbose_name_plural='foroms'
+        ordering = ['-created']
 
     def __str__(self):
-        return self.titulo
+        return f'{self.autorf.username}:{self.titulo}'
 
