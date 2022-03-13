@@ -13,7 +13,9 @@ urlpatterns = [
     path('calendario/',views.calendario, name='calendario'),
     path('login/',views.iniciarsesion,name='login'),
     path('cerrarsesion/',views.cerrarsesion,name='logout'),
-    path('crearcuenta/',views.crearcuenta,name='crearcuenta')
+    path('crearcuenta/',views.crearcuenta,name='crearcuenta'),
+    path('perfil/<str:usuario>',views.perfil,name='perfil'),
+    path('editarperfil/',views.editarperfil,name='editarperfil')
     # path('',LoginView.as_view(template_name='apprein/login.html'),name='login'),
     # path('logout/',LogoutView.as_view(template_name='apprein/logout.html'),name='login'),
     

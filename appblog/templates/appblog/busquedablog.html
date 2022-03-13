@@ -38,8 +38,12 @@
 
                     {% if user.is_authenticated %}
                         <div class="text-end">
-                            <a href="{% url 'modificarentradablog' datosblog.id %}" class="btn btn-lg text-warning"><i class="fa fa-pen"></i></a>
-                            <a href="{% url 'eliminararticulo' datosblog.id %}" class="btn btn-lg text-danger"><i class="fa fa-trash"></i></a>
+                            
+                            {% if request.user == datosblog.autor %}
+                                <a href="{% url 'modificarentradablog' datosblog.id %}" class="btn btn-lg text-warning"><i class="fa fa-pen"></i></a>
+                                <a href="{% url 'eliminararticulo' datosblog.id %}" class="btn btn-lg text-danger"><i class="fa fa-trash"></i></a>
+                            {% endif %}
+                                
                         </div>
                     {% endif %}
                 </div>

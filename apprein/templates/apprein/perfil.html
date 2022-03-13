@@ -1,0 +1,156 @@
+{% extends "apprein/plantilla.html" %}
+{% load humanize %}
+{% load static %}
+
+{% block title %} blog ReIN {% endblock %}
+
+{% include "apprein/cabecera.html" %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-12">
+        <p class="h2 mb-2 fw-bold py-2">Información de Perfil</p>
+    </div>
+    <div class="col-12">
+        <div class="card text-center" style="width: 100%;">
+            <img src="{{ request.user.perfil.imagenperfil.url }}" class="rounded-circle m-auto" alt="..." width="150" title="{{ request.user.username }}">
+            <div class="card-body">
+              <!-- <h5 class="card-title">{{ request.user.first_name }}</h5> -->
+              <h3 class="card-text">{{ request.user.first_name}}&nbsp;{{request.user.last_name}}</h3>
+              <p class="card-text">{{ request.user.username }}</p>
+              <p class="card-text">{{ request.user.perfil.biografia }}</p>
+              <p class="card-text">{{ request.user.email }}</p>
+              <a class="btn bg-boton text-white " href="{% url 'editarperfil' %}">Editar Perfil</a>
+              <div class="row mt-3">
+                <div class="col-3">
+                  <p class="blockquote fw-bold fs-5">{{ request.user.blogms.count }}</p>
+                  <p class="blockquote fw-bold fs-5">Blog</p>
+                </div>
+                <div class="col-3">
+                  <p class="blockquote fw-bold fs-5">{{ request.user.foroms.count }}</p>
+                  <p class="blockquote fw-bold fs-5">Foros</p>
+                </div>
+                <div class="col-3 m-auto">
+                  <p class="blockquote fw-bold fs-5">50</p>
+                  <p class="blockquote fw-bold fs-5">Seguidores</p>
+                </div>
+                <div class="col-3 justify-content-center">
+                  <p class="blockquote fw-bold fs-5">100</p>
+                  <p class="blockquote fw-bold fs-5">Seguidos</p>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headinguno">
+          <button class="accordion-button bg-boton-categoria text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseuno" aria-expanded="true" aria-controls="collapseuno">
+            <p class="fw-bolder">Entradas de blog publicadas</p>
+          </button>
+        </h2>
+        <div id="collapseuno" class="accordion-collapse collapse" aria-labelledby="headinguno" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            {% include "apprein/snipets/appblog/blogspublicados.html" %}
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingdos">
+          <button class="accordion-button collapsed bg-boton-categoria text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapsedos" aria-expanded="false" aria-controls="collapsedos">
+            <p class="fw-bolder">Foros Publicados</p>
+          </button>
+        </h2>
+        <div id="collapsedos" class="accordion-collapse collapse" aria-labelledby="headingdos" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            {% include "apprein/snipets/appforo/forospublicados.html" %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <!-- {% for entradasblog in articulosblog %}
+
+    <div class="col-12">
+      <h2>Entradas de Blog creadas</h2>
+      <div class="card mb-2 mt-3 bg-body rounded-2 border-0">
+          <div class="row">
+            <div class="col-12 col-lg-3">
+              
+              <div class="container text-center p-0">
+                
+                <img src="{{ entradasblog.imagen.url }}" class="img-fluid w-100 rounded-3" alt="...">
+                <a class="navbar-brand" href="#"><i class="far fa-heart fs-3 mt-1 text-dark"></i></a>
+                <a class="navbar-brand" href="#"><i class="far fa-comment-alt fs-3 mt-1 text-dark"></i></a>
+              </div>
+            </div>
+            <div class="col-12 col-lg-9">
+              <div class="row">
+                <div class="col-12">
+                  <h6 class="py-4 text-start fs-5 fw-bold">{{ entradasblog.titulo }}</h6>
+                </div>
+                <div class="col-6">
+                  <p class="py-3">Categoria: {{ entradasblog.categoria }}</p>
+                </div>
+                <div class="col-6">
+                  <p class="py-3 text-muted">{{ entradasblog.created | naturaltime }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+      
+    {% endfor %} -->
+
+    <!-- {% for articulosforouser in articulosforo %}
+
+    <div class="col-12">
+      <h2>Entradas de Foro creadas</h2>
+      <div class="card mb-2 mt-3 bg-body rounded-2 border-0">
+          <div class="row">
+            <div class="col-12 col-lg-3">
+              
+              <div class="container text-center p-0">
+                
+                <img src="{{ articulosforouser.imagen.url }}" class="img-fluid w-100 rounded-3" alt="...">
+                <a class="navbar-brand" href="#"><i class="far fa-heart fs-3 mt-1 text-dark"></i></a>
+                <a class="navbar-brand" href="#"><i class="far fa-comment-alt fs-3 mt-1 text-dark"></i></a>
+              </div>
+            </div>
+            <div class="col-12 col-lg-9">
+              <div class="row">
+                <div class="col-12">
+                  <h6 class="py-4 text-start fs-5 fw-bold">{{ articulosforouser.titulo }}</h6>
+                </div>
+                <div class="col-6">
+                  <p class="py-3">Categoria: {{ articulosforouser.categoria }}</p>
+                </div>
+                <div class="col-6">
+                  <p class="py-3 text-muted">{{ articulosforouser.created | naturaltime }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+      
+    {% endfor %} -->
+      
+</div>
+{% endblock  %}

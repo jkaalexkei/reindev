@@ -1,0 +1,35 @@
+{% extends "apprein/plantilla.html" %}
+{% load humanize %}
+{% load static %}
+
+{% block title %} blog ReIN {% endblock %}
+
+{% include "apprein/cabecera.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <p class="h2 mb-2 fw-bold py-2">Editar Información de Perfil</p>
+    </div>
+    <div class="col-12 d-flex justify-content-center">
+      <div class="card" style="width: 60%;">
+        <img src="{{ request.user.perfil.imagenperfil.url }}" class="rounded-circle m-auto" alt="..." width="150" title="{{ request.user.username }}">
+        <div class="card-body">
+              <h3 class="card-text">{{ request.user.first_name}}&nbsp;{{request.user.last_name}}</h3>
+              <p class="card-text">{{ request.userusername }}</p>
+              <p class="card-text">{{ request.user.perfil.biografia }}</p>
+              <p class="card-text">{{ request.user.email }}</p>
+              <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{formuser}}
+                {{formperfil}}
+                <button type="submit" class="btn text-white categoria w-100 rounded-pill fs-4 fw-bolder">Actualizar</button>
+              </form>
+          
+        </div>
+      </div>
+        
+        
+    </div>
+</div>
+{% endblock  %}

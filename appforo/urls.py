@@ -10,6 +10,7 @@ urlpatterns = [
     path('',views.foro,name='foro'),
     path('crearforo/',views.crearforo,name='crearforo'),
     path('modificarforo/<id>',views.modificarentradaforo,name='modificarentradaforo'),
+    path('eliminarforo/<id>',views.eliminarforo,name='eliminarforo'),
 
 ]
 

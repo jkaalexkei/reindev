@@ -98,3 +98,10 @@ def modificarentradaforo(request,id):
           'categoria':categoria
 
      })
+
+
+def eliminarforo(request, id):
+    
+     articuloforo = forom.objects.get(id=id)
+     articuloforo.delete()
+     return redirect ('foro')

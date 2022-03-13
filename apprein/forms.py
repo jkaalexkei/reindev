@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from appblog.models import blogm, categorias
 from appforo.models import forom,categoria_forom
+from apprein.models import perfil
 
 
 
@@ -32,6 +33,10 @@ class regitroentradaforo(forms.ModelForm):
         fields=['titulo','contenido','categoria','imagen']
 
 
+class actualizarperfilform(forms.ModelForm):
+    biografia = forms.CharField(required=True,label='Biografía:',widget=forms.TextInput(attrs={'class':'form-control rounded-pill fs-5 fw-bolder mb-3','name':'biografiaperfil'}))
+    imagenperfil =forms.ImageField(required=True,label='Ingrese una imagen',widget=forms.FileInput(attrs={'class':'form-control rounded-pill fs-5 fw-bolder mb-3','name':'imagenperfil'}))
 
-    
-     
+    class Meta:
+        model = perfil
+        fields = ['biografia','imagenperfil']

@@ -60,9 +60,9 @@ def registrarnuevaentrada(request):
                #id_usuario = User.objects.get(username=request.session['usuario']) 
                cat = categorias.objects.create(nombre=categoriae)
                cat.save()
-               #HACER CONSULTA MEDIANTE EL MODELO USER
-
-               documento = blogm.objects.create(titulo=tituloe,descripcion=contenidoe,imagen=imagene,categoria=cat)
+               #HACER CONSU   LTA MEDIANTE EL MODELO USER
+               usuario = get_object_or_404(User,pk=request.user.id)
+               documento = blogm.objects.create(titulo=tituloe,descripcion=contenidoe,imagen=imagene,autor_id=usuario.id,categoria=cat)
                documento.save()
 
                if documento:

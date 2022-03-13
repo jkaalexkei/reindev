@@ -2,7 +2,8 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login,logout
-from  .forms import crearcuentaform
+from  .forms import crearcuentaform, actualizarperfilform
+from .models import perfil
 
 # from appblog.models import blog #importamos los modelos de la appblog
 # Create your views here.
@@ -80,3 +81,32 @@ def crearcuenta(request):
      contexto = {'form':form}
 
      return render(request,'apprein/crearcuenta.html',contexto)
+
+def perfil(request,usuario):
+     usuario = User.objects.get(username = usuario )
+     articulosbloguser = usuario.blogms.all()
+     articulosforouser = usuario.foroms.all()
+     contexto ={'usuario':usuario, 'articulosblog':articulosbloguser,'articulosforo':articulosforouser}
+     
+     return render(request,'apprein/perfil.html',contexto)
+
+def editarperfil(request):
+
+     if request.method == 'POST':
+          formuser = crearcuentaform(request.POST, instance=request.user)
+          formperfil = actualizarperfilform(request.POST, request.FILES, instance=request.user.perfil)
+
+          if formuser.is_valid() and formperfil.is_valid():
+               formuser.save()
+               formperfil.save()
+               return redirect('home')
+     else:
+          formuser = crearcuentaform(instance = request.user)
+          formperfil = actualizarperfilform()
+     
+     contexto = {
+          'formuser': formuser,
+          'formperfil':formperfil
+     }
+
+     return render(request,'apprein/editarperfil.html',contexto)

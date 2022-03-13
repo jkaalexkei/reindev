@@ -94,8 +94,10 @@
         </div>
         {% if user.is_authenticated %}
         <div>
-          <a href="{% url 'modificarentradablog' entradablog.id %}" class="btn btn-lg text-warning"><i class="fa fa-pen"></i></a>
-          <a href="{% url 'eliminararticulo' entradablog.id %}" class="btn btn-lg text-danger"><i class="fa fa-trash"></i></a>
+          {% if request.user == entradablog.autor %}
+              <a href="{% url 'modificarentradablog' entradablog.id %}" class="btn btn-lg text-warning"><i class="fa fa-pen"></i></a>
+              <a href="{% url 'eliminararticulo' entradablog.id %}" class="btn btn-lg text-danger"><i class="fa fa-trash"></i></a>
+          {% endif %}
         </div>
         {% endif %}
       </div>

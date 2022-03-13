@@ -1,0 +1,48 @@
+{% load humanize %}
+{% load static %}
+<!-- <h2>Entradas de Foro creadas</h2> -->
+
+
+{% if articulosforo %}
+
+{% for articulosforouser in articulosforo %}
+
+<div class="col-12">
+  
+  <div class="card mb-2 mt-3 bg-body rounded-2 border-0">
+      <div class="row">
+        <div class="col-12 col-lg-3">
+          
+          <div class="container text-center p-0">
+            
+            <img src="{{ articulosforouser.imagen.url }}" class="img-fluid w-100 rounded-3" alt="...">
+            <a class="navbar-brand" href="#"><i class="far fa-heart fs-3 mt-1 text-dark"></i></a>
+            <a class="navbar-brand" href="#"><i class="far fa-comment-alt fs-3 mt-1 text-dark"></i></a>
+          </div>
+        </div>
+        <div class="col-12 col-lg-9">
+          <div class="row">
+            <div class="col-12">
+              <h6 class="py-4 text-start fs-5 fw-bold">{{ articulosforouser.titulo }}</h6>
+            </div>
+            <div class="col-6">
+              <p class="py-3">Categoria: {{ articulosforouser.categoria }}</p>
+            </div>
+            <div class="col-6">
+              <p class="py-3 text-muted">{{ articulosforouser.created | naturaltime }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+  
+{% endfor %}
+
+{% else %}
+
+  <p>Aún no hay publicaciones realizadas</p>
+
+{% endif %}
+  
+

@@ -21,7 +21,7 @@ class forom(models.Model):
     imagen=models.ImageField(default='logo.jpg', upload_to='foro')
     like=models.IntegerField(default=0)
     nolike=models.IntegerField(default=0)
-    autorf=models.ForeignKey(User,on_delete=models.CASCADE)
+    autorf=models.ForeignKey(User,on_delete=models.CASCADE,related_name='foroms')
     categoriasforo=models.ForeignKey(categoria_forom,on_delete=models.CASCADE,null=True)
     created=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField(auto_now_add=True)
