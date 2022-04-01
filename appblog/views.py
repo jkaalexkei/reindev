@@ -5,6 +5,8 @@ from appblog.models import blogm, categorias #importamos los modelos de la appbl
 from django.contrib.auth.models import User
 from django.views.generic.list import ListView
 from django.contrib.auth import authenticate, login,logout
+from apprein.forms import comentariosform
+from comentariosblog.models import comentariosblogm
 # from django.http import HttpResponseRedirect
 # Create your views here.
 # from proyecto_rein.forms import Inputimagen
@@ -117,11 +119,17 @@ def modificarentradablog(request,id):
 
 def vistaarticulocompleto(request,id):
      articulo = blogm.objects.get(id=id)
+     com = comentariosblogm.objects.all()
+
+     comentarioform = comentariosform()
+     
 
      
      return render(request,'appblog/articuloblog.html',{
 
-          'articulo':articulo
+          'articulo':articulo,
+          'form':comentarioform,
+          'comentarios':com
 
      })
 
@@ -130,6 +138,11 @@ def eliminararticulo(request, id):
      articulo = blogm.objects.get(id=id)
      articulo.delete()
      return redirect ('blog')
+
+# def registrarcomentario(request):
+#      comentarioform = comentariosform()
+#      contexto ={'formcomentario':comentarioform}
+#      return render(request,'appblog/articuloblog.html',contexto)
 
 class busquedaarticulos(ListView):
      
@@ -165,7 +178,7 @@ class busquedaarticulos(ListView):
 
           return context
 
-          
+
 
 
 

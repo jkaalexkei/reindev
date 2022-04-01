@@ -27,7 +27,7 @@ urlpatterns = [
     path('', include('apprein.urls')),
     path('appblog/', include('appblog.urls')),
     path('appforo/', include('appforo.urls')),
-    
+    # path('comentariosblog/',include('comentariosblog.urls'))
     
     
        

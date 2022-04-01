@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'apprein',
     'appblog',
     'appforo',
+    'comentariosblog',
 ]
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'

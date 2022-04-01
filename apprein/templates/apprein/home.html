@@ -6,66 +6,69 @@
 
 {% include "apprein/cabecera.html" %}
 
-      
-    {% block content %}
-      <div class="row">
-        {% if messages %}
 
-              {% for mensaje in messages  %}
-                  
-              <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ mensaje }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>
-              {% endfor %}
-            
-        {% endif %}
-        <div class="col-12 col-lg-12">
-          <div class="row">
-            <div class="col-12">
-              <p class="h2 mb-3 fw-bold py-2">Nuevos Eventos y articulos de la semana</p>
-            </div>
-            <div class="col-12 col-lg-4">
-              <div class="card border-0" style="width: 13rem;">
-                <img src="{% static 'apprein/img/eventos.jpg' %}" class="card-img-top img-fluid rounded-3" alt="...">
-                <div class="card-body">
-                  <p class="card-text fs-5 fw-bold">Formador de Expertos</p>
-                  <p class="card-text">Modulo 1</p>
-                  {% if user.is_authenticated %}
-                
-                    <a href="" class="btn btn-sm text-warning"><i class="fa fa-pen"></i></a> 
-                    <a href="" class="btn btn-sm text-danger"><i class="fa fa-trash"></i></a>
-                  
-                  {% endif %}
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-lg-4">
-              <div class="card border-0" style="width: 13rem;">
-                <img src="{% static 'apprein/img/eventos.jpg' %}" class="card-img-top img-fluid rounded-3" alt="...">
-                <div class="card-body">
-                  <p class="card-text fs-5 fw-bold">Formador de Expertos</p>
-                  <p class="card-text">Modulo 1</p>
-                  
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-lg-4">
-              <div class="card border-0" style="width: 13rem;">
-                <img src="{% static 'apprein/img/eventos.jpg' %}" class="card-img-top img-fluid rounded-3" alt="...">
-                <div class="card-body">
-                  <p class="card-text fs-5 fw-bold">Formador de Expertos</p>
-                  <p class="card-text">Modulo 1</p>
-                </div>
-              </div>
-            </div>
-            <!-- COLUMNAS LARGAS -->
-            <div class="col-12 col-lg-12 my-2">
-              <div class="card mb-2 bg-body rounded-2 border-0">
+{% block content %}
+<div class="row">
+  {% if messages %}
+
+    {% for mensaje in messages  %}
+
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ mensaje }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+
+  {% endif %}
+  <div class="col-12 col-lg-12">
+    <div class="row">
+      <div class="col-12">
+        <p class="h2 mb-3 fw-bold py-2">Nuevos Eventos y articulos de la semana</p>
+      </div>
+      <div class="col-12 col-lg-4">
+        <div class="card border-0" style="width: 13rem;">
+          <img src="{% static 'apprein/img/eventos.jpg' %}" class="card-img-top img-fluid rounded-3" alt="...">
+          <div class="card-body">
+            <p class="card-text fs-5 fw-bold">Formador de Expertos</p>
+            <p class="card-text">Modulo 1</p>
+            {% if user.is_authenticated %}
+
+            <a href="" class="btn btn-sm text-warning"><i class="fa fa-pen"></i></a>
+            <a href="" class="btn btn-sm text-danger"><i class="fa fa-trash"></i></a>
+
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4">
+        <div class="card border-0" style="width: 13rem;">
+          <img src="{% static 'apprein/img/eventos.jpg' %}" class="card-img-top img-fluid rounded-3" alt="...">
+          <div class="card-body">
+            <p class="card-text fs-5 fw-bold">Formador de Expertos</p>
+            <p class="card-text">Modulo 1</p>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4">
+        <div class="card border-0" style="width: 13rem;">
+          <img src="{% static 'apprein/img/eventos.jpg' %}" class="card-img-top img-fluid rounded-3" alt="...">
+          <div class="card-body">
+            <p class="card-text fs-5 fw-bold">Formador de Expertos</p>
+            <p class="card-text">Modulo 1</p>
+          </div>
+        </div>
+      </div>
+      <!-- COLUMNAS LARGAS -->
+
+      <div class="col-12 col-lg-12 my-2">
+        {% if articulospublicados %}
+            {% for articulos in articulospublicados  %}
+              <div class="card mb-2 bg-body rounded-2 border">
                 <div class="row">
                   <div class="col-12 col-lg-3">
-                    <div class="container text-center p-0">
-                      <img src="{% static 'apprein/img/foto.jpg' %}" class="img-fluid w-100 rounded-3" alt="...">
+                    <div class="container text-center p-2">
+                      <img src="{{ articulos.imagen.url }}" class="rounded" alt="..." width="200" height="150">
                       <a class="navbar-brand" href="#"><i class="far fa-heart fs-3 mt-1 text-dark"></i></a>
                       <a class="navbar-brand" href="#"><i class="far fa-comment-alt fs-3 mt-1 text-dark"></i></a>
                     </div>
@@ -73,26 +76,44 @@
                   <div class="col-12 col-lg-9">
                     <div class="row">
                       <div class="col-12">
-                        <h6 class="py-4 text-start fs-5 fw-bold">Día Mundial de Concienciación sobre el Autismo</h6>
+                        <h6 class="py-1 text-start fs-5 fw-bold"><a class="enlace" href="{% url 'articuloblog' articulos.id %}">{{ articulos.titulo }}</a></h6>
                       </div>
                       <div class="col-6">
-                        <p class="py-3">Categoria: Asunto</p>
+                        
+                        <img src="{{ articulos.autor.perfil.imagenperfil.url }}" alt="" class="rounded-circle" width="50" height="50">
+                        <p class="py-1">Autor: {{articulos.autor}}  </p>
                       </div>
-                      <div class="col-6">
-                        <p class="py-3 text-muted">Hace 19 Minutos</p>
-                        {% if user.is_authenticated %}
-                            
-                        <a href="" class="btn btn-sm text-warning"><i class="fa fa-pen"></i></a>
-                        <a href="" class="btn btn-sm text-danger"><i class="fa fa-trash"></i></a>
-                            
-                      {% endif %}
-                     </div>
+                      <div class="col-12 d-flex justify-content-between">
+                        <p class="py-2">Categoria: {{articulos.categoria}} </p>
+                        <p class="py-2 px-4 text-muted">Creado: {{ articulos.created | naturaltime }}</p>
+                      </div>
+                
                     </div>
                   </div>
                 </div>
+                
+                {% if user.is_authenticated %}
+                
+                {% if request.user == articulos.autor %}
+                <div class="card-footer text-end">
+                  <a href="" class="btn btn-sm text-warning"><i class="fa fa-pen"></i>&nbsp;Editar</a>
+                  <a href="" class="btn btn-sm text-danger"><i class="fa fa-trash"></i>&nbsp;Eliminar</a>
+                </div>
+                  
+                {% endif %}
+                  
+                
+                {% endif %}
+                  
               </div>
-            </div>
-            <div class="col-12 col-lg-12 my-2">
+        {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+      <!-- <div class="col-12 col-lg-12 my-2">
               <div class="card mb-2 bg-body rounded-2 border-0">
                 <div class="row">
                   <div class="col-12 col-lg-3">
@@ -120,9 +141,6 @@
             </div>
           </div>
         </div>
-      </div> 
-    {% endblock  %}
-    <!-- Columna derecha -->
-    
-    
-    
+      </div>  -->
+      {% endblock  %}
+      <!-- Columna derecha -->

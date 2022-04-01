@@ -21,8 +21,11 @@
               <p class="card-text">{{ request.user.username }}</p>
               <p class="card-text">{{ request.user.perfil.biografia }}</p>
               <p class="card-text">{{ request.user.email }}</p>
-              <a class="btn bg-boton text-white " href="{% url 'editarperfil' %}">Editar Perfil</a>
               <div class="row mt-3">
+                <div class="col-12 d-flex justify-content-evenly my-3">
+                  <a class="btn bg-boton text-white " href="{% url 'editarperfil' %}">Editar Perfil</a>
+                  <a class="btn btn-danger text-white" href="{% url 'eliminarperfil' request.user.username %}">Eliminar Perfil</a>
+                </div>
                 <div class="col-3">
                   <p class="blockquote fw-bold fs-5">{{ request.user.blogms.count }}</p>
                   <p class="blockquote fw-bold fs-5">Blog</p>

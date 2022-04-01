@@ -15,7 +15,8 @@ urlpatterns = [
     path('cerrarsesion/',views.cerrarsesion,name='logout'),
     path('crearcuenta/',views.crearcuenta,name='crearcuenta'),
     path('perfil/<str:usuario>',views.perfil,name='perfil'),
-    path('editarperfil/',views.editarperfil,name='editarperfil')
+    path('editarperfil/',views.editarperfil,name='editarperfil'),
+    path('eliminarperfil/<str:usuario>',views.eliminarperfil,name='eliminarperfil')
     # path('',LoginView.as_view(template_name='apprein/login.html'),name='login'),
     # path('logout/',LogoutView.as_view(template_name='apprein/logout.html'),name='login'),
     

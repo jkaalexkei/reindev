@@ -18,7 +18,7 @@
               <h5 class="card-title">{{ articulo.titulo }}</h5>
               <p class="card-text texto-justificado">{{ articulo.descripcion }}</p>
               <p class="card-text"><small class="text-muted">Fecha: {{ articulo.updated }}</small></p>
-              <p class="card-text"><small class="text-muted">Autor: {{ articulo.autor }}</small></p>
+              <p class="card-text"><img class="border rounded-circle" src="{{articulo.autor.perfil.imagenperfil.url}}" alt="" width="50" height="50"> <small class="text-muted">Autor: {{ articulo.autor }}</small></p>
               <p class="card-text"><small class="text-muted">Categoria: {{ articulo.categoria}}</small></p>
             </div>
             <div class="card-footer">
@@ -28,6 +28,7 @@
                     {% if request.user == articulo.autor %}
                         <a href="{% url 'modificarentradablog' articulo.id %}" class="btn btn-lg text-warning"><i class="fa fa-pen"></i> Editar</a>
                         <a href="{% url 'eliminararticulo' articulo.id %}" class="btn btn-lg text-danger"><i class="fa fa-trash"></i> Eliminar</a>
+                        <a id="comentarios" href="#" class="btn btn-lg text-success fs-4"><i class="far fa-comment-alt"></i>Comentar</a>
                     {% endif %}
                         
                     
@@ -39,11 +40,67 @@
                 </div>
                 {% endif %}
             </div>
+            <div id="registrarcomentario" class="card">
+                <div class="card-header">
+                  Comentarios
+                </div>
+                <div class="card-body">
+                  <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <input type="hidden" name="idarticulo" value="{{articulo.id}}">
+                    </div>
+                    <div class="form-group">
+                      {{ form }}
+                    </div>
+                    <div class="form-group">
+                      <button class="btn bg-boton" type="submit">Enviar</button>
+                    </div>
+                  </form>
+                  
+                </div>
+              </div>
+             <div>
+               {% if comentarios %}
+
+                    <h2 class="my-5">Comentarios Publicados</h2>
+                    
+
+                        {% for comentariosart in comentarios  %}
+                            {% if comentariosart.entradablogs_id == articulo.id %}
+                            <div class="card">
+                              <div class="card-body">
+                                <h5 class="card-title">{{ comentariosart.titulocomentario}}</h5>
+                                
+                                <p class="card-text">{{ comentariosart.comentario}}</p>
+                                <p class="card-text">Realizado por: {{comentariosart.created | naturaltime}}</p>
+                                <p class="card-text"><img src="{{comentariosart.autorcoment.perfil.imagenperfil.url}}" class="rounded-circle" width="50" height="50" alt="">&nbsp;{{comentariosart.autorcoment}}</p>
+                              </div>
+                            </div>
+                            {% endif %}
+                            
+                        {% endfor %}    
+                 
+               {% else %}
+                    <div class="alert alert-warning" role="alert">
+                      <p>Esta publicacion aun no tiene comentarios</p>
+                    </div>
+               {% endif %}
+             </div>
+              
+
         </div>
+        
+       <div>
+        
+       </div>
+          
 
     </div>
+    
 </div>
 
 {% endblock %}
+
 
     

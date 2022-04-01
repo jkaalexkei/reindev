@@ -4,13 +4,20 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login,logout
 from  .forms import crearcuentaform, actualizarperfilform
 from .models import perfil
+from appblog.models import blogm, categorias
 
 # from appblog.models import blog #importamos los modelos de la appblog
 # Create your views here.
 
 def home(request):
 
-    return render(request,"apprein/home.html")
+     articulospublicados = blogm.objects.all()
+
+     contexto = {
+          'articulospublicados':articulospublicados
+     }
+
+     return render(request,"apprein/home.html",contexto)
 
 # def blog(request):
 
@@ -110,3 +117,11 @@ def editarperfil(request):
      }
 
      return render(request,'apprein/editarperfil.html',contexto)
+
+def eliminarperfil(request,usuario):
+     usuario = User.objects.get(username = usuario)
+     usuario.delete()
+
+     return redirect('home')
+     
+

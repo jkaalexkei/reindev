@@ -89,7 +89,7 @@
             <p style="text-overflow: ellipsis; text-align: justify;white-space: nowrap;overflow: hidden; font-size: 1.2rem;">{{entradablog.descripcion}}</p>
             <p style="text-align:justify;">Categoria: {{entradablog.categoria}}</p>
             <p style="text-align:right;">Creado {{entradablog.created|naturaltime }}</p>
-            <p style="text-align:right;">Por {{ entradablog.autor }}</p>
+            <p style="text-align:right;">Por {{ entradablog.autor }}&nbsp;<img class="border rounded-circle" src="{{entradablog.autor.perfil.imagenperfil.url}}" alt="" width="50" height="50"></p>
           </div>
         </div>
         {% if user.is_authenticated %}

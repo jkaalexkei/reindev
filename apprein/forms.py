@@ -1,10 +1,12 @@
 
+from pyexpat import model
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from appblog.models import blogm, categorias
 from appforo.models import forom,categoria_forom
 from apprein.models import perfil
+from comentariosblog.models import comentariosblogm
 
 
 
@@ -40,3 +42,11 @@ class actualizarperfilform(forms.ModelForm):
     class Meta:
         model = perfil
         fields = ['biografia','imagenperfil']
+
+class comentariosform(forms.ModelForm):
+    titulocomentario = forms.CharField(required=True,widget=forms.TextInput(attrs={'class':'form-control border-dark my-2'}))
+    comentario = forms.CharField(required=True,widget=forms.TextInput(attrs={'class':'form-control border-dark my-2'}))
+
+    class Meta:
+        model = comentariosblogm
+        fields = ['titulocomentario','comentario']

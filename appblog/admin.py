@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import blogm, categorias #importamos el modelo de la appblog
+from .models import blogm, categorias#importamos el modelo de la appblog
 # Register your models here.
 
 class categoriaadmin(admin.ModelAdmin):
@@ -9,6 +9,9 @@ class categoriaadmin(admin.ModelAdmin):
 class blogadmin(admin.ModelAdmin):
     readonly_fields=('created','updated')
 
+
+
 admin.site.register(blogm, blogadmin)
 admin.site.register(categorias,categoriaadmin)
+
 

@@ -12,7 +12,9 @@ urlpatterns = [
     path('modificarentrada/<id>',views.modificarentradablog,name='modificarentradablog'),
     path('articulo/<id>',views.vistaarticulocompleto,name='articuloblog'),
     path('eliminararticulo/<id>',views.eliminararticulo,name='eliminararticulo'),
+    # path('registrarcomentarios/',views.registrarcomentario,name='registrarcomentarios'),
     path('busquedablog/',busquedaarticulos.as_view(),name='buscar'),
+    
     
 ]
 
