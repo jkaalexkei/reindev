@@ -96,8 +96,8 @@
                 
                 {% if request.user == articulos.autor %}
                 <div class="card-footer text-end">
-                  <a href="" class="btn btn-sm text-warning"><i class="fa fa-pen"></i>&nbsp;Editar</a>
-                  <a href="" class="btn btn-sm text-danger"><i class="fa fa-trash"></i>&nbsp;Eliminar</a>
+                  <a href="{% url 'modificarentradablog' articulos.id %}" class="btn btn-sm text-warning"><i class="fa fa-pen"></i>&nbsp;Editar</a>
+                  <a href="{% url 'eliminararticulo' articulos.id %}" class="btn btn-sm text-danger"><i class="fa fa-trash"></i>&nbsp;Eliminar</a>
                 </div>
                   
                 {% endif %}
