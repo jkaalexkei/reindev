@@ -73,12 +73,12 @@
                                 <h5 class="card-title">{{ comentariosart.titulocomentario}}</h5>
                                 
                                 <p class="card-text">{{ comentariosart.comentario}}</p>
-                                <p class="card-text">Realizado por: {{comentariosart.created | naturaltime}}</p>
-                                <p class="card-text"><img src="{{comentariosart.autorcoment.perfil.imagenperfil.url}}" class="rounded-circle" width="50" height="50" alt="">&nbsp;{{comentariosart.autorcoment}}</p>
+                                <p class="card-text">Creado: {{comentariosart.created | naturaltime}}</p>
+                                <p class="card-text">Comentado por: <img src="{{comentariosart.autorcoment.perfil.imagenperfil.url}}" class="rounded-circle" width="50" height="50" alt="">&nbsp;{{comentariosart.autorcoment}}</p>
                               </div>
                             </div>
                             {% endif %}
-                            
+
                         {% endfor %}    
                  
                {% else %}
