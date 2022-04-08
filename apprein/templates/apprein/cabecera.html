@@ -1,9 +1,9 @@
 {% load static %}
 <!-- PROBAR COLOCAR TODO DENTRO DE UN NAVBAR GLOBAL -->
 <div class="row">
-  <div class="col-12 m-auto">
+  <div class="col-12 m-auto p-2">
     <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container-fluid">
+      <div class="container-fluid d-flex">
         <a class="navbar-brand" href="#">
           <img src="{% static 'apprein/img/logo.jpg' %}" class="rounded"
             alt="..." width="250px">
@@ -11,32 +11,32 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse align-content-center" id="navbarSupportedContent">
-          <ul class="navbar-nav">
+        <div class="d-flex collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav w-100 d-flex">
             {% if user.is_authenticated %}
-                  <li class="nav-item mx-3 rounded-1 {% if request.path == '/' %}active{% endif %}">
-                    <a class="nav-link fw-bolder" aria-current="page" href="{% url 'home' %}">Inicio</a>
+                  <li class="nav-item mx-3 rounded-1 d-flex  {% if request.path == '/' %}active{% endif %}">
+                    <a class="nav-link fw-bolder m-auto" aria-current="page" href="{% url 'home' %}">Inicio</a>
                   </li>
-                  <li class="nav-item mx-3 rounded-1 {% if request.path == '/blog' %}active{% endif %}">
-                    <a class="nav-link fw-bolder" href="{% url 'blog' %}">blog</a>
+                  <li class="nav-item mx-3 rounded-1 d-flex {% if request.path == '/blog' %}active{% endif %}">
+                    <a class="nav-link fw-bolder m-auto" href="{% url 'blog' %}">Blog</a>
                   </li>
-                  <li class="nav-item mx-3 rounded-1 {% if request.path == '/foro' %}active{% endif %}">
-                    <a class="nav-link fw-bolder" href="{% url 'foro' %}">foro</a>
+                  <li class="nav-item mx-3 rounded-1 d-flex {% if request.path == '/foro' %}active{% endif %}">
+                    <a class="nav-link fw-bolder m-auto" href="{% url 'foro' %}">Foro</a>
                   </li>
-                  <li class="nav-item mx-3 rounded-1 {% if request.path == '/calendario' %}active{% endif %}">
-                    <a class="nav-link fw-bolder" href="{% url 'calendario' %}">Calendario</a>
+                  <li class="nav-item mx-3 rounded-1 d-flex {% if request.path == '/calendario' %}active{% endif %}">
+                    <a class="nav-link fw-bolder m-auto" href="{% url 'calendario' %}">Calendario</a>
                   </li>
-                  <li class="nav-item mx-3 rounded-1">
-                    <a class="nav-link fw-bolder" href="{% url 'logout' %}"><i class="fa fa-sign-out-alt"></i>&nbsp;</a>
+                  <li class="nav-item mx-3 rounded-1 d-flex">
+                    <a class="nav-link fw-bolder d-flex m-auto" href="{% url 'logout' %}">Logout&nbsp;<i class="fa fa-sign-out-altm-auto"></i></a>
                   </li>
-                  <li class="nav-item mx-3 rounded-1">
-                    <div class="row m-auto">
-                      <div class="col-4 d-flex justify-content-center">
-                        <a class="" href="{% url 'perfil' request.user.username %}"><img src="{{ request.user.perfil.imagenperfil.url }}" class="img-fluid rounded-circle m-auto" alt="..." width="50px" title="{{ request.user.username }}"></a>
+                  <li class="nav-item mx-2 rounded-1 flex-grow-1">
+                    <div class="row  d-flex justify-content-end">
+                      <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-2  d-flex">
+                        <a class="text-decoration-none fs-5 fw-bolder text-capitalize d-flex justify-content-center align-items-center" href="{% url 'perfil' request.user.username %}"><img src="{{ request.user.perfil.imagenperfil.url }}" class="rounded-circle" alt="..." width="50px" title="{{ request.user.username | capfirst }}"></a>
                       </div>
-                      <div class="col-4 nav-item d-flex align-items-center justify-content-center rounded-1">
-                        <div class="dropdown">
-                          <button class="btn dropdown-toggle fs-5 fw-bold mx-5" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-2  d-flex justify-content-center align-items-center">
+                        <div class="dropdown d-flex m-auto">
+                          <button class="btn dropdown-toggle fs-5 fw-bold" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             4768 pts
                           </button>
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -46,27 +46,27 @@
                           </ul>
                         </div>
                       </div>
-                      <div class="col-4 d-flex align-items-center justify-content-center">
-                        <a class="nav-link" href="#"><i class="far fa-bell fs-1 text-dark"></i></a>
+                      <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-2  d-flex">
+                        <a class="nav-linkfs-2 ms-auto pe-3 fs-4" href="#"><i class="far fa-bell text-dark"></i></a>
                       </div>
                     </div>
                   </li>
             {% else %}
-                <li class="nav-item mx-3 rounded-1 {% if request.path == '/' %}active{% endif %}">
-                  <a class="nav-link fw-bolder" aria-current="page" href="{% url 'home' %}">Inicio</a>
-                </li>
-                <li class="nav-item mx-3 rounded-1 {% if request.path == '/blog' %}active{% endif %}">
-                  <a class="nav-link fw-bolder" href="{% url 'blog' %}">blog</a>
-                </li>
-                <li class="nav-item mx-3 rounded-1 {% if request.path == '/foro' %}active{% endif %}">
-                  <a class="nav-link fw-bolder" href="{% url 'foro' %}">foro</a>
-                </li>
-                <li class="nav-item mx-3 rounded-1 {% if request.path == '/calendario' %}active{% endif %}">
-                  <a class="nav-link fw-bolder" href="{% url 'calendario' %}">Calendario</a>
-                </li>
-                <li class="nav-item mx-3 rounded-1 ">
-                  <a class="nav-link fw-bolder" href="{% url 'login' %}"> <i class="fa fa-user"></i> Login</a>
-                </li>
+                  <li class="nav-item mx-3 rounded-1 {% if request.path == '/' %}active{% endif %}">
+                    <a class="nav-link fw-bolder" aria-current="page" href="{% url 'home' %}">Inicio</a>
+                  </li>
+                  <li class="nav-item mx-3 rounded-1 {% if request.path == '/blog' %}active{% endif %}">
+                    <a class="nav-link fw-bolder" href="{% url 'blog' %}">Blog</a>
+                  </li>
+                  <li class="nav-item mx-3 rounded-1 {% if request.path == '/foro' %}active{% endif %}">
+                    <a class="nav-link fw-bolder" href="{% url 'foro' %}">Foro</a>
+                  </li>
+                  <li class="nav-item mx-3 rounded-1 {% if request.path == '/calendario' %}active{% endif %}">
+                    <a class="nav-link fw-bolder" href="{% url 'calendario' %}">Calendario</a>
+                  </li>
+                  <li class="nav-item mx-2 rounded-1 flex-grow-1 text-sm-start text-md-start text-lg-end text-xl-end">
+                    <a class="nav-link fw-bolder" href="{% url 'login' %}"> <i class="fa fa-user"></i> Login</a>
+                  </li>
             {% endif %}
             
           </ul>

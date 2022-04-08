@@ -3,6 +3,10 @@
     background-color:#831367;
   }
 
+.bg-azul{
+  background-color: #0000ff;
+}
+
   main{
     background-image: url('../img/bg_01_1-1.jpg');
     background-repeat: no-repeat;
