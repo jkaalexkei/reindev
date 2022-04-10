@@ -1,33 +1,48 @@
+
 from django.shortcuts import render,redirect
+from django.http import HttpRequest,HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login,logout
-from  .forms import crearcuentaform, actualizarperfilform
+from  .forms import crearcuentaform, actualizarperfilform, crearcategoriasform
 from .models import perfil
-from appblog.models import blogm, categorias
+from appblog.models import blogm
+from appblog.models import categorias
 
 # from appblog.models import blog #importamos los modelos de la appblog
 # Create your views here.
 
+def crearcategorias(request):
+
+     if request.method == 'POST':
+          nombrecategoria = request.POST['nombrecategoria']
+          nuevacategoria = categorias.objects.create(nombre=nombrecategoria)
+          if nuevacategoria:
+               nuevacategoria.save()
+               messages.success(request,'Categoria creada satisfactoriamente')
+               return redirect('home')
+          else:
+                messages.error(request,'error')
+
+     return render(request,'apprein/home.html',
+     { }
+     )
+
+
 def home(request):
 
      articulospublicados = blogm.objects.all()
+     cat = categorias.objects.all()
+    
 
      contexto = {
-          'articulospublicados':articulospublicados
+          'articulospublicados':articulospublicados,
+          'miscategorias':cat,
+          
      }
 
      return render(request,"apprein/home.html",contexto)
 
-# def blog(request):
-
-#     blogs=blog.objects.all()#importa todas las entradas de blog
-
-#     return render(request,"appRein/blog.html",{'blogs':blogs})
-
-
-# def foro(request):
-#      return render(request,"appRein/foro.html")
 
 def calendario(request):
      return render(request,"apprein/calendario.html")
@@ -93,7 +108,12 @@ def perfil(request,usuario):
      usuario = User.objects.get(username = usuario )
      articulosbloguser = usuario.blogms.all()
      articulosforouser = usuario.foroms.all()
-     contexto ={'usuario':usuario, 'articulosblog':articulosbloguser,'articulosforo':articulosforouser}
+     contexto ={
+          'usuario':usuario, 
+          'articulosblog':articulosbloguser,
+          'articulosforo':articulosforouser,
+          'miscategorias':categorias.objects.all()
+          }
      
      return render(request,'apprein/perfil.html',contexto)
 
@@ -113,7 +133,8 @@ def editarperfil(request):
      
      contexto = {
           'formuser': formuser,
-          'formperfil':formperfil
+          'formperfil':formperfil,
+          'miscategorias':categorias.objects.all()
      }
 
      return render(request,'apprein/editarperfil.html',contexto)
@@ -123,5 +144,38 @@ def eliminarperfil(request,usuario):
      usuario.delete()
 
      return redirect('home')
-     
 
+
+
+
+
+
+     # if request.method=='POST':
+     #      formcategorias = crearcategoriasform(request.POST)
+     #      if formcategorias.is_valid():
+     #           formcategorias.save()
+     #           messages.success(request,'Categoria creada satisfactoriamente')
+     #           return redirect('home')
+               
+     # else:
+     #      formcategorias = crearcategoriasform()
+
+     
+     # # contexto = { 'formcategorias':formcategorias}
+
+     # return render(request,'apprein/home.html',
+     # { 'formcategorias':formcategorias}
+     # )
+
+
+
+     
+# def blog(request):
+
+#     blogs=blog.objects.all()#importa todas las entradas de blog
+
+#     return render(request,"appRein/blog.html",{'blogs':blogs})
+
+
+# def foro(request):
+#      return render(request,"appRein/foro.html")

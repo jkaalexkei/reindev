@@ -45,13 +45,14 @@
                   Comentarios
                 </div>
                 <div class="card-body">
-                  <form action="" method="post">
+                  <form action="{% url 'registrarcomentarios' %}" method="post">
                     {% csrf_token %}
                     <div class="form-group">
                       <input type="hidden" name="idarticulo" value="{{articulo.id}}">
+                      <input type="hidden" name="idusuario" value="{{request.user.id}}">
                     </div>
                     <div class="form-group">
-                      {{ form }}
+                      {{ formcomentarios }}
                     </div>
                     <div class="form-group">
                       <button class="btn bg-boton" type="submit">Enviar</button>
@@ -101,6 +102,9 @@
 </div>
 
 {% endblock %}
+{% block sidebar %}
+      {% include "apprein/snipets/apprein/sidebar.html" %}
+{% endblock  %}
 
 
     

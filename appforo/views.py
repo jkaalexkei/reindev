@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login,logout
 from appforo.models import forom
 from appforo.models import categoria_forom
 from apprein.forms import regitroentradaforo
+from appblog.models import categorias
 
 # Create your views here.
 
@@ -15,6 +16,7 @@ def foro(request):
 
     foropublicacion=forom.objects.all()
     categoriaforo=categoria_forom.objects.all()
+    cat = categorias.objects.all()
     
 
     
@@ -23,7 +25,8 @@ def foro(request):
 
     return render(request,"appforo/foro.html",{
         'foro':foropublicacion,
-        'categoria':categoriaforo
+        'categoria':categoriaforo,
+        'miscategorias':cat
         })
 
 
@@ -54,7 +57,9 @@ def crearforo(request):
     else:
         form=regitroentradaforo()
         
-    contexto = {'form':form}
+    contexto = {'form':form,
+                'miscategorias':categorias.objects.all()    
+                }
 
     return render(request,'appforo/crearforo.html',contexto)
 

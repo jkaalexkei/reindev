@@ -2,7 +2,7 @@
 <!-- PROBAR COLOCAR TODO DENTRO DE UN NAVBAR GLOBAL -->
 <div class="row">
   <div class="col-12 m-auto p-2">
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav  class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid d-flex">
         <a class="navbar-brand" href="#">
           <img src="{% static 'apprein/img/logo.jpg' %}" class="rounded"
@@ -27,10 +27,25 @@
                     <a class="nav-link fw-bolder m-auto" href="{% url 'calendario' %}">Calendario</a>
                   </li>
                   <li class="nav-item mx-3 rounded-1 d-flex">
-                    <a class="nav-link fw-bolder d-flex m-auto" href="{% url 'logout' %}">Logout&nbsp;<i class="fa fa-sign-out-altm-auto"></i></a>
+                    <a class="nav-link fw-bolder d-flex m-auto" href="{% url 'logout' %}">Logout&nbsp;<i class="fa fa-sign-out-alt m-auto"></i></a>
                   </li>
                   <li class="nav-item mx-2 rounded-1 flex-grow-1">
                     <div class="row  d-flex justify-content-end">
+                      {% if request.user.username == 'administrador' %}
+                      <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-2  d-flex justify-content-center align-items-center">
+                        <div class="dropdown d-flex m-auto">
+                          <button class="btn dropdown-toggle fs-5 fw-bold" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                           Elije Acción
+                          </button>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalingresarcategoria">Crear Categoria</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                     
+                      {% endif %}
                       <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-2  d-flex">
                         <a class="text-decoration-none fs-5 fw-bolder text-capitalize d-flex justify-content-center align-items-center" href="{% url 'perfil' request.user.username %}"><img src="{{ request.user.perfil.imagenperfil.url }}" class="rounded-circle" alt="..." width="50px" title="{{ request.user.username | capfirst }}"></a>
                       </div>
@@ -75,6 +90,6 @@
     </nav>
 
 
-
+    
   </div>
 </div>

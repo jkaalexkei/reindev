@@ -22,7 +22,8 @@ class categorias(models.Model):
     class Meta:
     
         verbose_name='categoria'
-        verbose_name_plural='categorias'    
+        verbose_name_plural='categorias'
+        ordering = ['-created']    
         
 # class comentariosblogm(models.Model):
 #     comentario=models.CharField(max_length=140)

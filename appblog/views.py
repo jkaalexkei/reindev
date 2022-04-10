@@ -16,12 +16,14 @@ def blog(request):
     
     blogs=blogm.objects.all()#importa todas las entradas de blog
     categoria=categorias.objects.all()
+    cat = categorias.objects.all()
 
 
 
     return render(request,"appblog/blog.html",{
          'blogs':blogs,
-         'categorias':categoria
+         'categorias':categoria,
+         'miscategorias':cat
     })
     
        
@@ -72,7 +74,9 @@ def registrarnuevaentrada(request):
                     return redirect('blog')
           
 
-     return render(request,'appblog/nuevaentrada.html',{})    
+     return render(request,'appblog/nuevaentrada.html',{
+          'miscategorias':categorias.objects.all()
+     })    
    
 
 def modificarentradablog(request,id):
@@ -110,7 +114,8 @@ def modificarentradablog(request,id):
 
     return render(request,'appblog/modificarblog.html',{
           'articuloblog': articuloblog,
-          'categoria':categoria
+          'categoria':categoria,
+          'miscategorias':categoria
 
      })
 
@@ -122,14 +127,16 @@ def vistaarticulocompleto(request,id):
      com = comentariosblogm.objects.all()
 
      comentarioform = comentariosform()
+     cat = categorias.objects.all()
      
 
      
      return render(request,'appblog/articuloblog.html',{
 
           'articulo':articulo,
-          'form':comentarioform,
-          'comentarios':com
+          'formcomentarios':comentarioform,
+          'comentarios':com,
+          'miscategorias':cat
 
      })
 
@@ -139,26 +146,11 @@ def eliminararticulo(request, id):
      articulo.delete()
      return redirect ('blog')
 
-# def registrarcomentario(request):
-#      comentarioform = comentariosform()
-#      contexto ={'formcomentario':comentarioform}
-#      return render(request,'appblog/articuloblog.html',contexto)
+
 
 class busquedaarticulos(ListView):
      
-          # art = request.GET['buscar']
-
-     # if request.method == 'GET':   
-     #      datos = request.GET['buscar']
-
-     #      if datos:
-     #           articuloblog = blogm.objects.filter(titulo__icontains=datos)
-     #      elif datos=='':
-     #           messages.error(request,'El campo de busqueda esta vacio')
-     #      else:
-     #           messages.error(request,'No hay resultados con ese criterio')
-     # else:
-     #       messages.error(request,'Peticion incorrecta')
+  
 
      template_name = 'appblog/busquedablog.html'
 
@@ -174,10 +166,34 @@ class busquedaarticulos(ListView):
           context['query'] = self.query()
           context['datosencontrados'] = context['object_list']
           context['cantidad'] = context['object_list'].count()
+          context['miscategorias'] = categorias.objects.all()
 
 
           return context
 
+def guardarcomentario(request):
+
+     if request.method == 'POST':
+          idarticulo = request.POST['idarticulo']
+          titulocomentario = request.POST['titulocomentario']
+          textocomentario = request.POST['comentario']
+          idusuario = request.POST['idusuario']
+
+          idart = blogm.objects.get(id = idarticulo)
+          iduser = User.objects.get(id=idusuario)
+          if idart and iduser:
+               nuevocomentario = comentariosblogm.objects.create(titulocomentario=titulocomentario,comentario=textocomentario,entradablogs_id=idart.id,autorcoment_id=iduser.id)
+               if nuevocomentario:
+
+                    nuevocomentario.save()
+                    messages.success(request,'Comentario Publicado')
+                    return redirect('blog')
+               else:
+                    messages.error(request,'Error al publicar comentario')
+
+
+
+     return render(request,'appblog/articuloblog.html')
 
 
 
@@ -203,11 +219,27 @@ class busquedaarticulos(ListView):
 
 
 
+# def registrarcomentario(request):
+#      comentarioform = comentariosform()
+#      contexto ={'formcomentario':comentarioform}
+#      return render(request,'appblog/articuloblog.html',contexto)
 
 
 
 
+        # art = request.GET['buscar']
 
+     # if request.method == 'GET':   
+     #      datos = request.GET['buscar']
+
+     #      if datos:
+     #           articuloblog = blogm.objects.filter(titulo__icontains=datos)
+     #      elif datos=='':
+     #           messages.error(request,'El campo de busqueda esta vacio')
+     #      else:
+     #           messages.error(request,'No hay resultados con ese criterio')
+     # else:
+     #       messages.error(request,'Peticion incorrecta')
 
 
 

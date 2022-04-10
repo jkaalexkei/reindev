@@ -1,0 +1,54 @@
+
+<div class="modal fade" id="modalingresarcategoria" tabindex="-1" aria-hidden="true" aria-labelledby="modelTitle">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h2 mb-2 fw-bold py-2">Crear Nuevas Categorias</p>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card w-50">
+                    <div class="card-body">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            
+                                <label for="" class="mb-3 fs-5 fw-bold">Nombre:</label>
+                                {{formcategorias.nombre}}
+                            
+                            <input class="btn bg-boton text-white" type="submit" value="Guardar">
+                        </form>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="row">
+    <div class="col-12 d-flex justify-content-center"">
+        <p class="h2 mb-2 fw-bold py-2">Crear Nuevas Categorias</p>
+    </div>
+    <div class="col-12 d-flex justify-content-center">
+        <div class="card w-50">
+            <div class="card-body">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    
+                        <label for="" class="mb-3 fs-5 fw-bold">Nombre:</label>
+                        {{formcategorias.nombre}}
+                    
+                    <input class="btn bg-boton text-white" type="submit" value="Guardar">
+                </form>
+            </div>
+          </div>
+        
+    </div>
+</div>

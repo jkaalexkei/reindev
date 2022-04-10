@@ -25,6 +25,11 @@
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
   }
+
+  .imagenwidth{
+    width: 100%;
+    height: 30rem;
+  }
 </style>
 {% endblock  %}
 
@@ -43,11 +48,11 @@
   {% endif %}
   <div class="col-12 col-lg-12">
     <div class="row">
-
+      
       <div class="col-12 ">
         <p class="h2 mb-3 fw-bold py-2 otro-texto">Nuevos Eventos y articulos de la semana</p>
       </div>
-      <div class="col-12 col-lg-12 mb-3 text-center">
+      <div class="col-12 col-lg-12 mb-3 justify-content-center">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
@@ -59,15 +64,15 @@
           </div>
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="{% static 'apprein/img/foto.jpg' %}" width="1000" height="500" class="d-block bordes-imagen"
+              <img src="{% static 'apprein/img/foto.jpg' %}" width="" height="" class="d-block bordes-imagen imagenwidth"
                 alt="...">
             </div>
             <div class="carousel-item">
-              <img src="{% static 'apprein/img/down.jpg' %}" width="1000" height="500" class="d-block bordes-imagen"
+              <img src="{% static 'apprein/img/down.jpg' %}" width="" height="" class="d-block bordes-imagen imagenwidth"
                 alt="...">
             </div>
             <div class="carousel-item">
-              <img src="{% static 'apprein/img/racismo.jpg' %}" width="1000" height="500" class="d-block bordes-imagen"
+              <img src="{% static 'apprein/img/racismo.jpg' %}" width="" height="" class="d-block bordes-imagen imagenwidth"
                 alt="...">
             </div>
           </div>
@@ -87,7 +92,7 @@
     </div>
     <div class="row">
       <div class="col-12 col-lg-3">
-        <div class="card border-0" style="width: 15rem;">
+        <div class="card border-0" style="width: 17.2rem;">
           <img src="{% static 'apprein/img/eventos.jpg' %}" class="card-img-top img-fluid rounded-3" alt="...">
           <div class=" d-flex p-0 flex-column">
             <p class="titulo text-start mb-0 fs-5 fw-bold">Formador de Expertos</p>
@@ -104,7 +109,7 @@
         </div>
       </div>
       <div class="col-12 col-lg-3">
-        <div class="card border-0" style="width: 15rem;">
+        <div class="card border-0" style="width: 17.2rem;">
           <img src="{% static 'apprein/img/eventos.jpg' %}" class="card-img-top img-fluid rounded-3" alt="...">
           <div class=" d-flex p-0 flex-column">
             <p class="titulo text-start mb-0 fs-5 fw-bold">Formador de Expertos</p>
@@ -121,7 +126,7 @@
         </div>
       </div>
       <div class="col-12 col-lg-3">
-        <div class="card border-0" style="width: 15rem;">
+        <div class="card border-0" style="width: 17.2rem;">
           <img src="{% static 'apprein/img/eventos.jpg' %}" class="card-img-top img-fluid rounded-3" alt="...">
           <div class=" d-flex p-0 flex-column">
             <p class="titulo text-start mb-0 fs-5 fw-bold">Formador de Expertos</p>
@@ -138,7 +143,7 @@
         </div>
       </div>
       <div class="col-12 col-lg-3">
-        <div class="card border-0" style="width: 15rem;">
+        <div class="card border-0" style="width: 17.2rem;">
           <img src="{% static 'apprein/img/eventos.jpg' %}" class="card-img-top img-fluid rounded-3" alt="...">
           <div class=" d-flex p-0 flex-column">
             <p class="titulo text-start mb-0 fs-5 fw-bold">Formador de Expertos</p>
@@ -194,15 +199,15 @@
 
           {% if user.is_authenticated %}
 
-          {% if request.user == articulos.autor %}
-          <div class="card-footer text-end">
-            <a href="{% url 'modificarentradablog' articulos.id %}" class="btn btn-sm text-warning"><i
-                class="fa fa-pen"></i>&nbsp;Editar</a>
-            <a href="{% url 'eliminararticulo' articulos.id %}" class="btn btn-sm text-danger"><i
-                class="fa fa-trash"></i>&nbsp;Eliminar</a>
-          </div>
+                {% if request.user == articulos.autor %}
+                <div class="card-footer text-end">
+                  <a href="{% url 'modificarentradablog' articulos.id %}" class="btn btn-sm text-warning"><i
+                      class="fa fa-pen"></i>&nbsp;Editar</a>
+                  <a href="{% url 'eliminararticulo' articulos.id %}" class="btn btn-sm text-danger"><i
+                      class="fa fa-trash"></i>&nbsp;Eliminar</a>
+                </div>
 
-          {% endif %}
+                {% endif %}
 
 
           {% endif %}
@@ -244,5 +249,9 @@
           </div>
         </div>
       </div>  -->
-{% endblock  %}
+      {% include "apprein/snipets/appblog/crearcategorias.html" %}
+      {% endblock  %}
 <!-- Columna derecha -->
+{% block sidebar %}
+      {% include "apprein/snipets/apprein/sidebar.html" %}
+{% endblock  %}

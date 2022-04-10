@@ -18,6 +18,23 @@
             {% csrf_token %}
 
             {{form}}
+
+            <button type="submit" class="btn btn-primary bg-boton">Públicar</button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock  %}
+{% block sidebar %}
+  {% include "apprein/snipets/apprein/sidebar.html" %}
+{% endblock sidebar %}
+
+
+
+
+
+
             <!-- <div class="form group my-2">
                 {{form.titulo.label_tag}}
                 {{form.titulo}}
@@ -41,11 +58,6 @@
                     <img id="imagenpreview" class="img-fluid border rounded" src="../../../media/blogs/autismo.jpg" alt="" name="imagenDestacada">
                 </div>
             </div> -->
-            <button type="submit" class="btn btn-primary bg-boton">Públicar</button>
-        </form>
-    </div>
-</div>
-
   <!-- <div class="container">
         <form action="/appforo/busquedaforo/" method="get" class="d-flex">
         {% csrf_token %}
@@ -122,6 +134,5 @@
     </div>
 {% endif %} -->
 
-{% endblock  %}
 
 
