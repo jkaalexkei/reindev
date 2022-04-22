@@ -12,6 +12,7 @@
 
 
 <div class="row">
+  
   {% if messages %}
 
       {% for mensaje in messages  %}
@@ -24,34 +25,33 @@
 
   {% endif %}
   <div class="col-12">
-      <p class="h2 mb-2 fw-bold py-2">Blog Rein</p>
+      <p class="h2 mb-2 fw-bold py-2">Blog ReIN</p>
   </div>
-  <div class="col-5">
-        <form action="/appblog/busquedablog/" method="get" class="d-flex">
-          {% csrf_token %}
-          <input type="text" class="form-control border-0 me-2 mb-4" placeholder="Buscar en el blog" aria-label="Username" aria-describedby="addon-wrapping" name="buscar" value="{{ query }}">
-          <button class="input-group-text bg-white border-0" type="submit" value=""><i class="fas fa-search fs-3 text-dark"></i></button>
-        </form>
-  </div>
-  <div class="col-4">
+  <div class="col-12">
+    <div class="row mb-4">
+      <div class="col-8">
+          <form action="/appblog/busquedablog/" method="get" class="d-flex">
+            {% csrf_token %}
+            <input type="text" class="form-control border" placeholder="Buscar en el blog" aria-label="Username" aria-describedby="addon-wrapping" name="buscar" value="{{ query }}" required>
+            <button id="boton" class="input-group-text bg-white border" type="submit" value=""><i class="fas fa-search fs-3 text-dark"></i></button>
     
+          </form>
+          
+          
+      </div>
+      <div class="col-4 d-flex align-items-center justify-content-end">
+        {% if user.is_authenticated %}
+          <span class="enlace">Añadir Entrada&nbsp;</span>&nbsp;<a class="enlace" href="{% url 'nuevaentrada' %}"><i class="fa fa-plus-square fs-2"></i></a>
+      
+          
+        {% endif %}
+      </div>
+
+    </div>
+        
   </div>
   
-  {% if user.is_authenticated %}
-  <div class="col-3 d-flex align-items-center justify-content-end">
-    <span class="enlace">Añadir Entrada&nbsp;</span>&nbsp;<a class="enlace" href="{% url 'nuevaentrada' %}"><i class="fa fa-plus-square fs-2"></i></a>
-      <!-- <li><a class="nav-link bg-boton-categoria item text-white fw-bold border-bottom border-white" href="">Modificar
-          Entrada</a></li>
-      <li><a class="nav-link bg-boton-categoria item text-white fw-bold" href="#">Eliminar Entrada</a></li> -->
-    
-    <!-- <div class="dropdown">
-      <button class="btn btn-secondary bg-boton-categoria dropdown-toggle text-white fw-bold" type="button"
-        id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Acciones</button>
-      
-    </div> -->
-  </div>
-    
-  {% endif %}
+  
     
 
   {% for entradablog in blogs %}
@@ -106,8 +106,7 @@
 
   {% endfor %}
 </div>
+{% include "apprein/snipets/appblog/crearcategorias.html" %}
 {% endblock  %}
 <!-- Columna derecha -->
-{% block sidebar %}
-      {% include "apprein/snipets/apprein/sidebar.html" %}
-{% endblock  %}
+

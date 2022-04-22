@@ -1,12 +1,12 @@
-
-
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from appblog.models import blogm, categorias
+from appblog.models import blogm
+from appcategorias.models import categorias
 from appforo.models import forom,categoria_forom
 from apprein.models import perfil
 from comentariosblog.models import comentariosblogm
+from appeventos.models import eventosm
 
 class crearcategoriasform(forms.ModelForm):
     nombre = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-pill fs-5 fw-bolder mb-3','placeholder':'Ingrese Nombre de la Categoria'}))
@@ -54,3 +54,10 @@ class comentariosform(forms.ModelForm):
     class Meta:
         model = comentariosblogm
         fields = ['titulocomentario','comentario']
+
+class registrareventosform(forms.ModelForm):
+
+    
+    class Meta:
+        model = eventosm
+        fields = '__all__'

@@ -1,0 +1,11 @@
+{% extends "apprein/plantilla.html" %}
+{% block categorias %}
+<h1>Categorias</h1>
+   
+{% for categorias in cat  %}
+    <p>{{categorias.nombre}}</p>
+{% endfor %}
+{% endblock  %}
+
+   
+   

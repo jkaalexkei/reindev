@@ -1,0 +1,32 @@
+
+<div class="modal fade" id="modalnuevoevento" tabindex="-1" aria-hidden="true" aria-labelledby="modelTitle">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h2 mb-2 fw-bold py-2">Registrar evento</p>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               
+                        <form action="" method="post">
+                            {% csrf_token %}
+                                       
+                            
+                            <input type="text" name="tituloevento" class="form-control mb-3" onkeyup="javascript:this.value=this.value.toLowerCase();">
+
+                            <input type="text" name="contenidoevento" class="form-control mb-3" onkeyup="javascript:this.value=this.value.toLowerCase();">
+
+                            <input type="text" name="autorevento" class="form-control mb-3" onkeyup="javascript:this.value=this.value.toLowerCase();">
+
+                            <input type="file" name="imagenevento" class="form-control mb-3">
+
+                            <input type="text" name="categoriaevento" class="form-control mb-3" onkeyup="javascript:this.value=this.value.toLowerCase();">
+                            
+                            <input class="btn bg-boton text-white" type="submit" value="Guardar">
+                            
+                        </form>
+                    
+            </div>
+        </div>
+    </div>
+</div>

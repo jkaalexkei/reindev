@@ -4,10 +4,12 @@ from django.http import HttpRequest,HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login,logout
-from  .forms import crearcuentaform, actualizarperfilform, crearcategoriasform
+from appeventos.models import eventosm
+from reindev.forms import crearcuentaform, actualizarperfilform,registrareventosform
 from .models import perfil
 from appblog.models import blogm
-from appblog.models import categorias
+# from appblog.models import categorias
+from appcategorias.models import categorias
 
 # from appblog.models import blog #importamos los modelos de la appblog
 # Create your views here.
@@ -16,13 +18,22 @@ def crearcategorias(request):
 
      if request.method == 'POST':
           nombrecategoria = request.POST['nombrecategoria']
-          nuevacategoria = categorias.objects.create(nombre=nombrecategoria)
-          if nuevacategoria:
-               nuevacategoria.save()
-               messages.success(request,'Categoria creada satisfactoriamente')
+          buscarcategoria = categorias.objects.filter(nombre = nombrecategoria).exists()
+          if buscarcategoria:
+               cat = categorias.objects.get(nombre = nombrecategoria)
+               cat.nombre = nombrecategoria
+               cat.save()
+               messages.warning(request,'Categoria ya existe')
                return redirect('home')
+               
           else:
-                messages.error(request,'error')
+               nuevacategoria = categorias.objects.create(nombre=nombrecategoria)
+               if nuevacategoria:
+                    nuevacategoria.save()
+                    messages.success(request,'Categoria creada satisfactoriamente')
+                    return redirect('home')
+               else:
+                    messages.error(request,'error')
 
      return render(request,'apprein/home.html',
      { }
@@ -33,11 +44,15 @@ def home(request):
 
      articulospublicados = blogm.objects.all()
      cat = categorias.objects.all()
-    
+     
+     
 
      contexto = {
           'articulospublicados':articulospublicados,
-          'miscategorias':cat,
+          # 'categorias':cat,
+          
+          
+   
           
      }
 
@@ -45,7 +60,13 @@ def home(request):
 
 
 def calendario(request):
-     return render(request,"apprein/calendario.html")
+     categoriasb = categorias.objects.all()
+
+     contexto= {
+          # 'miscategorias':categoriasb
+     }
+
+     return render(request,"apprein/calendario.html",contexto)
 
 def iniciarsesion(request):
 
@@ -112,7 +133,7 @@ def perfil(request,usuario):
           'usuario':usuario, 
           'articulosblog':articulosbloguser,
           'articulosforo':articulosforouser,
-          'miscategorias':categorias.objects.all()
+          # 'miscategorias':categorias.objects.all()
           }
      
      return render(request,'apprein/perfil.html',contexto)
@@ -134,7 +155,7 @@ def editarperfil(request):
      contexto = {
           'formuser': formuser,
           'formperfil':formperfil,
-          'miscategorias':categorias.objects.all()
+          # 'miscategorias':categorias.objects.all()
      }
 
      return render(request,'apprein/editarperfil.html',contexto)

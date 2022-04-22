@@ -4,7 +4,7 @@
 
 
 
-{% block title %} Articulo {% endblock %}
+{% block title %} {{articulo.titulo }} {% endblock %}
 
 {% include "apprein/cabecera.html" %}
 
@@ -100,11 +100,9 @@
     </div>
     
 </div>
-
+{% include "apprein/snipets/appblog/crearcategorias.html" %}
 {% endblock %}
-{% block sidebar %}
-      {% include "apprein/snipets/apprein/sidebar.html" %}
-{% endblock  %}
+
 
 
     

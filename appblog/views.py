@@ -1,11 +1,12 @@
 from django.shortcuts import render,get_object_or_404
 from django.shortcuts import redirect
 from django.contrib import messages
-from appblog.models import blogm, categorias #importamos los modelos de la appblog
+from appblog.models import blogm
+from appcategorias.models import categorias #importamos los modelos de la appblog
 from django.contrib.auth.models import User
 from django.views.generic.list import ListView
 from django.contrib.auth import authenticate, login,logout
-from apprein.forms import comentariosform
+from reindev.forms import comentariosform
 from comentariosblog.models import comentariosblogm
 # from django.http import HttpResponseRedirect
 # Create your views here.
@@ -22,8 +23,8 @@ def blog(request):
 
     return render(request,"appblog/blog.html",{
          'blogs':blogs,
-         'categorias':categoria,
-         'miscategorias':cat
+     #     'categorias':categoria,
+     #     'miscategorias':cat
     })
     
        

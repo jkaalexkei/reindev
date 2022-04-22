@@ -11,41 +11,11 @@
                         <form action="{% url 'crearcategorias' %}" method="post">
                             {% csrf_token %}
                             
-                            <input type="text" name="nombrecategoria" class="form-control mb-3">
+                            <input type="text" name="nombrecategoria" class="form-control mb-3" onkeyup="javascript:this.value=this.value.toLowerCase();">
                             
                             <input class="btn bg-boton text-white" type="submit" value="Guardar">
                         </form>
-                    
             </div>
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-<!-- 
-
-<div class="row">
-    <div class="col-12 d-flex justify-content-center"">
-        <p class="h2 mb-2 fw-bold py-2">Crear Nuevas Categorias</p>
-    </div>
-    <div class="col-12 d-flex justify-content-center">
-        <div class="card w-50">
-            <div class="card-body">
-                <form action="" method="post">
-                    {% csrf_token %}
-                    
-                        <label for="" class="mb-3 fs-5 fw-bold">Nombre:</label>
-                        {{formcategorias.nombre}}
-                    
-                    <input class="btn bg-boton text-white" type="submit" value="Guardar">
-                </form>
-            </div>
-          </div>
-        
-    </div>
-</div> -->
