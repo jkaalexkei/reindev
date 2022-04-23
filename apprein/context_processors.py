@@ -1,7 +1,7 @@
-from .constant import CATEGORIAS
+from .constant import categorias
 
 
 def data_templates(request):
     return{
-        'CATEGORIAS':CATEGORIAS
+        'categorias':categorias
     }

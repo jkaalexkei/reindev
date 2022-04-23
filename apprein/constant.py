@@ -1,3 +1,3 @@
 from appcategorias.models import categorias
-CATEGORIAS = categorias.objects.all().order_by('-id')
+categorias = categorias.objects.all().order_by('nombre')
 
