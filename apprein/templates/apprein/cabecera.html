@@ -27,6 +27,9 @@
                   <li class="nav-item mx-3 rounded-1 d-flex {% if request.path == '/calendario' %}active{% endif %}">
                     <a class="nav-link fw-bolder m-auto" href="{% url 'calendario' %}">Calendario</a>
                   </li>
+                  <li class="nav-item mx-3 rounded-1 d-flex {% if request.path == '/eventos' %}active{% endif %}">
+                    <a class="nav-link fw-bolder m-auto" href="{% url 'eventos' %}">Eventos</a>
+                  </li>
                   <li class="nav-item mx-3 rounded-1 d-flex">
                     <a class="nav-link fw-bolder d-flex m-auto" href="{% url 'logout' %}">Logout&nbsp;<i class="fa fa-sign-out-alt m-auto"></i></a>
                   </li>
@@ -34,7 +37,7 @@
                     <div class="row  d-flex justify-content-end">
                       {% if request.user.username == 'administrador' %}
                       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-2  d-flex justify-content-center align-items-center">
-                        <div class="dropdown d-flex m-auto pe-2">
+                        <div class="dropdown d-flex m-auto pe-4">
                           <button class="btn dropdown-toggle fs-6 fw-bold" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                            Elije Acción
                           </button>
@@ -49,11 +52,11 @@
                      
                       {% endif %}
                       <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-2  d-flex">
-                        <a class="text-decoration-none fs-5 fw-bolder text-capitalize d-flex justify-content-center align-items-center" href="{% url 'perfil' request.user.username %}"><img src="{{ request.user.perfil.imagenperfil.url }}" class="rounded-circle" alt="..." width="50px" title="{{ request.user.username | capfirst }}"></a>
+                        <a class="text-decoration-none fs-5 fw-bolder text-capitalize d-flex justify-content-center align-items-center pe-4" href="{% url 'perfil' request.user.username %}"><img src="{{ request.user.perfil.imagenperfil.url }}" class="rounded-circle" alt="..." width="50px" title="{{ request.user.username | capfirst }}"></a>
                       </div>
                       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-2  d-flex justify-content-center align-items-center">
                         <div class="dropdown d-flex m-auto">
-                          <button class="btn dropdown-toggle fs-6 fw-bold" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                          <button class="btn dropdown-toggle fs-6 fw-bold px-4" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             4768 pts
                           </button>
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -80,6 +83,9 @@
                   </li>
                   <li class="nav-item mx-3 rounded-1 {% if request.path == '/calendario' %}active{% endif %}">
                     <a class="nav-link fw-bolder" href="{% url 'calendario' %}">Calendario</a>
+                  </li>
+                   <li class="nav-item mx-3 rounded-1 d-flex {% if request.path == '/eventos' %}active{% endif %}">
+                    <a class="nav-link fw-bolder m-auto" href="{% url 'eventos' %}">Eventos</a>
                   </li>
                   <li class="nav-item mx-2 rounded-1 flex-grow-1 text-sm-start text-md-start text-lg-end text-xl-end">
                     <a class="nav-link fw-bolder" href="{% url 'login' %}"> <i class="fa fa-user"></i> Login</a>

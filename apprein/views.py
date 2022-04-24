@@ -11,6 +11,7 @@ from appblog.models import blogm
 # from appblog.models import categorias
 from appcategorias.models import categorias
 
+
 # from appblog.models import blog #importamos los modelos de la appblog
 # Create your views here.
 
@@ -43,13 +44,13 @@ def crearcategorias(request):
 def home(request):
 
      articulospublicados = blogm.objects.all()
-     cat = categorias.objects.all()
+     eventos = eventosm.objects.all().order_by('created')
      
      
 
      contexto = {
           'articulospublicados':articulospublicados,
-          # 'categorias':cat,
+          'eventos':eventos,
           
           
    

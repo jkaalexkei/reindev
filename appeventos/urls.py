@@ -10,6 +10,7 @@ from django.contrib.auth.views import LoginView,LogoutView
 urlpatterns = [
     
     path('',views.crearevento, name='crearevento'),
+    path('eventos/',views.eventos,name="eventos")
     
 ]
 

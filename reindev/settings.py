@@ -33,14 +33,6 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 # Application definition
 
 INSTALLED_APPS = [
-    'admin_interface',
-    'django.contrib.admin',
-    'django.contrib.humanize',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
     'colorfield',
     'apprein',
     'appblog',
@@ -49,6 +41,15 @@ INSTALLED_APPS = [
     'appcategorias',
     'appeventos',
     'crispy_forms',
+    'admin_interface',
+    'django.contrib.admin',
+    'django.contrib.humanize',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

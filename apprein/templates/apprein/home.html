@@ -91,13 +91,19 @@
       </div>
     </div>
     <div class="row">
+      {% if eventos %}
+
+      {% for eventospublicados in eventos %}
       <div class="col-12 col-lg-3">
         <div class="card border-0" style="width: 13rem;">
-          <img src="{% static 'apprein/img/eventos.jpg' %}" class="card-img-top img-fluid rounded-3" alt="...">
+          <img src="{{ eventospublicados.imagenevento.url }}" class="card-img-top img-fluid rounded-3 h-25" alt="...">
           <div class=" d-flex p-0 flex-column">
-            <p class="titulo text-start mb-0 fs-5 fw-bold">Formador de Expertos</p>
-            <p class="subtitulo text-start mb-1">Modulo 1</p>
-            {% if user.is_authenticated %}
+            <p class="titulo text-start mb-0 fs-5">{{ eventospublicados.tituloevento}}</p>
+            <p class="subtitulo text-start mb-1">Acceder: <a class="text-decoration-none" href="{{eventospublicados.eventolink }}" target="_blank">Haz click aquí</a></p>
+            <p class="fs-6">Creado: {{ eventospublicados.created | naturaltime }}</p>
+            <p style="text-align:right;">Por {{ eventospublicados.autorevento }}&nbsp;<img class="border rounded-circle" src="{{eventospublicados.autorevento.perfil.imagenperfil.url}}" alt="" width="50" height="50"></p>         
+              {% if user.is_authenticated %}
+
 
             <div class="container text-end p-0">
               <a href="" class="btn btn-sm text-warning"><i class="fa fa-pen"></i></a>
@@ -108,57 +114,10 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-lg-3">
-        <div class="card border-0" style="width: 13rem;">
-          <img src="{% static 'apprein/img/eventos.jpg' %}" class="card-img-top img-fluid rounded-3" alt="...">
-          <div class=" d-flex p-0 flex-column">
-            <p class="titulo text-start mb-0 fs-5 fw-bold">Formador de Expertos</p>
-            <p class="subtitulo text-start mb-1">Modulo 1</p>
-            {% if user.is_authenticated %}
-
-            <div class="container text-end p-0">
-              <a href="" class="btn btn-sm text-warning"><i class="fa fa-pen"></i></a>
-              <a href="" class="btn btn-sm text-danger"><i class="fa fa-trash"></i></a>
-            </div>
-
-            {% endif %}
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-lg-3">
-        <div class="card border-0" style="width: 13rem;">
-          <img src="{% static 'apprein/img/eventos.jpg' %}" class="card-img-top img-fluid rounded-3" alt="...">
-          <div class=" d-flex p-0 flex-column">
-            <p class="titulo text-start mb-0 fs-5 fw-bold">Formador de Expertos</p>
-            <p class="subtitulo text-start mb-1">Modulo 1</p>
-            {% if user.is_authenticated %}
-
-            <div class="container text-end p-0">
-              <a href="" class="btn btn-sm text-warning"><i class="fa fa-pen"></i></a>
-              <a href="" class="btn btn-sm text-danger"><i class="fa fa-trash"></i></a>
-            </div>
-
-            {% endif %}
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-lg-3">
-        <div class="card border-0" style="width: 13rem;">
-          <img src="{% static 'apprein/img/eventos.jpg' %}" class="card-img-top img-fluid rounded-3" alt="...">
-          <div class=" d-flex p-0 flex-column">
-            <p class="titulo text-start mb-0 fs-5 fw-bold">Formador de Expertos</p>
-            <p class="subtitulo text-start mb-1">Modulo 1</p>
-            {% if user.is_authenticated %}
-
-            <div class="container text-end p-0">
-              <a href="" class="btn btn-sm text-warning"><i class="fa fa-pen"></i></a>
-              <a href="" class="btn btn-sm text-danger"><i class="fa fa-trash"></i></a>
-            </div>
-
-            {% endif %}
-          </div>
-        </div>
-      </div>
+      {% endfor %}
+        
+      {% endif %}
+ 
     </div>
     <!-- COLUMNAS LARGAS -->
     <div class="row">
