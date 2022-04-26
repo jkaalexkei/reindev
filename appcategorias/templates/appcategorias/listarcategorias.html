@@ -1,0 +1,49 @@
+
+    {% extends 'apprein/plantilla.html' %}
+    {% load humanize %}
+    {% load static %}
+    {% block title %}
+        Categorias
+    {% endblock title %}
+    {% block content %}
+      <div class="row">
+          <div class="col-12">
+              <h2 class="mb-4">Categorias Actuales</h2>
+          </div>
+          <div class="col-12">
+            {% if listarcategorias %}
+            <table class="table">
+                <thead>
+                  <tr>                    
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Fecha de creación</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>                    
+                    {% for listadocat in listarcategorias %}
+                        <tr> 
+                                            
+                            <td>{{listadocat.nombre }}</td>
+                            <td>{{listadocat.created | naturalday }}</td>
+                            <td>
+                                <span class="d-flex">
+                                    <a onclick="abrirmodaleditarcategorias('{% url 'mostrarcategorias' listadocat.id %}')" class="btn btn-sm text-warning"><i class="fa fa-pen"></i></a>
+
+
+                                    <a href="{% url 'eliminarcategorias' listadocat.id %}" class="btn btn-sm text-danger"><i class="fa fa-trash"></i></a>
+                                </span>
+                            </td>
+                        </tr>
+                        {% endfor %}                   
+                  
+                </tbody>
+              </table>
+              {% else %}
+                    <div class="col-12 text-warning"><p>Aún no se han registrado categorias</p></div>
+              {% endif %}
+
+          </div>
+      </div>
+    {% endblock  %}
+    

@@ -10,7 +10,7 @@ class eventosm(models.Model):
     contenidoevento=models.TextField()
     autorevento=models.ForeignKey(User,on_delete=models.CASCADE,related_name='eventosm')
     imagenevento=models.ImageField(default='logo.jpg',upload_to='eventos',null=True,blank=True)
-    categoriaevento = models.ManyToManyField(categorias,related_name='categoriasevento',blank=True)
+    categoriaevento = models.ManyToManyField(categorias,related_name='categoriasevento')
     eventolink = models.CharField(max_length=140)
     created=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField(auto_now_add=True)
@@ -21,5 +21,5 @@ class eventosm(models.Model):
     class Meta:
         verbose_name='eventosm'
         verbose_name_plural='eventosms'
-        ordering=['created']
+        ordering=['-created']
     

@@ -15,38 +15,11 @@ from appcategorias.models import categorias
 # from appblog.models import blog #importamos los modelos de la appblog
 # Create your views here.
 
-def crearcategorias(request):
-
-     if request.method == 'POST':
-          nombrecategoria = request.POST['nombrecategoria']
-          buscarcategoria = categorias.objects.filter(nombre = nombrecategoria).exists()
-          if buscarcategoria:
-               cat = categorias.objects.get(nombre = nombrecategoria)
-               cat.nombre = nombrecategoria
-               cat.save()
-               messages.warning(request,'Categoria ya existe')
-               return redirect('home')
-               
-          else:
-               nuevacategoria = categorias.objects.create(nombre=nombrecategoria)
-               if nuevacategoria:
-                    nuevacategoria.save()
-                    messages.success(request,'Categoria creada satisfactoriamente')
-                    return redirect('home')
-               else:
-                    messages.error(request,'error')
-
-     return render(request,'apprein/home.html',
-     { }
-     )
-
 
 def home(request):
 
      articulospublicados = blogm.objects.all()
-     eventos = eventosm.objects.all().order_by('created')
-     
-     
+     eventos = eventosm.objects.all().order_by('created')     
 
      contexto = {
           'articulospublicados':articulospublicados,
@@ -130,11 +103,13 @@ def perfil(request,usuario):
      usuario = User.objects.get(username = usuario )
      articulosbloguser = usuario.blogms.all()
      articulosforouser = usuario.foroms.all()
+     articuloseventouser = usuario.eventosm.all()
      contexto ={
           'usuario':usuario, 
           'articulosblog':articulosbloguser,
           'articulosforo':articulosforouser,
-          # 'miscategorias':categorias.objects.all()
+          'articulosevento':articuloseventouser
+          
           }
      
      return render(request,'apprein/perfil.html',contexto)

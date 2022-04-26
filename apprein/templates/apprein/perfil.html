@@ -4,7 +4,7 @@
 
 {% block title %} blog ReIN {% endblock %}
 
-{% include "apprein/cabecera.html" %}
+<!-- {% include "apprein/cabecera.html" %} -->
 
 {% block content %}
 
@@ -72,12 +72,24 @@
           </div>
         </div>
       </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingdos">
+          <button class="accordion-button collapsed bg-boton-categoria text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapsedos" aria-expanded="false" aria-controls="collapsedos">
+            <p class="fw-bolder">Eventos Publicados</p>
+          </button>
+        </h2>
+        <div id="collapsedos" class="accordion-collapse collapse" aria-labelledby="headingdos" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            {% include "apprein/snipets/appeventos/eventospublicados.html" %}
+          </div>
+        </div>
+      </div>
     </div>
 
 
       
 </div>
-{% include "apprein/snipets/appblog/crearcategorias.html" %}
+<!-- {% include "apprein/snipets/appblog/crearcategorias.html" %} -->
 {% endblock  %}
 
 

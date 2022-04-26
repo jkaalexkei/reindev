@@ -1,0 +1,29 @@
+{% load static %}
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h2 mb-2 fw-bold py-2">Editar Categorias</p>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               
+                <form action="/appcategorias/actualizarcategorias/" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="idcategoria" value="{{micategoria.id}}">     
+                    <input type="text" name="nombrecategoria" class="form-control mb-3" value="{{micategoria.nombre}}" onkeyup="javascript:this.value=this.value.toLowerCase();">
+                            
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" type="button" data-bs-dismiss="modal">Cancelar</button>
+                        <button class="btn btn-primary" type="submit" data-dismiss="modal">Confirmar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+   
+   

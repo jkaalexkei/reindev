@@ -1,3 +1,4 @@
+
 {% load static %}
 <!doctype html>
 <html lang="en">
@@ -22,7 +23,7 @@
           {% include "apprein/cabecera.html" %}          
     </div>    
     <div class="container-fluid align-items-center justify-content-center px-5">
-        {% include "apprein/snipets/appeventos/nuevoevento.html" %}
+      
         <!-- COLUMNA IZQUIERDA -->
       
         <div class="row">
@@ -34,11 +35,14 @@
               <!-- COLUMNA DE LA DERECHA -->
               
                   {% include "apprein/snipets/apprein/sidebar.html" %}
+              <div class="">
+        
+              </div>
               
         </div>
-        <div class="modal fade" id="crearevento" role="dialog">
-
-        </div>
+        <div class="modal fade" id="crearevento" role="dialog"></div>
+        <div class="modal fade" id="crearcategorias" role="dialog"></div>
+        <div class="modal fade" id="editarcategorias" role="dialog"></div>
     </div>    
         
     
@@ -68,11 +72,24 @@
 
   
     var $ = jQuery.noConflict();
+    
     function abrirmodalcrearnuevoevento(url){
       $('#crearevento').load(url,function(){
         $(this).modal('show');
       })
 
+    }
+
+    function abrirmodalcrearcategorias(url){
+      $('#crearcategorias').load(url,function(){
+        $(this).modal('show');
+      })
+    }
+
+    function abrirmodaleditarcategorias(url){
+      $('#editarcategorias').load(url,function(){
+        $(this).modal('show');
+      })
     }
   </script>
   

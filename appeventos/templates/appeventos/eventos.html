@@ -85,7 +85,12 @@
           aria-labelledby="panelsStayOpen-heading{{eventospublicados.id}}">
           <div class="accordion-body">
             <p style="text-overflow: ellipsis; text-align: justify;white-space: nowrap;overflow: hidden; font-size: 1.2rem;">{{eventospublicados.contenidoevento}}</p>
-            <p style="text-align:justify;">Categoria: </p>
+            <p style="text-align:justify;">Categoria:
+                  {% for listadocategorias in eventospublicados.categoriaevento.all %}
+                <span class="d-inline">{{listadocategorias.nombre}} / </span> 
+                
+                  {% endfor %}
+                </p>
             {% if user.is_authenticated %}
                  <p style="text-align:justify;">Acceder al evento: <a class="text-decoration-none" href="https://zoom.us/join" target="_blank">Click Aquí</a> </p>
             {% endif %}

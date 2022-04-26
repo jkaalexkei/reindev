@@ -17,7 +17,7 @@ urlpatterns = [
     path('perfil/<str:usuario>',views.perfil,name='perfil'),
     path('editarperfil/',views.editarperfil,name='editarperfil'),
     path('eliminarperfil/<str:usuario>',views.eliminarperfil,name='eliminarperfil'),
-    path('crearcategorias/',views.crearcategorias,name='crearcategorias'),
+    # path('crearcategorias/',views.crearcategorias,name='crearcategorias'),
     # path('',views.plantillav,name='plantilla')
     # path('mostrarcategorias/',views.mostrarcategorias,name='mostrarcategorias')
     # path('',LoginView.as_view(template_name='apprein/login.html'),name='login'),
