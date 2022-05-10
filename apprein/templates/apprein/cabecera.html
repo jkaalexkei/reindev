@@ -2,9 +2,9 @@
 <!-- PROBAR COLOCAR TODO DENTRO DE UN NAVBAR GLOBAL -->
 
 <div class="row">
-  <div class="col-12 m-auto p-2">
+  <div class="col-lg-12 p-2">
     <nav  class="navbar navbar-expand-lg navbar-light">
-      <div class="container-fluid d-flex">
+      <div class="container-fluid">
         <a class="navbar-brand" href="#">
           <img src="{% static 'apprein/img/logoreintres.png' %}" class="rounded"
             alt="..." width="250px">
@@ -12,8 +12,8 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="d-flex collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav w-100 d-flex">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav w-100">
             {% if user.is_authenticated %}
                   <li class="nav-item mx-3 rounded-1 d-flex  {% if request.path == '/' %}active{% endif %}">
                     <a class="nav-link fw-bolder m-auto" aria-current="page" href="{% url 'home' %}">Inicio</a>
@@ -33,11 +33,11 @@
                   <li class="nav-item mx-3 rounded-1 d-flex">
                     <a class="nav-link fw-bolder d-flex m-auto" href="{% url 'logout' %}">Logout&nbsp;<i class="fa fa-sign-out-alt m-auto"></i></a>
                   </li>
-                  <li class="nav-item mx-2 rounded-1">
-                    <div class="row">
+                  <li class="rounded-1 p-1 ms-auto d-flex align-items-center">
+        
                       {% if request.user.username == 'administrador' %}
-                      <div class="col-4 d-flex">
-                        <div class="dropdown d-flex">
+                      
+                        <div class="dropdown me-1">
                           <button class="btn dropdown-toggle fs-6 fw-bold" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Elije Acción</button>
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" onclick="abrirmodalcrearcategorias('{% url 'crearcategorias' %}')">Agregar Categoria</a></li>
@@ -46,27 +46,13 @@
                            
                           
                           </ul>
-                        </div>                        
-                      </div>
-                     
+                        </div>    
+
                       {% endif %}
-                      <div class="col-2 d-flex justify-content-center">
-                        <a class="text-decoration-none fs-5 fw-bolder text-capitalize d-flex" href="{% url 'perfil' request.user.username %}"><img src="{{ request.user.perfil.imagenperfil.url }}" class="rounded-circle" alt="..." width="50px" title="{{ request.user.username | capfirst }}"></a>
-                      </div>
-                      <div class="col-4 d-flex">
-                        <div class="dropdown d-flex">
-                          <button class="btn dropdown-toggle fs-6 fw-bold" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            4768 pts
-                          </button>
-                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="col-2 d-flex justify-content-center align-items-center">
-                        <a class="nav-link" href="#"><i class="far fa-bell text-dark fs-2"></i></a>
+                      <a class="text-decoration-none fs-5 fw-bolder text-capitalize d-block me-1 d-flex justify-content-center" href="{% url 'perfil' request.user.username %}"><img src="{{ request.user.perfil.imagenperfil.url }}" class="img rounded-circle" width="50" height="50" alt="..." title="{{ request.user.username | capfirst }}"></a>
+                      <a class="nav-link d-block" href="#"><i class="far fa-bell text-dark fs-2"></i></a>
+                      
+                      
                       </div>
                     </div>
                   </li>

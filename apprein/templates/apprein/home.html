@@ -8,7 +8,11 @@
 {% block estilos %}
 <style>
   .bordes-imagen {
-    border-radius: 15px;
+    /* border-radius: 15px; */
+  }
+
+  .bordescontenedorslider{
+    border-radius: 8px;
   }
 
   .card-body .titulo {
@@ -62,7 +66,7 @@
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
               aria-label="Slide 3"></button>
           </div>
-          <div class="carousel-inner">
+          <div class="carousel-inner border bordescontenedorslider">
             <div class="carousel-item active">
               <img src="{% static 'apprein/img/foto.jpg' %}" width="" height="" class="d-block bordes-imagen imagenwidth"
                 alt="...">
@@ -96,10 +100,14 @@
       {% for eventospublicados in eventos %}
       <div class="col-12 col-lg-3">
         <div class="card border-0" style="width: 13rem;">
-          <img src="{{ eventospublicados.imagenevento.url }}" class="card-img-top img-fluid rounded-3 h-25" alt="...">
+          <img src="{{ eventospublicados.imagenevento.url }}" class="rounded-3 " alt="..." width="200" height="120">
           <div class=" d-flex p-0 flex-column">
-            <p class="titulo text-start mb-0 fs-5">{{ eventospublicados.tituloevento}}</p>
+            <p class="titulo text-start mb-0 fs-5">
+              <a class="enlace" href="{% url 'mostrarevento' eventospublicados.id %}">{{ eventospublicados.tituloevento}}</a>
+            </p>
+
             <p class="subtitulo text-start mb-1">Acceder: <a class="text-decoration-none" href="{{eventospublicados.eventolink }}" target="_blank">Haz click aquí</a></p>
+            <p class="subtitulo text-start mb-1">Fecha evento: <br>{{eventospublicados.fechaevento}}</p>
             <p class="fs-6">Creado: {{ eventospublicados.created | naturaltime }}</p>
             <p style="text-align:right;">Por {{ eventospublicados.autorevento }}&nbsp;<img class="border rounded-circle" src="{{eventospublicados.autorevento.perfil.imagenperfil.url}}" alt="" width="50" height="50"></p>         
               {% if user.is_authenticated %}
@@ -124,11 +132,11 @@
       <div class="col-12 col-lg-12 mt-3 p-1">
         {% if articulospublicados %}
         {% for articulos in articulospublicados  %}
-        <div class="card mb-2  rounded-2 border p-3">
+        <div class="card mb-2 p-3 border-0">
           <div class="row">
             <div class="col-12 col-lg-3 p-1">
               <div class="container text-center d-flex flex-column p-0">
-                <img src="{{ articulos.imagen.url }}" class="w-100 imagen-border" height="180" alt="...">
+                <img src="{{ articulos.imagen.url }}" class="w-100 border rounded" height="180" alt="...">
                 <div class="container d-flex justify-content-center">
                   <a class="navbar-brand mx-3" href="#"><i class="far fa-heart fs-3 mt-1 text-dark"></i></a>
                   <a class="navbar-brand mx-3" href="#"><i class="far fa-comment-alt fs-3 mt-1 text-dark"></i></a>

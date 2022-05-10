@@ -23,9 +23,7 @@ def home(request):
 
      contexto = {
           'articulospublicados':articulospublicados,
-          'eventos':eventos,
-          
-          
+          'eventos':eventos          
    
           
      }

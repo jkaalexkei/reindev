@@ -16,8 +16,8 @@ from comentariosblog.models import comentariosblogm
 def blog(request):
     
     blogs=blogm.objects.all()#importa todas las entradas de blog
-    categoria=categorias.objects.all()
-    cat = categorias.objects.all()
+#     categoria=categorias.objects.all()
+#     cat = categorias.objects.all()
 
 
 

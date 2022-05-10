@@ -43,7 +43,7 @@ from appcategorias.models import categorias
         
 class blogm(models.Model):
     
-    titulo=models.CharField(max_length=50)
+    titulo=models.CharField(max_length=140)
     descripcion=models.TextField()
     imagen=models.ImageField(default='logo.jpg',upload_to='blogs',null=True,blank=True)
     autor=models.ForeignKey(User, on_delete=models.CASCADE,null=True,related_name='blogms')#establece relacion entre el post y el usuario que crea el post

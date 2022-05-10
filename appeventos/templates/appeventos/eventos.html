@@ -29,16 +29,20 @@
       <div class="col-8">
           <form action="" method="get" class="d-flex">
             {% csrf_token %}
-            <input type="text" class="form-control border" placeholder="Buscar en eventos publicados" aria-label="" aria-describedby="addon-wrapping" name="buscar" value="" required>
-            <button id="boton" class="input-group-text bg-white border" type="submit" value=""><i class="fas fa-search fs-3 text-dark"></i></button>
-    
+           
+            <div class="input-group mb-3">
+              <input type="text" name="buscar" class="form-control" value="{{ query }}"  placeholder="Buscar en eventos publicados" aria-label="Recipient's username" aria-describedby="button-addon2" required>
+              <button class="btn btn-outline-light border" type="submit" id="button-addon2"><i class="fas fa-search fs-3 text-dark"></i></button>
+            </div>
           </form>
           
           
       </div>
       <div class="col-4 d-flex align-items-center justify-content-end">
         {% if user.is_authenticated %}
-          <span class="enlace">Añadir Evento&nbsp;</span>&nbsp;<a class="enlace" href="#"><i class="fa fa-plus-square fs-2"></i></a>
+          <span class="">Añadir Evento&nbsp;</span>&nbsp;<a class="enlace" onclick="abrirmodalcrearnuevoevento('{% url 'crearevento' %}')"><i class="fa fa-plus-square fs-2"></i></a>
+
+          <!-- <a class="dropdown-item" onclick="abrirmodalcrearnuevoevento('{% url 'crearevento' %}')">Nuevo Evento</a> -->
       
           
         {% endif %}
@@ -60,9 +64,7 @@
        
        {% if eventospublicados.imagenevento %}
        <img src="{{ eventospublicados.imagenevento.url }}" class="img-fluid rounded-3" alt="..." style="width:100%; height:220px;">
-       {% else %}
-       <img src="{% static 'apprein/img/logo.jpg' %}" class="img-fluid rounded-3" alt="..." style="width:100%; height:220px;">
-        
+               
        {% endif %}
          
 
@@ -71,7 +73,7 @@
         <h2 class="accordion-header" id="panelsStayOpen-heading{{eventospublicados.id}}">
           <div class="container d-flex">
             <div class="w-100">
-              <p class="h5 fw-bold p-2"><a class="enlace" href="#">{{eventospublicados.tituloevento}}</a></p><!--Agregar la vista para el articulo completo-->
+              <p class="h5 fw-bold">Leer detalles</p><!--Agregar la vista para el articulo completo-->
             </div>
             <div class="flex-shrink-1 m-auto">
               <button class="accordion-button bg-white text-dark p-0" type="button" data-bs-toggle="collapse"
@@ -84,6 +86,7 @@
         <div id="panelsStayOpen-collapse{{eventospublicados.id}}" class="accordion-collapse collapse border-0"
           aria-labelledby="panelsStayOpen-heading{{eventospublicados.id}}">
           <div class="accordion-body">
+            <a class="fs-5 fw-bold enlace" href="{% url 'mostrarevento' eventospublicados.id %}">{{eventospublicados.tituloevento}}</a>
             <p style="text-overflow: ellipsis; text-align: justify;white-space: nowrap;overflow: hidden; font-size: 1.2rem;">{{eventospublicados.contenidoevento}}</p>
             <p style="text-align:justify;">Categoria:
                   {% for listadocategorias in eventospublicados.categoriaevento.all %}
@@ -92,8 +95,9 @@
                   {% endfor %}
                 </p>
             {% if user.is_authenticated %}
-                 <p style="text-align:justify;">Acceder al evento: <a class="text-decoration-none" href="https://zoom.us/join" target="_blank">Click Aquí</a> </p>
+                 <p style="text-align:justify;">Acceder al evento: <a class="text-decoration-none" href="{{eventospublicados.eventolink}}" target="_blank">Click Aquí</a> </p>
             {% endif %}
+            <p style="text-align:justify;">Fecha del Evento: {{eventospublicados.fechaevento }}</p>
             <p style="text-align:right;">Creado {{eventospublicados.created|naturaltime }}</p>
             <p style="text-align:right;">Por {{ eventospublicados.autorevento }}&nbsp;<img class="border rounded-circle" src="{{eventospublicados.autorevento.perfil.imagenperfil.url}}" alt="" width="50" height="50"></p>
           </div>
@@ -102,7 +106,7 @@
         <div>
           {% if request.user == eventospublicados.autorevento %}
               <a href="#" class="btn btn-lg text-warning"><i class="fa fa-pen"></i></a>
-              <a href="#" class="btn btn-lg text-danger"><i class="fa fa-trash"></i></a>
+              <a href="{% url 'eliminarevento' eventospublicados.id %}" class="btn btn-lg text-danger"><i class="fa fa-trash"></i></a>
           {% endif %}
         </div>
         {% endif %}

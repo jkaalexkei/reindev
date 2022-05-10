@@ -32,8 +32,10 @@
       <div class="col-8">
           <form action="/appblog/busquedablog/" method="get" class="d-flex">
             {% csrf_token %}
-            <input type="text" class="form-control border" placeholder="Buscar en el blog" aria-label="Username" aria-describedby="addon-wrapping" name="buscar" value="{{ query }}" required>
-            <button id="boton" class="input-group-text bg-white border" type="submit" value=""><i class="fas fa-search fs-3 text-dark"></i></button>
+            <div class="input-group mb-3">
+              <input type="text" name="buscar" class="form-control" value="{{ query }}"  placeholder="Buscar en eventos publicados" aria-label="Bsucar en Blog" aria-describedby="button-addon2" required>
+              <button class="btn btn-outline-light border" type="submit" id="button-addon2"><i class="fas fa-search fs-3 text-dark"></i></button>
+            </div>
     
           </form>
           
@@ -72,8 +74,8 @@
       <div class="accordion-item border-0">
         <h2 class="accordion-header" id="panelsStayOpen-heading{{entradablog.id}}">
           <div class="container d-flex">
-            <div class="w-100">
-              <p class="h5 fw-bold p-2"><a class="enlace" href="{% url 'articuloblog' entradablog.id %}">{{entradablog.titulo}}</a></p><!--Agregar la vista para el articulo completo-->
+            <div class="d-flex w-100">
+              <p class="fs-5">Ver detalles</p>
             </div>
             <div class="flex-shrink-1 m-auto">
               <button class="accordion-button bg-white text-dark p-0" type="button" data-bs-toggle="collapse"
@@ -86,6 +88,7 @@
         <div id="panelsStayOpen-collapse{{entradablog.id}}" class="accordion-collapse collapse border-0"
           aria-labelledby="panelsStayOpen-heading{{entradablog.id}}">
           <div class="accordion-body">
+            <p  style="text-align:justify;" class="fw-bold fs-5 d-block"><a class="enlace" href="{% url 'articuloblog' entradablog.id %}">{{entradablog.titulo}}</a></p>
             <p style="text-overflow: ellipsis; text-align: justify;white-space: nowrap;overflow: hidden; font-size: 1.2rem;">{{entradablog.descripcion}}</p>
             <p style="text-align:justify;">Categoria: {{entradablog.categoria}}</p>
             <p style="text-align:right;">Creado {{entradablog.created|naturaltime }}</p>

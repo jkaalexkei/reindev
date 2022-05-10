@@ -2,41 +2,50 @@
 {% load humanize %}
 {% load static %}
 
-
-
-{% block title %} {{articulo.titulo }} {% endblock %}
+{% block title %} {{datosencontrados.tituloevento }} {% endblock %}
 
 {% include "apprein/cabecera.html" %}
 
 {% block content %}
+<style>
+  .imagenprincipal{
+    width: 100%;
+    height: 30rem;
+  }
+</style>
 
 <div class="row justify-content-center">
     <div class="col-10">
         <div class="card mb-3 border-0">
-            <img src="{{ articulo.imagen.url }}" class="card-img-top img-fluid" alt="...">
+            <img src="{{ datosencontrados.imagenevento.url }}" class="card-img-top imagenprincipal" alt="...">
             <div class="card-body">
-              <h5 class="card-title">{{ articulo.titulo }}</h5>
-              <p class="card-text texto-justificado">{{ articulo.descripcion }}</p>
-              <p class="card-text"><small class="text-muted">Fecha: {{ articulo.updated }}</small></p>
-              <p class="card-text"><img class="border rounded-circle" src="{{articulo.autor.perfil.imagenperfil.url}}" alt="" width="50" height="50"> <small class="text-muted">Autor: {{ articulo.autor }}</small></p>
-              <p class="card-text"><small class="text-muted">Categoria: {{ articulo.categoria}}</small></p>
+              <h5 class="card-title">{{ datosencontrados.tituloevento }}</h5>
+              <p class="card-text texto-justificado">{{ datosencontrados.contenidoevento }}</p>
+              <p class="card-text"><small class="text-muted">Fecha: {{ datosencontrados.fechaevento }}</small></p>
+              <p class="card-text"><img class="border rounded-circle" src="{{datosencontrados.autorevento.perfil.imagenperfil.url}}" alt="" width="50" height="50"> <small class="text-muted">Autor: {{ datosencontrados.autorevento }}</small></p>
+              <p style="text-align:justify;">Categoria:
+                {% for listadocategorias in datosencontrados.categoriaevento.all %}
+              <span class="d-inline">{{listadocategorias.nombre}} / </span> 
+              
+                {% endfor %}
+              </p>
             </div>
             <div class="card-footer">
                 {% if user.is_authenticated %} 
                 <div class="text-end">
                     
-                    {% if request.user == articulo.autor %}
-                        <a href="{% url 'modificarentradablog' articulo.id %}" class="btn btn-lg text-warning"><i class="fa fa-pen"></i> Editar</a>
-                        <a href="{% url 'eliminararticulo' articulo.id %}" class="btn btn-lg text-danger"><i class="fa fa-trash"></i> Eliminar</a>
+                    {% if request.user == datosencontrados.autor %}
+                        <a href="" class="btn btn-lg text-warning"><i class="fa fa-pen"></i> Editar</a>
+                        <a href="" class="btn btn-lg text-danger"><i class="fa fa-trash"></i> Eliminar</a>
                         <a id="comentarios" href="#" class="btn btn-lg text-success fs-4"><i class="far fa-comment-alt"></i>Comentar</a>
                     {% endif %}
                         
                     
-                    <a href="{% url 'blog' %}" class="btn btn-lg text-success "><i class="fa fa-arrow-circle-up"></i> Volver</a>
+                    <a href="{% url 'eventos' %}" class="btn btn-lg text-success "><i class="fa fa-arrow-circle-up"></i> Volver</a>
                 </div>
                 {% else %}
                 <div class="text-end">
-                    <a href="{% url 'blog' %}" class="btn btn-lg text-success "><i class="fa fa-arrow-circle-up"></i> Volver</a>
+                    <a href="{% url 'eventos' %}" class="btn btn-lg text-success "><i class="fa fa-arrow-circle-up"></i> Volver</a>
                 </div>
                 {% endif %}
             </div>
@@ -48,7 +57,7 @@
                   <form action="{% url 'registrarcomentarios' %}" method="post">
                     {% csrf_token %}
                     <div class="form-group">
-                      <input type="hidden" name="idarticulo" value="{{articulo.id}}">
+                      <input type="hidden" name="idarticulo" value="{{datosencontrados.id}}">
                       <input type="hidden" name="idusuario" value="{{request.user.id}}">
                     </div>
                     <div class="form-group">
@@ -60,7 +69,7 @@
                   </form>
                   
                 </div>
-              </div>
+            </div>
              <div>
                {% if comentarios %}
 
