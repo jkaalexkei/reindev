@@ -6,7 +6,7 @@
         Categorias
     {% endblock title %}
     {% block content %}
-      <div class="row">
+      <div class="row mt-5">
           <div class="col-12">
               <h2 class="mb-4">Categorias Actuales</h2>
           </div>
@@ -18,6 +18,8 @@
                     <th scope="col">Nombre</th>
                     <th scope="col">Fecha de creación</th>
                     <th scope="col">Acciones</th>
+                    <th scope="col">Ver</th>
+                    
                   </tr>
                 </thead>
                 <tbody>                    
@@ -34,6 +36,7 @@
                                     <a href="{% url 'eliminarcategorias' listadocat.id %}" class="btn btn-sm text-danger"><i class="fa fa-trash"></i></a>
                                 </span>
                             </td>
+                            <td><a class="text-decoration-none color-texto" href="{% url 'listarsubcategorias' listadocat.id %}">Subcategorias</a></td>
                         </tr>
                         {% endfor %}                   
                   
@@ -45,5 +48,6 @@
 
           </div>
       </div>
-    {% endblock  %}
     
+
+      {% endblock  %}

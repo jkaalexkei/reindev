@@ -1,4 +1,12 @@
+<style>
+    .bg-subcategoria{
+        background-color: #ab5637d6;
+    }
 
+    .bg-subcat{
+        background-color: #f54c0f66;
+    }
+</style>
 <div class="col-12 col-lg-3">
     <div class="input-group flex-nowrap my-2">
       <input type="text" class="form-control" placeholder="Buscar en ReIN" aria-label="Username" aria-describedby="addon-wrapping">
@@ -13,13 +21,27 @@
                     <button class="accordion-button bg-boton-categoria rounded text-white fs-6 fw-bold text-capitalize" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{cat.id}}" aria-expanded="true" aria-controls="collapse{{cat.id}}">{{cat.nombre}}</button>
                 </h2>
                 <div id="collapse{{cat.id}}" class="accordion-collapse collapse " aria-labelledby="heading{{cat.id}}" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <ul class="list-group">
-                            <li class="list-group-item"><a href="">Agregar SubCategoria &nbsp;<i class="fas fa-plus-circle"></i></a></li>
-                        </ul>
-                    </div>
+                    
+                            
+                            {% for subc in subcat  %}                            
+                                {% if subc.categoriarel_id == cat.id %}
+                                <a href="#" class="bg-subcat text-dark text-decoration-none d-block p-2">{{subc.nombre}}</a>
+                                {% endif %}    
+                            {% endfor %}
+                    
+                    
+                        {% if user.is_authenticated %}                               
+        
+                            {% if user.username == 'administrador' %}
+                                <a class="bg-subcategoria text-white text-decoration-none d-block text-end p-2 fs-6" onclick="abrirmodalcrearsubcategorias('{% url 'crearsubcategorias' %}')" role="button">Ver Categoria gral</a>
+                                <a class="bg-subcategoria text-white text-decoration-none d-block text-end p-2 fs-6" onclick="abrirmodalcrearsubcategorias('{% url 'crearsubcategorias' %}')" role="button">Agregar SubCategoria &nbsp;<i class="fas fa-plus-circle"></i></a>
+                            {% endif %}                     
+                        {% endif %}
+                    
                 </div>
+                
             </div>
+            
         </div>
         {% endfor %} 
     {% endif %}

@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from appblog.models import blogm
-from appcategorias.models import categorias
+from appcategorias.models import categorias, subcategorias
 from appforo.models import forom,categoria_forom
 from apprein.models import perfil
 from comentariosblog.models import comentariosblogm
@@ -60,4 +60,11 @@ class registrareventosform(forms.ModelForm):
     
     class Meta:
         model = eventosm
+        fields = '__all__'
+
+
+class registrarsubcategoriasform(forms.ModelForm):
+
+    class Meta:
+        model = subcategorias
         fields = '__all__'

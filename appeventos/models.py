@@ -9,7 +9,7 @@ class eventosm(models.Model):
     tituloevento=models.CharField(max_length=120)
     contenidoevento=models.TextField()
     autorevento=models.ForeignKey(User,on_delete=models.CASCADE,related_name='eventosm')
-    imagenevento=models.ImageField(default='apprein/img/logo.jpg',upload_to='eventos',null=True,blank=True)
+    imagenevento=models.ImageField(default='logo.jpg',upload_to='eventos',null=True,blank=True)
     categoriaevento = models.ManyToManyField(categorias,related_name='categoriasevento')
     eventolink = models.CharField(max_length=140)
     fechaevento = models.DateField()

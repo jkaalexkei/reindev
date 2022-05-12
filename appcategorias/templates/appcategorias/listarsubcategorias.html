@@ -1,0 +1,61 @@
+
+    {% extends 'apprein/plantilla.html' %}
+    {% load humanize %}
+    {% load static %}
+    {% block title %}
+        Categorias
+    {% endblock title %}
+    {% block content %} 
+      <div class="row mt-5">
+        
+          <div class="col-12">
+            <h2>Subcategorias Encontradas</h2>
+              
+          </div>
+          <div class="col-12">
+            
+            <table class="table">
+                <thead>
+                  <tr>                    
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Fecha de creación</th>
+                    <th scope="col">Acciones</th>
+                    
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  {% if listarsubcategorias %}
+                       
+                    {% for listadosubcat in listarsubcategorias %}
+                        <tr> 
+                                            
+                            <td>{{listadosubcat.nombre }}</td>
+                            <td>{{listadosubcat.created | naturalday }}</td>
+                            <td>
+                                <span class="d-flex">
+                                    <a href="" class="btn btn-sm text-warning"><i class="fa fa-pen"></i></a>
+                                    <a href="" class="btn btn-sm text-danger"><i class="fa fa-trash"></i></a>
+                                </span>
+                            </td>
+                        </tr>
+                        
+                        {% endfor %}
+                        
+                        {% else %}
+                            <tr class="col-12 text-warning"><td>Aún no se han registrado Subcategorias </td></tr>
+                        {% endif %}                   
+                  
+                </tbody>
+              </table>
+              <div class="text-end">
+                  <a href="{% url 'listarcategorias' %}" class="btn btn-lg text-success"><i class="fa fa-arrow-circle-up"></i> Volver</a>
+              
+              </div>
+          
+
+          </div>
+      </div>
+  {% endblock %}
+
+    

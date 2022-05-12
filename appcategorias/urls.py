@@ -12,6 +12,7 @@ urlpatterns = [
     path('listarcategorias/',listarcategorias.as_view(),name='listarcategorias'),
     path('mostrarcategorias/<pk>',views.mostrarcategorias.as_view(),name='mostrarcategorias'),
     path('actualizarcategorias/',views.actualizarcategorias,name='actualizacategorias'),
-    path('eliminarcategoria/<id>',views.eliminarcategorias,name="eliminarcategorias")
-
+    path('eliminarcategoria/<id>',views.eliminarcategorias,name="eliminarcategorias"),
+    path('crearsubcategoria/',views.crearsubcategorias,name='crearsubcategorias'),
+    path('listarsubcategorias/<id>',views.listarsubcategorias,name="listarsubcategorias"),
 ]

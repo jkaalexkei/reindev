@@ -12,6 +12,9 @@
             <form action="{% url 'crearevento' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{formevento | crispy }}
+               
+                
+                
                 <div class="modal-footer">
                     <button class="btn btn-danger" type="button" data-bs-dismiss="modal">Cancelar</button>
                     <button class="btn btn-primary" type="submit" data-dismiss="modal">Confirmar</button>

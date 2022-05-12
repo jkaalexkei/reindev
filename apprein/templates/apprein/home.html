@@ -34,12 +34,17 @@
     width: 100%;
     height: 30rem;
   }
+  .imgevento{
+    width:100%;
+    height: 13rem;
+  }
 </style>
 {% endblock  %}
 
 {% block content %}
 <div class="row">
-  {% if messages %}
+  <div class="col-12">
+    {% if messages %}
 
   {% for mensaje in messages  %}
 
@@ -50,6 +55,7 @@
   {% endfor %}
 
   {% endif %}
+  </div>
   <div class="col-12 col-lg-12">
     <div class="row">
       
@@ -98,9 +104,9 @@
       {% if eventos %}
 
       {% for eventospublicados in eventos %}
-      <div class="col-12 col-lg-3">
-        <div class="card border-0" style="width: 13rem;">
-          <img src="{{ eventospublicados.imagenevento.url }}" class="rounded-3 " alt="..." width="200" height="120">
+      <div class="col-lg-4 d-flex justify-content-around">
+        <div class="card border" style="width: 100%;">
+          <img src="{{ eventospublicados.imagenevento.url }}" class="rounded-3 imgevento " alt="...">
           <div class=" d-flex p-0 flex-column">
             <p class="titulo text-start mb-0 fs-5">
               <a class="enlace" href="{% url 'mostrarevento' eventospublicados.id %}">{{ eventospublicados.tituloevento}}</a>
@@ -129,7 +135,8 @@
     </div>
     <!-- COLUMNAS LARGAS -->
     <div class="row">
-      <div class="col-12 col-lg-12 mt-3 p-1">
+      <div class="col-12 col-lg-12 mt-3">
+        <h4 class="h4">Entradas de blog publicadas recientemente</h4>
         {% if articulospublicados %}
         {% for articulos in articulospublicados  %}
         <div class="card mb-2 p-3 border-0">

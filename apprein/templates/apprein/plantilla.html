@@ -16,34 +16,41 @@
     {% endblock  %}
 
     <title>{% block title %} {% endblock %}</title>
-    
+    <style>
+     .main{
+       width: 95%;
+       max-width: 1400px;
+       margin: auto;
+     }
+    </style>
   </head>
   <body>    
-    <div class="container-fluid sticky-top bg-white">          
-          {% include "apprein/cabecera.html" %}          
-    </div>    
-    <div class="container-fluid align-items-center justify-content-center px-5">
-      
-        <!-- COLUMNA IZQUIERDA -->
-      
-        <div class="row">
-              <div class="col-12 col-lg-9">          
-                  {% block content %}
+    <main class="main">
+        <div class="container-fluid sticky-top bg-white d-flex justify-content-center p-0">
+          
+          {% include "apprein/cabecera.html" %}                   
+                    
+        </div>    
+        <div class="container-fluid align-items-center justify-content-center p-0">
+          
+            <!-- COLUMNA IZQUIERDA -->
+          
+            <div class="row">
+                  <div class="col-12 col-lg-9">          
+                      {% block content %}
 
-                  {% endblock%}
-              </div> 
-              <!-- COLUMNA DE LA DERECHA -->
-              
+                      {% endblock%}
+                  </div> 
+                  <!-- COLUMNA DE LA DERECHA -->
                   {% include "apprein/snipets/apprein/sidebar.html" %}
-              <div class="">
-        
-              </div>
-              
-        </div>
-        <div class="modal fade" id="crearevento" role="dialog"></div>
-        <div class="modal fade" id="crearcategorias" role="dialog"></div>
-        <div class="modal fade" id="editarcategorias" role="dialog"></div>
-    </div>    
+                  
+            </div>
+            <div class="modal fade" id="crearevento" role="dialog"></div>
+            <div class="modal fade" id="crearcategorias" role="dialog"></div>
+            <div class="modal fade" id="editarcategorias" role="dialog"></div>
+            <div class="modal fade" id="crearsubcategorias" role="dialog"></div>
+        </div>    
+    </main>
         
     
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
@@ -88,6 +95,12 @@
 
     function abrirmodaleditarcategorias(url){
       $('#editarcategorias').load(url,function(){
+        $(this).modal('show');
+      })
+    }
+
+    function abrirmodalcrearsubcategorias(url){
+      $('#crearsubcategorias').load(url,function(){
         $(this).modal('show');
       })
     }

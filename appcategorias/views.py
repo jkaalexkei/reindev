@@ -1,10 +1,11 @@
+
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
-from reindev.forms import crearcategoriasform
-from .models import categorias
+from reindev.forms import registrarsubcategoriasform
+from .models import categorias, subcategorias
 # Create your views here.
 
 def actualizarcategorias(request):
@@ -81,8 +82,32 @@ def eliminarcategorias(request,id):
      consulta.delete()
      return redirect('listarcategorias')
 
+
+
+def crearsubcategorias(request):
+     if request.method == 'POST':
+          formsubcategorias = registrarsubcategoriasform(request.POST)
+          if formsubcategorias.is_valid():
+               formsubcategorias.save()
+               messages.success(request,'Subcategoria Agregada con éxito')
+               return redirect ('listarcategorias')
+     else:
+          formsubcategorias = registrarsubcategoriasform()
      
+     return render(request,'appcategorias/registrarsubcategorias.html',{
+          'formsubcategorias':formsubcategorias
+     })
 
 
+def listarsubcategorias(request,id):
+    
+     sub = subcategorias.objects.filter(categoriarel_id = id)
+     # subcat = subcategorias.objects.get(categoriarel_id = id)
+     
+     contexto = {'listarsubcategorias':sub,}
+
+     # print(resultado)
+
+     return render(request,'appcategorias/listarsubcategorias.html',contexto)
 
 

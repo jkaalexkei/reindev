@@ -58,12 +58,12 @@
 
   {% for entradablog in blogs %}
 
-  <div class="col-12 col-lg-6 mb-2">
+  <div class="col-sm-12 col-md-6 col-lg-6 mb-2">
     <div class="accordion" id="accordionPanelsStayOpenExample">
       <div class="card">
        
        {% if entradablog.imagen %}
-       <img src="{{ entradablog.imagen.url }}" class="img-fluid rounded-3" alt="..." style="width:100%; height:220px;">
+       <img src="{{ entradablog.imagen.url }}" class="img-fluid rounded-3" alt="..." style="width:100%; height:19rem;">
        {% else %}
        <img src="{% static 'apprein/img/logo.jpg' %}" class="img-fluid rounded-3" alt="..." style="width:100%; height:220px;">
         
