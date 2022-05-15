@@ -1,17 +1,27 @@
-from email import message
-from pyexpat import model
-from django.shortcuts import render,redirect
+
+
+from django.shortcuts import render,redirect,get_object_or_404
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.contrib import messages
 from .models import eventosm
-from reindev.forms import registrareventosform
+from reindev.forms import registrareventosform,actualizareventosform
+
+
 # Create your views here.
 
 def eventos(request):
+
     eventos = eventosm.objects.all()
+
+    
+
     contexto = {'eventos':eventos}
+
+
     return render(request,'appeventos/eventos.html',contexto)
+
+
 
 def crearevento(request):
 
@@ -28,6 +38,28 @@ def crearevento(request):
     contexto = {'formevento':formevento}
 
     return render(request,'appeventos/crearevento.html',contexto)
+
+def editarevento(request,id):
+
+    e = eventosm.objects.get(id=id)
+    evento = get_object_or_404(eventosm,id=id)
+
+    datos = {
+        'evento':e,
+        'formevento':actualizareventosform(instance=evento)
+    }
+
+    if request.method == 'POST':
+        formulario = actualizareventosform(data=request.POST,instance=evento,files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request,'Información del evento Actualizada')
+            return redirect('eventos')
+    else:
+        formulario = actualizareventosform()
+
+
+    return render(request,'appeventos/editarevento.html',datos)
 
 def eliminareventos(request,id):
     evento = eventosm.objects.get(id=id)
@@ -56,9 +88,9 @@ class mostrarevento(DetailView):
        
         return context
 
-class busquedaarticulos(ListView):
+class busquedaeventos(ListView):
      
-     template_name = 'appblog/busquedaeventos.html'
+     template_name = 'appeventos/busquedaeventos.html'
 
      def get_queryset(self):
           return eventosm.objects.filter(tituloevento__icontains=self.query())
@@ -70,9 +102,10 @@ class busquedaarticulos(ListView):
 
           context= super().get_context_data(**kwargs)
           context['query'] = self.query()
-          context['datosencontrados'] = context['object_list']
-          context['cantidad'] = context['object_list'].count()
+          context['datosencontrados'] = context['eventosm_list']
+          context['cantidad'] = context['eventosm_list'].count()
         #   context['miscategorias'] = categorias.objects.all()
-
+          
+        #   print(context)
 
           return context

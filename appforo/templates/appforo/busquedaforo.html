@@ -1,0 +1,122 @@
+{% extends "apprein/plantilla.html" %}
+{% load humanize %}
+{% load static %}
+{% block title %} Foro ReIN {% endblock %}
+
+{% block content %}
+<style>
+    .imagen{
+        width: 100%;
+        height: 10rem;
+    }
+</style>
+
+<h2>Foro ReIN</h2>
+
+<div class="row mb-4 mt-3">
+<div class="col-8">
+    <form action="/appforo/busquedaforo/" method="get" class="d-flex">
+      
+      <div class="input-group mb-3">
+        <input type="text" name="buscar" class="form-control" value="{{ query }}"  placeholder="Buscar en foros publicados" aria-label="busqueda de foro" aria-describedby="button-addon2">
+        <button class="btn btn-outline-light border" type="submit" id="button-addon2"><i class="fas fa-search fs-3 text-dark"></i></button>
+      </div>
+    </form>
+    
+    
+</div>
+<div class="col-4 d-flex align-items-center justify-content-end">
+  {% if user.is_authenticated %}
+    <span class="enlace">Añadir Foro&nbsp;</span>&nbsp;<a class="enlace" onclick="abrirmodalagregarforo('{% url 'agregarforo' %}')"><i class="fa fa-plus-square fs-2"></i></a>
+  {% endif %}
+</div>
+
+</div>
+
+{% if datosencontrados %}
+ 
+    <p class="mb-3 fw-bold py-2 fs-5">Se encontró {{ cantidad }} resultados por {{ query}}</p>
+    {% for datosforo in datosencontrados  %}
+        <div class="row p-0 border m-0 d-flex mb-2">
+            <div class="col-3 p-0 d-flex flex-wrap justify-content-center">
+                <img src="{{ datosforo.imagenforo.url }}" class="rounded-2 imagen" alt="...">
+                
+                    <a href="" class="btn btn-lg text-danger d-block"><i class="far fa-heart">&nbsp;1</i></a>
+                    <a href="" class="btn btn-lg text-danger d-block"><i class="far fa-comment-alt"></i></a>
+                
+            </div>
+            <div class="col-9 p-0 d-flex flex-column">
+                
+                        <div class="container-fluid p-0 mb-auto">
+                            <p class="fs-5 fw-bold m-1 ps-2"><a href="" class="enlace">{{ datosforo.titulo}}</a></p>
+                            <p style="text-align:justify;" class="m-1 ps-2">Categoria:
+                                {% for listadocategorias in datosforo.categoriasforo.all %}
+                            <span class="d-inline">{{listadocategorias.nombre}} / </span> 
+                            
+                                {% endfor %}
+                            </p>
+                            <p class="m-1 ps-2">Publicado : {{ datosforo.created | naturaltime }}</p>
+                            <p class=" m-0 ps-2"><strong>Usuario:</strong> {{ datosforo.autorforo.username }}&nbsp;<img src="{{ datosforo.autorforo.perfil.imagenperfil.url }}" alt="" width="50" height="50"></p>
+                        </div>
+                        <div class="container-fluid d-flex justify-content-end m-0 align-items-end ">
+                            
+                                
+                            <span class="p-0">
+                                {% if user.is_authenticated %}
+                        
+                                    {% if request.user == datosforo.autorforo %}
+                                        <a onclick="abrirmodaleditarforo('{% url 'editarforo' datosforo.id %}')" class="btn btn-lg text-warning" role="button"><i class="fa fa-pen"></i></a>
+                                        <a href="{% url 'eliminarforo' datosforo.id %}" class="btn btn-lg text-danger"><i class="fa fa-trash"></i></a>
+                                    {% endif %}
+                                {% endif %}
+                            </span>
+                                
+                        </div>
+                        
+            </div>
+            
+        </div>              
+    {% endfor %}
+    <div class="row mt-3">
+        <div class="col-12">
+            <div class="card-footer">
+                {% if user.is_authenticated %}
+                    <div class="text-end">
+                    
+                            <a href="{% url 'foro' %}" class="btn btn-lg text-success "><i class="fa fa-arrow-circle-up"></i> Volver</a>
+                    </div>
+                {% else %}
+                        <div class="text-end">
+                            <a href="{% url 'foro' %}" class="btn btn-lg text-success "><i class="fa fa-arrow-circle-up"></i> Volver</a>
+                        </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% else %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <p>No se encontraron coincidencias por {{query}}</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card-footer">
+                {% if user.is_authenticated %}
+                    <div class="text-end">
+                            <a href="{% url 'foro' %}" class="btn btn-lg text-success "><i class="fa fa-arrow-circle-up"></i> Volver</a>
+                    </div>
+                {% else %}
+                        <div class="text-end">
+                            <a href="{% url 'foro' %}" class="btn btn-lg text-success "><i class="fa fa-arrow-circle-up"></i> Volver</a>
+                        </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% endblock  %}
+
+
+

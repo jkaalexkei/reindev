@@ -102,9 +102,11 @@
     </div>
     <div class="row">
       {% if eventos %}
-
+      <div class="col-lg-12">
+        <h4 class="h4">Eventos Nuevos</h4>
+      </div>
       {% for eventospublicados in eventos %}
-      <div class="col-lg-4 d-flex justify-content-around">
+      <div class="col-lg-4 d-flex justify-content-around mb-2">
         <div class="card border" style="width: 100%;">
           <img src="{{ eventospublicados.imagenevento.url }}" class="rounded-3 imgevento " alt="...">
           <div class=" d-flex p-0 flex-column">
@@ -129,8 +131,13 @@
         </div>
       </div>
       {% endfor %}
+
+      <div class="col-lg-12">
+        {% include 'apprein/snipets/apprein/paginadorhome.html' %}
+      </div>
         
       {% endif %}
+      
  
     </div>
     <!-- COLUMNAS LARGAS -->

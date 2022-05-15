@@ -1,29 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import User
+from appcategorias.models import categorias
 # from appcategorias.models import categorias
 
 # Create your models here.
 
-class categoria_forom(models.Model):
-    nombre=models.CharField(max_length=20)
-    created=models.DateTimeField(auto_now_add=True)
-    updated=models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        verbose_name='categoria_forom'
-        verbose_name_plural='categoria_foroms'
-    
-    def __str__(self):
-        return self.nombre
 
 class forom(models.Model):
-    titulo=models.CharField(max_length=50)
-    contenido=models.TextField()
-    imagen=models.ImageField(default='logo.jpg', upload_to='foro')
-    like=models.IntegerField(default=0)
-    nolike=models.IntegerField(default=0)
-    autorf=models.ForeignKey(User,on_delete=models.CASCADE,related_name='foroms')
-    categoriasforo=models.ForeignKey(categoria_forom,on_delete=models.CASCADE,null=True)
+    titulo=models.CharField(max_length=50,verbose_name='Titulo del foro:')
+    contenido=models.TextField(verbose_name='Descripción del foro:')
+    imagenforo=models.ImageField(default='logo.jpg', upload_to='foro',verbose_name='Imagen del foro:')
+    autorforo=models.ForeignKey(User,on_delete=models.CASCADE,related_name='foroms', verbose_name='Autor del foro:')
+    categoriasforo=models.ManyToManyField(categorias,related_name='categoriasforo',verbose_name='Categorias:')
     created=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField(auto_now_add=True)
 
@@ -34,5 +22,5 @@ class forom(models.Model):
         ordering = ['-created']
 
     def __str__(self):
-        return f'{self.autorf.username}:{self.titulo}'
+        return f'{self.autorforo.username}:{self.titulo}'
 

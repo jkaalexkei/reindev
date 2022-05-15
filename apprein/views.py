@@ -10,7 +10,8 @@ from .models import perfil
 from appblog.models import blogm
 # from appblog.models import categorias
 from appcategorias.models import categorias
-
+from django.core.paginator import Paginator
+from django.http import Http404
 
 # from appblog.models import blog #importamos los modelos de la appblog
 # Create your views here.
@@ -19,12 +20,20 @@ from appcategorias.models import categorias
 def home(request):
 
      articulospublicados = blogm.objects.all()
-     eventos = eventosm.objects.all().order_by('created')     
+     eventos = eventosm.objects.all().order_by('created')
+
+     page = request.GET.get('page',1)
+
+     try:
+          paginator = Paginator(eventos,3)
+          eventos = paginator.page(page)
+     except:
+          raise Http404     
 
      contexto = {
           'articulospublicados':articulospublicados,
-          'eventos':eventos          
-   
+          'eventos':eventos,
+          'paginator':paginator,          
           
      }
 

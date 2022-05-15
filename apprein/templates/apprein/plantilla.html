@@ -49,6 +49,12 @@
             <div class="modal fade" id="crearcategorias" role="dialog"></div>
             <div class="modal fade" id="editarcategorias" role="dialog"></div>
             <div class="modal fade" id="crearsubcategorias" role="dialog"></div>
+            <div class="modal fade" id="editarevento" role="dialog"></div>
+            <div class="modal fade" id="agregarforo" role="dialog"></div>
+            <div class="modal fade" id="editarforo" role="dialog"></div>
+
+            
+
         </div>    
     </main>
         
@@ -101,6 +107,17 @@
 
     function abrirmodalcrearsubcategorias(url){
       $('#crearsubcategorias').load(url,function(){
+        $(this).modal('show');
+      })
+    }
+
+    function abrirmodalagregarforo(url){
+      $('#agregarforo').load(url,function(){
+        $(this).modal('show');
+      })
+    }
+    function abrirmodaleditarforo(url){
+      $('#editarforo').load(url,function(){
         $(this).modal('show');
       })
     }

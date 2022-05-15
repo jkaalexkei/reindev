@@ -1,9 +1,10 @@
+from random import choices
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from appblog.models import blogm
 from appcategorias.models import categorias, subcategorias
-from appforo.models import forom,categoria_forom
+from appforo.models import forom
 from apprein.models import perfil
 from comentariosblog.models import comentariosblogm
 from appeventos.models import eventosm
@@ -29,14 +30,15 @@ class crearcuentaform(UserCreationForm):
         help_texts = {k:'' for k in fields}
 
 class regitroentradaforo(forms.ModelForm):
-    titulo = forms.CharField(required=True,label='Titulo de la Entrada:',widget=forms.TextInput(attrs={'class':'form-control border-dark my-2','name':'titulof'}))
-    contenido=forms.CharField(required=True,label='Descripción de la entrada:',widget=forms.Textarea(attrs={'class':'form-control border border-dark my-2','rows':2,'style':'min-height: 300px;','name':'contenidof'}))
-    categoria=forms.CharField(label='Categoria:',widget=forms.TextInput(attrs={'class':'form-control border-dark my-2','name':'categoriaf'}))
-    imagen =forms.ImageField(required=True,label='Ingrese una imagen',widget=forms.FileInput(attrs={'class':'form-control my-2','name':'imagenf'}))
 
-    class Meta:
+   class Meta:
         model =forom
-        fields=['titulo','contenido','categoria','imagen']
+        fields='__all__'
+
+class actualizarforoform(forms.ModelForm):
+    class Meta:
+        model = forom
+        fields = '__all__'
 
 
 class actualizarperfilform(forms.ModelForm):
@@ -56,7 +58,14 @@ class comentariosform(forms.ModelForm):
         fields = ['titulocomentario','comentario']
 
 class registrareventosform(forms.ModelForm):
+   
+    
+    class Meta:
+        model = eventosm
+        fields = '__all__'
 
+class actualizareventosform(forms.ModelForm):
+       
     
     class Meta:
         model = eventosm

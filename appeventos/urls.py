@@ -13,6 +13,8 @@ urlpatterns = [
     path('eventos/',views.eventos,name="eventos"),
     path('descripcionevento/<pk>',views.mostrarevento.as_view(),name='mostrarevento'),
     path('eliminarevento/<id>',views.eliminareventos,name='eliminarevento'),
+    path('editarevento/<id>/',views.editarevento,name="editarevento"),
+    path('buscareventos/',views.busquedaeventos.as_view(),name='buscareventos'),
     
 ]
 
