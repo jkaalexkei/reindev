@@ -25,8 +25,8 @@ SECRET_KEY = 'django-insecure-*csxruv2j-9f9j&tgy*vq)jn=0of-1b2qda5w1_4g)96pf3-$t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['reindev.herokuapp.com']
-ALLOWED_HOSTS =[]
+ALLOWED_HOSTS = ['reindev.herokuapp.com']
+# ALLOWED_HOSTS =[]
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
@@ -64,7 +64,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'reindev.urls'
@@ -93,21 +93,21 @@ WSGI_APPLICATION = 'reindev.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-# import dj_database_url 
-# from decouple import config
-
 # DATABASES = {
-#      'default': dj_database_url.config(
-#          default=config('DATABASE_URL')
-#      )
-#  }
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+import dj_database_url 
+from decouple import config
+
+DATABASES = {
+     'default': dj_database_url.config(
+         default=config('DATABASE_URL')
+     )
+ }
 
 
 # Password validation
@@ -165,7 +165,7 @@ STATICFILES_DIRS = (
 )
 
 
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
