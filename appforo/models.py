@@ -11,7 +11,7 @@ class forom(models.Model):
     contenido=models.TextField(verbose_name='Descripción del foro:')
     imagenforo=models.ImageField(default='logo.jpg', upload_to='foro',verbose_name='Imagen del foro:')
     autorforo=models.ForeignKey(User,on_delete=models.CASCADE,related_name='foroms', verbose_name='Autor del foro:')
-    categoriasforo=models.ManyToManyField(categorias,related_name='categoriasforo',verbose_name='Categorias:')
+    categoriasforo=models.ManyToManyField(categorias,related_name='categoriasforo',verbose_name='Categorias')
     created=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField(auto_now_add=True)
 

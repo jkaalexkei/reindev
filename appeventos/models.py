@@ -17,7 +17,7 @@ class eventosm(models.Model):
     imagenevento=models.ImageField(default='logo.jpg',upload_to='eventos',null=True,blank=True,verbose_name='Imagen del evento')
     categoriaevento = models.ManyToManyField(categorias,related_name='categoriasevento',verbose_name='Categorias')
     
-    eventolink = models.CharField(max_length=140,verbose_name='Enlace del evento')
+    eventolink = models.CharField(max_length=140,verbose_name='Ubicación')
     fechaevento = models.DateField(verbose_name='Fecha del evento')
     tipodeevento = models.CharField(max_length=50,choices=opciones,verbose_name='Tipo de Evento')
     created=models.DateTimeField(auto_now_add=True)
