@@ -52,6 +52,10 @@
             <div class="modal fade" id="editarevento" role="dialog"></div>
             <div class="modal fade" id="agregarforo" role="dialog"></div>
             <div class="modal fade" id="editarforo" role="dialog"></div>
+            <div class="modal fade" id="agregarblog" role="dialog"></div>
+            <div class="modal fade" id="editarblog" role="dialog"></div>
+            <div class="modal fade" id="agregarcomentarioblog" role="dialog"></div>
+            <div class="modal fade" id="agregarcomentarioeventos" role="dialog"></div>
 
             
 
@@ -118,6 +122,27 @@
     }
     function abrirmodaleditarforo(url){
       $('#editarforo').load(url,function(){
+        $(this).modal('show');
+      })
+    }
+
+    function abrirmodalagregarblog(url){
+      $('#agregarblog').load(url,function(){
+        $(this).modal('show');
+      })
+    }
+    function abrirmodaleditarblog(url){
+      $('#editarblog').load(url,function(){
+        $(this).modal('show');
+      })
+    }
+    function abrirmodalagregarcomentarioblog(url){
+      $('#agregarcomentarioblog').load(url,function(){
+        $(this).modal('show');
+      })
+    }
+    function abrirmodalagregarcomentarioeventos(url){
+      $('#agregarcomentarioeventos').load(url,function(){
         $(this).modal('show');
       })
     }

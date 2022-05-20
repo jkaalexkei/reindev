@@ -1,0 +1,28 @@
+{% load static %}
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h2 mb-2 fw-bold py-2">Añadir comentario</p>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               
+                <form action="{% url 'agregarcomentarioeventos' evento.id %}" method="post">
+                    {% csrf_token %}
+                            
+                    {{ formcomentario }}
+                            
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" type="button" data-bs-dismiss="modal">Cancelar</button>
+                        <button class="btn btn-primary" type="submit" data-dismiss="modal">Confirmar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+   
+   

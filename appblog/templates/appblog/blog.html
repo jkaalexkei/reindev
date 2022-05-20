@@ -2,14 +2,9 @@
 {% load humanize %}
 {% load static %}
 
-
-
 {% block title %} Blog ReIN {% endblock %}
 
-{% include "apprein/cabecera.html" %}
-
 {% block content %}
-
 
 <div class="row">
   
@@ -31,19 +26,21 @@
     <div class="row mb-4">
       <div class="col-8">
           <form action="/appblog/busquedablog/" method="get" class="d-flex">
-            {% csrf_token %}
+            
+           
             <div class="input-group mb-3">
-              <input type="text" name="buscar" class="form-control" value="{{ query }}"  placeholder="Buscar en eventos publicados" aria-label="Bsucar en Blog" aria-describedby="button-addon2" required>
+              <input type="text" name="buscar" class="form-control" value="{{ query }}"  placeholder="Buscar en blogs publicados" aria-label="Recipient's username" aria-describedby="button-addon2">
               <button class="btn btn-outline-light border" type="submit" id="button-addon2"><i class="fas fa-search fs-3 text-dark"></i></button>
             </div>
-    
           </form>
           
           
       </div>
       <div class="col-4 d-flex align-items-center justify-content-end">
         {% if user.is_authenticated %}
-          <span class="enlace">Añadir Entrada&nbsp;</span>&nbsp;<a class="enlace" href="{% url 'nuevaentrada' %}"><i class="fa fa-plus-square fs-2"></i></a>
+          <span class="">Añadir Blog&nbsp;</span>&nbsp;<a class="enlace" onclick="abrirmodalagregarblog('{% url 'crearblog' %}')"><i class="fa fa-plus-square fs-2"></i></a>
+
+          <!-- <a class="dropdown-item" onclick="abrirmodalcrearnuevoevento('{% url 'crearevento' %}')">Nuevo Evento</a> -->
       
           
         {% endif %}
@@ -55,51 +52,58 @@
   
   
     
+  {% if blogs %}    
+  
+  {% for blogpublicados in blogs %}
 
-  {% for entradablog in blogs %}
-
-  <div class="col-sm-12 col-md-6 col-lg-6 mb-2">
+  <div class="col-12 col-lg-6 mb-2">
     <div class="accordion" id="accordionPanelsStayOpenExample">
       <div class="card">
        
-       {% if entradablog.imagen %}
-       <img src="{{ entradablog.imagen.url }}" class="img-fluid rounded-3" alt="..." style="width:100%; height:19rem;">
-       {% else %}
-       <img src="{% static 'apprein/img/logo.jpg' %}" class="img-fluid rounded-3" alt="..." style="width:100%; height:220px;">
-        
+       {% if blogpublicados.imagen %}
+       <img src="{{ blogpublicados.imagen.url }}" class="img-fluid rounded-3" alt="..." style="width:100%; height:20rem;">
+               
        {% endif %}
          
 
       </div>
       <div class="accordion-item border-0">
-        <h2 class="accordion-header" id="panelsStayOpen-heading{{entradablog.id}}">
+        <h2 class="accordion-header" id="panelsStayOpen-heading{{blogpublicados.id}}">
           <div class="container d-flex">
-            <div class="d-flex w-100">
-              <p class="fs-5">Ver detalles</p>
+            <div class="w-100">
+              <p class="h5 fw-bold enlace">Leer detalles</p><!--Agregar la vista para el articulo completo-->
             </div>
             <div class="flex-shrink-1 m-auto">
               <button class="accordion-button bg-white text-dark p-0" type="button" data-bs-toggle="collapse"
-                data-bs-target="#panelsStayOpen-collapse{{entradablog.id}}" aria-expanded="true"
-                aria-controls="panelsStayOpen-collapse{{entradablog.id}}">
+                data-bs-target="#panelsStayOpen-collapse{{blogpublicados.id}}" aria-expanded="true"
+                aria-controls="panelsStayOpen-collapse{{blogpublicados.id}}">
               </button>
             </div>
           </div>
         </h2>
-        <div id="panelsStayOpen-collapse{{entradablog.id}}" class="accordion-collapse collapse border-0"
-          aria-labelledby="panelsStayOpen-heading{{entradablog.id}}">
+        <div id="panelsStayOpen-collapse{{blogpublicados.id}}" class="accordion-collapse collapse border-0"
+          aria-labelledby="panelsStayOpen-heading{{blogpublicados.id}}">
           <div class="accordion-body">
-            <p  style="text-align:justify;" class="fw-bold fs-5 d-block"><a class="enlace" href="{% url 'articuloblog' entradablog.id %}">{{entradablog.titulo}}</a></p>
-            <p style="text-overflow: ellipsis; text-align: justify;white-space: nowrap;overflow: hidden; font-size: 1.2rem;">{{entradablog.descripcion}}</p>
-            <p style="text-align:justify;">Categoria: {{entradablog.categoria}}</p>
-            <p style="text-align:right;">Creado {{entradablog.created|naturaltime }}</p>
-            <p style="text-align:right;">Por {{ entradablog.autor }}&nbsp;<img class="border rounded-circle" src="{{entradablog.autor.perfil.imagenperfil.url}}" alt="" width="50" height="50"></p>
+            <a class="fs-5 fw-bold enlace" href="{% url 'mostrarblog' blogpublicados.id %}">{{blogpublicados.titulo}}</a>
+            <p style="text-overflow: ellipsis; text-align: justify;white-space: nowrap;overflow: hidden; font-size: 1rem;">{{blogpublicados.descripcion}}</p>
+            <p style="text-align:justify;">Categoria:
+                  {% for listadocategorias in blogpublicados.categoria.all %}
+                <span class="d-inline">{{listadocategorias.nombre}} / </span> 
+                
+                  {% endfor %}
+                </p>
+            <p style="text-align:right;">Creado {{blogpublicados.created|naturaltime }}</p>
+            
+                
+              
+            <p style="text-align:right;">Por {{ blogpublicados.autor}}&nbsp;<img class="border rounded-circle" src="{{blogpublicados.autor.perfil.imagenperfil.url}}" alt="" width="50" height="50"></p>
           </div>
         </div>
         {% if user.is_authenticated %}
         <div>
-          {% if request.user == entradablog.autor %}
-              <a href="{% url 'modificarentradablog' entradablog.id %}" class="btn btn-lg text-warning"><i class="fa fa-pen"></i></a>
-              <a href="{% url 'eliminararticulo' entradablog.id %}" class="btn btn-lg text-danger"><i class="fa fa-trash"></i></a>
+          {% if request.user == blogpublicados.autor %}
+              <a onclick="abrirmodaleditarblog('{% url 'editarblog' blogpublicados.id %}')" class="btn btn-lg text-warning" role="button"><i class="fa fa-pen"></i></a>
+              <a href="{% url 'eliminarblog' blogpublicados.id %}" class="btn btn-lg text-danger"><i class="fa fa-trash"></i></a>
           {% endif %}
         </div>
         {% endif %}
@@ -108,8 +112,9 @@
   </div>
 
   {% endfor %}
+  {% endif %}
 </div>
-{% include "apprein/snipets/appblog/crearcategorias.html" %}
+
 {% endblock  %}
 <!-- Columna derecha -->
 

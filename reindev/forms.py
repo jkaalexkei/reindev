@@ -1,12 +1,13 @@
-from random import choices
+from django.shortcuts import render
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from requests import request
 from appblog.models import blogm
 from appcategorias.models import categorias, subcategorias
 from appforo.models import forom
 from apprein.models import perfil
-from comentariosblog.models import comentariosblogm
+from appcomentarios.models import comentariosblogm, comentarioseventosm
 from appeventos.models import eventosm
 
 class crearcategoriasform(forms.ModelForm):
@@ -49,20 +50,28 @@ class actualizarperfilform(forms.ModelForm):
         model = perfil
         fields = ['biografia','imagenperfil']
 
-class comentariosform(forms.ModelForm):
-    titulocomentario = forms.CharField(required=True,widget=forms.TextInput(attrs={'class':'form-control border-dark my-2'}))
+class comentariosblogform(forms.ModelForm):
+    
     comentario = forms.CharField(required=True,widget=forms.TextInput(attrs={'class':'form-control border-dark my-2'}))
 
     class Meta:
         model = comentariosblogm
-        fields = ['titulocomentario','comentario']
+        fields = ['comentario']
+
+class comentarioseventoform(forms.ModelForm):
+    
+    comentarioevento = forms.CharField(label='Comentario sobre el evento',required=True,widget=forms.TextInput(attrs={'class':'form-control border-dark my-2'}))
+
+    class Meta:
+        model = comentarioseventosm
+        fields = ['comentarioevento']
 
 class registrareventosform(forms.ModelForm):
    
     
     class Meta:
         model = eventosm
-        fields = '__all__'
+        fields = ['tituloevento','contenidoevento','imagenevento','categoriaevento','eventolink','fechaevento','tipodeevento']
 
 class actualizareventosform(forms.ModelForm):
        
@@ -77,3 +86,16 @@ class registrarsubcategoriasform(forms.ModelForm):
     class Meta:
         model = subcategorias
         fields = '__all__'
+
+class formblognuevo(forms.ModelForm):
+  
+
+    class Meta:
+        model = blogm
+        fields = ['titulo','descripcion','imagen','categoria']
+
+class actualizarblogsform(forms.ModelForm):
+    
+    class Meta:
+        model = blogm
+        fields = ['titulo','descripcion','imagen','categoria']

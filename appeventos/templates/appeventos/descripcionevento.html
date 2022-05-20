@@ -31,7 +31,7 @@
                 {% endfor %}
               </p>
             </div>
-            <div class="card-footer">
+            <div class="card-footer mb-3">
                 {% if user.is_authenticated %} 
                 <div class="text-end">
                     
@@ -39,7 +39,7 @@
                    
                         <a  onclick="abrirmodaleditarevento('{% url 'editarevento' datosencontrados.id %}')" class="btn btn-md text-warning" role="button"><i class="fa fa-pen"></i> Editar</a>
                         <a href="{% url 'eliminarevento' datosencontrados.id %}" class="btn btn-md text-danger"><i class="fa fa-trash"></i> Eliminar</a>
-                        <a id="comentarios" href="#" class="btn btn-md text-success"><i class="far fa-comment-alt"></i>Comentar</a>
+                        <a onclick="abrirmodalagregarcomentarioeventos('{% url 'agregarcomentarioeventos' datosencontrados.id %}')"  class="btn btn-md text-success"><i class="far fa-comment-alt"></i>Comentar</a>
                     {% endif %}
                         
                     
@@ -51,54 +51,21 @@
                 </div>
                 {% endif %}
             </div>
-            <div id="registrarcomentario" class="card">
-                <div class="card-header">
-                  Comentarios
+            {% for c in comentario %}
+            {% if c.comentariosevento_id == datosencontrados.id %}
+              <div class="card mb-3">
+                <div class="card-header align-content-center">
+                  <p class="d-flex align-items-center"><img class="rounded-circle" src="{{c.autorcomentarioeventos.perfil.imagenperfil.url}}" alt="" width="25" height="25">&nbsp;{{c.autorcomentarioeventos.username}}</p>
                 </div>
                 <div class="card-body">
-                  <form action="{% url 'registrarcomentarios' %}" method="post">
-                    {% csrf_token %}
-                    <div class="form-group">
-                      <input type="hidden" name="idarticulo" value="{{datosencontrados.id}}">
-                      <input type="hidden" name="idusuario" value="{{request.user.id}}">
-                    </div>
-                    <div class="form-group">
-                      {{ formcomentarios }}
-                    </div>
-                    <div class="form-group">
-                      <button class="btn bg-boton" type="submit">Enviar</button>
-                    </div>
-                  </form>
-                  
+                  <h5 class="card-title">{{c.comentarioevento}}</h5>
+                  <p class="card-text text-end">{{ c.created | naturaltime}}</p>
                 </div>
-            </div>
-             <div>
-               {% if comentarios %}
-
-                    <h2 class="my-5">Comentarios Publicados</h2>
-                    
-
-                        {% for comentariosart in comentarios  %}
-                            {% if comentariosart.entradablogs_id == articulo.id %}
-                            <div class="card">
-                              <div class="card-body">
-                                <h5 class="card-title">{{ comentariosart.titulocomentario}}</h5>
-                                
-                                <p class="card-text">{{ comentariosart.comentario}}</p>
-                                <p class="card-text">Creado: {{comentariosart.created | naturaltime}}</p>
-                                <p class="card-text">Comentado por: <img src="{{comentariosart.autorcoment.perfil.imagenperfil.url}}" class="rounded-circle" width="50" height="50" alt="">&nbsp;{{comentariosart.autorcoment}}</p>
-                              </div>
-                            </div>
-                            {% endif %}
-
-                        {% endfor %}    
-                 
-               {% else %}
-                    <div class="alert alert-warning" role="alert">
-                      <p>Esta publicacion aun no tiene comentarios</p>
-                    </div>
-               {% endif %}
-             </div>
+              </div>
+               
+              
+            {% endif %}
+            {% endfor %}
               
 
         </div>

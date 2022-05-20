@@ -1,11 +1,12 @@
 
-
+from django.contrib.auth.models import User
 from django.shortcuts import render,redirect,get_object_or_404
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.contrib import messages
 from .models import eventosm
 from reindev.forms import registrareventosform,actualizareventosform
+from appcomentarios.models import comentarioseventosm
 
 
 # Create your views here.
@@ -13,22 +14,19 @@ from reindev.forms import registrareventosform,actualizareventosform
 def eventos(request):
 
     eventos = eventosm.objects.all()
-
-    
-
     contexto = {'eventos':eventos}
-
-
     return render(request,'appeventos/eventos.html',contexto)
 
 
 
 def crearevento(request):
-
+    usuario = get_object_or_404(User,pk = request.user.pk)
     if request.method == 'POST':
         formevento = registrareventosform(request.POST,request.FILES)
         if formevento.is_valid():
-            formevento.save()
+            evento = formevento.save(commit=False)
+            evento.autorevento = usuario
+            evento.save()
             messages.success(request,'Evento creado con éxito')
             
             return redirect('eventos')
@@ -85,6 +83,7 @@ class mostrarevento(DetailView):
         context= super().get_context_data(**kwargs)
         # print(context)
         context['datosencontrados'] = context['eventosm']
+        context['comentario'] = comentarioseventosm.objects.all()
        
         return context
 

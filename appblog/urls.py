@@ -2,18 +2,16 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views#importa desde la raiz las vistas
-from appblog.views import busquedaarticulos
+
 
 urlpatterns = [
     
-    
-    path('',views.blog, name='blog'),
-    path('nuevaentrada/',views.registrarnuevaentrada,name='nuevaentrada'),
-    path('modificarentrada/<id>',views.modificarentradablog,name='modificarentradablog'),
-    path('articulo/<id>',views.vistaarticulocompleto,name='articuloblog'),
-    path('eliminararticulo/<id>',views.eliminararticulo,name='eliminararticulo'),
-    path('registrarcomentarios/',views.guardarcomentario,name='registrarcomentarios'),
-    path('busquedablog/',busquedaarticulos.as_view(),name='buscar'),
+    path('',views.crearblog, name='crearblog'),
+    path('blog/',views.blog,name="blog"),
+    path('descripcionblog/<pk>',views.mostrarblog.as_view(),name='mostrarblog'),
+    path('eliminarblog/<id>',views.eliminarblog,name='eliminarblog'),
+    path('editarblog/<id>/',views.editarblog,name="editarblog"),
+    path('busquedablog/',views.busquedablog.as_view(),name='busquedablog'),
     
     
     
