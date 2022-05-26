@@ -41,14 +41,14 @@
     {% for datosblog in datosencontrados  %}
         <div class="row p-0 border m-0 d-flex align-items-center mb-2">
             <div class="col-3 p-0">
-                <img src="{{ datosblog.imagen.url }}" class="rounded-2 imagen" alt="...">
+                <img src="{{ datosblog.imagenblog.url }}" class="rounded-2 imagen" alt="...">
             </div>
             <div class="col-9 p-0">
                 
                         <div class="container-fluid p-0">
-                            <p class="fs-5 fw-bold m-0 ps-2"><a href="{% url 'mostrarblog' datosblog.id %}" class="enlace">{{ datosblog.titulo}}</a></p>
+                            <p class="fs-5 fw-bold m-0 ps-2"><a href="{% url 'mostrarblog' datosblog.id %}" class="enlace">{{ datosblog.tituloblog}}</a></p>
                             <p style="text-align:justify;" class="m-0 ps-2">Categoria:
-                                {% for listadocategorias in datosblog.categoria.all %}
+                                {% for listadocategorias in datosblog.categoriablog.all %}
                             <span class="d-inline">{{listadocategorias.nombre}} / </span> 
                             
                                 {% endfor %}
@@ -56,12 +56,12 @@
                             
                             <p class="m-0 ps-2">Publicado : {{ datosblog.created | naturaltime }}</p>
                             <div class="container-fluid d-flex justify-content-between align-items-center m-0 p-0">
-                                <p class=" m-0 ps-2"><strong>Usuario:</strong> {{ datosblog.autor.username }}&nbsp;<img src="{{ datosblog.autor.perfil.imagenperfil.url }}" alt="" width="50" height="50"></p>
+                                <p class=" m-0 ps-2"><strong>Usuario:</strong> {{ datosblog.autorblog.username }}&nbsp;<img src="{{ datosblog.autorblog.perfil.imagenperfil.url }}" alt="" width="50" height="50"></p>
                                 <span class="p-0">
                                     {% if user.is_authenticated %}
                         
                             
-                                        {% if request.user == datosblog.autor %}
+                                        {% if request.user == datosblog.autorblog %}
                                             <a onclick="abrirmodaleditarblog('{% url 'editarblog' datosblog.id %}')" class="btn btn-lg text-warning" role="button"><i class="fa fa-pen"></i></a>
                                             <a href="{% url 'eliminarblog' datosblog.id %}" class="btn btn-lg text-danger"><i class="fa fa-trash"></i></a>
                                         {% endif %}

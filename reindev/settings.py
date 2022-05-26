@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'appcategorias',
     'appeventos',
     'appcomentarios',
+    'appchatforo',
     'crispy_forms',
     'admin_interface',
     'django.contrib.admin',

@@ -1,13 +1,15 @@
 
+
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib import messages
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from appblog.models import blogm
 from appeventos.models import eventosm
+from appforo.models import forom
 
-from reindev.forms import comentariosblogform,comentarioseventoform
-from . models import comentariosblogm,comentarioseventosm
+from reindev.forms import comentariosblogform,comentarioseventoform,comentariosforoform
+from . models import comentariosblogm,comentarioseventosm,comentariosforom
 # Create your views here.
 
 
@@ -44,6 +46,26 @@ def agregarcomentarioeventos(request,id):
     contexto = {'formcomentario':formcomentario, 'evento':evento}
 
     return render(request,'appcomentarios/agregarcomentarioseventos.html',contexto)
+
+def agregarcomentarioforo(request,id):
+    foroart = get_object_or_404(forom,id=id)
+    
+    if request.method=='POST':
+        
+        formcomentarioforo = comentariosforoform(request.POST)
+        print(formcomentarioforo)
+        if formcomentarioforo.is_valid():
+            comentario = formcomentarioforo.save(commit=False)
+            comentario.autorcomentarioforo = request.user
+            comentario.comentariosfororel = foroart
+            comentario.save()
+            return redirect ('foro')
+    else:
+        formcomentarioforo = comentariosforoform()
+
+    contexto = {'formcomentarioforo':formcomentarioforo, 'foroart':foroart}
+
+    return render(request,'appcomentarios/agregarcomentariosforo.html',contexto)
 
 # def actualizarcategorias(request):
 #      if request.method == 'POST':

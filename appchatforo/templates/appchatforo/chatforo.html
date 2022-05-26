@@ -1,0 +1,98 @@
+{% extends "apprein/plantilla.html" %}
+{% load static %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+{% block title %}
+  Conversación Foro REIN
+{% endblock title %}
+{% block content %}
+<style>
+  .imagen{
+      width: 100%;
+      height: 10rem;
+  }
+</style>
+<div class="row">
+    <div class="col-lg-12 mb-1">
+        <h2>Conversario sobre "{{ forotema.tituloforo }}"</h2>
+    </div>
+    <div class="col-lg-12">
+      <div class="row p-0 border m-0 d-flex mb-2">
+        <div class="col-3 p-0 d-flex flex-wrap justify-content-center">
+            <img src="{{ forotema.imagenforo.url }}" class="rounded-2 imagen" alt="...">
+            
+                <!-- <a href="" class="btn btn-lg text-danger d-block"><i class="far fa-heart">&nbsp;1</i></a>
+                <a href="" class="btn btn-lg text-danger d-block"><i class="far fa-comment-alt"></i></a> -->
+            
+        </div>
+        <div class="col-9 p-0 d-flex flex-column">
+            
+            <div class="container-fluid p-0 mb-auto">
+                  <p class="fs-5 fw-bold m-1 ps-2"><a href="" class="enlace">{{ forotema.tituloforo}}</a></p>
+                  <p style="text-align:justify;" class="m-1 ps-2">Categoria:
+                      {% for listadocategorias in forotema.categoriasforo.all %}
+                        <span class="d-inline">{{listadocategorias.nombre}} / </span> 
+                        
+                      {% endfor %}
+                  </p>
+                  <p class="m-1 ps-2">Publicado : {{ forotema.created | naturaltime }}</p>
+                  <p class=" m-0 ps-2"><strong>Autor:</strong> {{ forotema.autorforo.username }}&nbsp;<img src="{{ forotema.autorforo.perfil.imagenperfil.url }}" alt="" width="50" height="50"></p>
+                  <p class="m-1 ps-2">Descripción: {{forotema.contenidoforo}}</p>
+              </div>
+                    
+        </div>
+        
+    </div>              
+    </div>
+    <div class="col-lg-12">
+      <h2>Conversación</h2>
+      <a class="btn bg-boton text-white mb-3" onclick="abrirmodalagregarmensajechatforo('{% url 'agregarmensaje' forotema.id %}')" role="button">Redactar Mensaje</a>
+    </div>
+    <div class="col-lg-12">
+      {% for m in mensajes %}
+      {% if m.fororel_id == forotema.id %}
+        <div class="card mb-3">
+          <div class="card-header align-content-center">
+            <p class="d-flex align-items-center"><img class="rounded-circle" src="{{m.autormensaje.perfil.imagenperfil.url}}" alt="" width="25" height="25">&nbsp;{{m.autormensaje.username}}</p>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{m.mensaje}}</h5>
+            <p class="card-text text-end">{{ m.created | naturaltime}}</p>
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-heading{{m.id}}">
+                  <button class="accordion-button collapsed p-1 mx-0 enlace" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{m.id}}" aria-expanded="false" aria-controls="flush-collapse{{m.id}}">
+                    Ver Respuestas
+                  </button>
+                </h2>
+                <div id="flush-collapse{{m.id}}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{m.id}}" data-bs-parent="#accordionFlushExample">
+                  <div class="accordion-body">
+                    {% if respuestas %}
+                      {% for r in respuestas  %}
+                          
+                          {% if r.mensajerelforo_id == m.id %}
+                              <p><img class="rounded-circle" src="{{r.autorrespuesta.perfil.imagenperfil.url}}" alt="" width="25" height="25">&nbsp;{{r.autorrespuesta.username}}:&nbsp;<cite>{{r.respuesta}}</cite>&nbsp;<br>Publicado: {{r.created | naturaltime }}</p>
+                              <hr>
+                          {% endif %}
+                            
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            
+            
+              
+          </div>
+          <div class="card-footer text-end">
+            <a class="btn bg-boton text-white" onclick="abrirmodalagregarrespuestachatforo('{% url 'agregarrespuesta' m.id %}')">Responder</a>
+          </div>
+        </div>
+        
+      {% endif %}
+    {% endfor %}
+    </div>
+</div>  
+{% endblock  %}

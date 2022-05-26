@@ -50,10 +50,10 @@
         
   </div>
   
-  
+ 
     
   {% if eventos %}    
-  
+ 
   {% for eventospublicados in eventos %}
 
   <div class="col-12 col-lg-6 mb-2">
@@ -99,6 +99,7 @@
             <p style="text-align:right;">Creado {{eventospublicados.created|naturaltime }}</p>
             <p style="text-align:right;">Por {{ eventospublicados.autorevento }}&nbsp;<img class="border rounded-circle" src="{{eventospublicados.autorevento.perfil.imagenperfil.url}}" alt="" width="50" height="50"></p>
           </div>
+          
         </div>
         {% if user.is_authenticated %}
         <div>
@@ -113,6 +114,7 @@
   </div>
 
   {% endfor %}
+ 
   {% endif %}
 </div>
 

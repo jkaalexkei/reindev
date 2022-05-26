@@ -13,6 +13,7 @@ from appforo.models import forom
 
 from reindev.forms import regitroentradaforo,actualizarforoform
 from appcategorias.models import categorias
+from appcomentarios.models import comentariosforom
 
 # Create your views here.
 
@@ -65,7 +66,7 @@ class busquedaforo(ListView):
      template_name = 'appforo/busquedaforo.html'
 
      def get_queryset(self):
-          return forom.objects.filter(titulo__icontains=self.query())
+          return forom.objects.filter(tituloforo__icontains=self.query())
      
      def query(self):
           return self.request.GET.get('buscar') 
@@ -86,7 +87,27 @@ def eliminarforo(request, id):
      articuloforo.delete()
      return redirect ('foro')
 
+class mostrarforo(DetailView):
 
+    model = forom
+
+    template_name = 'appforo/descripcionforo.html'
+    
+    #  def get_queryset(self):
+    #       return blogm.objects.filter(titulo__icontains=self.query())
+     
+    #  def query(self):
+    #       return self.request.GET.get('buscar') 
+     
+    def get_context_data(self, **kwargs):
+
+        context= super().get_context_data(**kwargs)
+        # print(context)
+        context['datosencontrados'] = context['forom']
+
+        context['comentarioforo'] = comentariosforom.objects.all()
+       
+        return context
 
 
 

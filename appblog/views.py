@@ -16,7 +16,8 @@ from appcomentarios.models import comentariosblogm
 def blog(request):
     
     blogs = blogm.objects.all()
-    comentariosblog = comentariosblogm.objects.all()    
+    comentariosblog = comentariosblogm.objects.all()
+    
 
     contexto = {'blogs':blogs,'comentariosblog':comentariosblog}
 
@@ -26,19 +27,26 @@ def blog(request):
 
 def crearblog(request):
     usuario = get_object_or_404(User,pk=request.user.pk)
+    
     if request.method == 'POST':
+        # categoria = request.POST['categoriablog']
+        # cat = categorias.objects.get(id=categoria)
+        categoria = request.POST['categoriablog']
         formblog = formblognuevo(request.POST,request.FILES)
         if formblog.is_valid():
             blog = formblog.save(commit=False)
-            blog.autor = usuario
+            blog.autorblog = usuario            
             blog.save()
+            blog.categoriablog.add(categoria)
+            # blog.save()
+            print(categoria)
             messages.success(request,'Blog creado con éxito')
             
             return redirect('blog')
     else:
         formblog = formblognuevo()
     
-    contexto = {'formblog':formblog}
+    contexto = {'formblognuevo':formblog}
 
     return render(request,'appblog/nuevaentrada.html',contexto)
 
@@ -100,7 +108,7 @@ class busquedablog(ListView):
      template_name = 'appblog/busquedablog.html'
 
      def get_queryset(self):
-          return blogm.objects.filter(titulo__icontains=self.query())
+          return blogm.objects.filter(tituloblog__icontains=self.query())
      
      def query(self):
           return self.request.GET.get('buscar') 

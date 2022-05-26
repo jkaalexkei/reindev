@@ -60,8 +60,8 @@
     <div class="accordion" id="accordionPanelsStayOpenExample">
       <div class="card">
        
-       {% if blogpublicados.imagen %}
-       <img src="{{ blogpublicados.imagen.url }}" class="img-fluid rounded-3" alt="..." style="width:100%; height:20rem;">
+       {% if blogpublicados.imagenblog %}
+       <img src="{{ blogpublicados.imagenblog.url }}" class="img-fluid rounded-3" alt="..." style="width:100%; height:20rem;">
                
        {% endif %}
          
@@ -84,11 +84,11 @@
         <div id="panelsStayOpen-collapse{{blogpublicados.id}}" class="accordion-collapse collapse border-0"
           aria-labelledby="panelsStayOpen-heading{{blogpublicados.id}}">
           <div class="accordion-body">
-            <a class="fs-5 fw-bold enlace" href="{% url 'mostrarblog' blogpublicados.id %}">{{blogpublicados.titulo}}</a>
-            <p style="text-overflow: ellipsis; text-align: justify;white-space: nowrap;overflow: hidden; font-size: 1rem;">{{blogpublicados.descripcion}}</p>
+            <a class="fs-5 fw-bold enlace" href="{% url 'mostrarblog' blogpublicados.id %}">{{blogpublicados.tituloblog}}</a>
+            <p style="text-overflow: ellipsis; text-align: justify;white-space: nowrap;overflow: hidden; font-size: 1rem;">{{blogpublicados.contenidoblog}}</p>
             <p style="text-align:justify;">Categoria:
-                  {% for listadocategorias in blogpublicados.categoria.all %}
-                <span class="d-inline">{{listadocategorias.nombre}} / </span> 
+                  {% for listadocategorias in blogpublicados.categoriablog.all %}
+                <span class="d-inline">{{listadocategorias.nombre}} / </span>  
                 
                   {% endfor %}
                 </p>
@@ -96,12 +96,15 @@
             
                 
               
-            <p style="text-align:right;">Por {{ blogpublicados.autor}}&nbsp;<img class="border rounded-circle" src="{{blogpublicados.autor.perfil.imagenperfil.url}}" alt="" width="50" height="50"></p>
+            <p style="text-align:right;">Por {{ blogpublicados.autorblog}}&nbsp;<img class="border rounded-circle" src="{{blogpublicados.autorblog.perfil.imagenperfil.url}}" alt="" width="50" height="50"></p>
+            <p>
+              {{contador}}
+            </p>
           </div>
         </div>
         {% if user.is_authenticated %}
         <div>
-          {% if request.user == blogpublicados.autor %}
+          {% if request.user == blogpublicados.autorblog %}
               <a onclick="abrirmodaleditarblog('{% url 'editarblog' blogpublicados.id %}')" class="btn btn-lg text-warning" role="button"><i class="fa fa-pen"></i></a>
               <a href="{% url 'eliminarblog' blogpublicados.id %}" class="btn btn-lg text-danger"><i class="fa fa-trash"></i></a>
           {% endif %}

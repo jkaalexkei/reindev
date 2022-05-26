@@ -12,6 +12,7 @@ urlpatterns = [
     path('busquedaforo/',views.busquedaforo.as_view(),name='busquedaforo'),
     path('editarforo/<id>',views.editarforo,name='editarforo'),
     path('eliminarforo/<id>',views.eliminarforo,name='eliminarforo'),
+    path('descripcionforo/<pk>',views.mostrarforo.as_view(),name='mostrarforo'),
 
     
 

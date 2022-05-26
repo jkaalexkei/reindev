@@ -2,7 +2,7 @@
 {% load humanize %}
 {% load static %}
 
-{% block title %} {{datosencontrados.titulo }} {% endblock %}
+{% block title %} Blog REIN {% endblock %}
 
 
 
@@ -17,24 +17,25 @@
 <div class="row justify-content-center">
   <div class="col-10">
     <div class="card mb-3 border-0">
-      <img src="{{ datosencontrados.imagen.url }}" class="card-img-top imagenprincipal" alt="...">
+      <img src="{{ datosencontrados.imagenblog.url }}" class="card-img-top imagenprincipal" alt="...">
       <div class="card-body">
-        <h5 class="card-title">{{ datosencontrados.titulo }}</h5>
-        <p class="card-text texto-justificado">{{ datosencontrados.descripcion }}</p>
-        <p class="card-text"><img class="border rounded-circle" src="{{datosencontrados.autor.perfil.imagenperfil.url}}"
-            alt="" width="50" height="50"> <small class="text-muted">Autor: {{ datosencontrados.autor }}</small></p>
+        <h5 class="card-title">{{ datosencontrados.tituloblog }}</h5>
+        <p class="card-text texto-justificado">{{ datosencontrados.contenidoblog }}</p>
+        <p class="card-text"><img class="border rounded-circle" src="{{datosencontrados.autorblog.perfil.imagenperfil.url}}"
+            alt="" width="50" height="50"> <small class="text-muted">Autor: {{ datosencontrados.autorblog }}</small></p>
         <p style="text-align:justify;">Categoria:
-          {% for listadocategorias in datosencontrados.categoria.all %}
+          {% for listadocategorias in datosencontrados.categoriablog.all %}
           <span class="d-inline">{{listadocategorias.nombre}} / </span>
 
           {% endfor %}
         </p>
+        
       </div>
       <div class="card-footer mb-3">
         {% if user.is_authenticated %}
         <div class="text-end">
 
-          {% if request.user == datosencontrados.autor %}
+          {% if request.user == datosencontrados.autorblog %}
 
           <a onclick="abrirmodaleditarblog('{% url 'editarblog' datosencontrados.id %}')"
             class="btn btn-md text-warning" role="button"><i class="fa fa-pen"></i> Editar</a>

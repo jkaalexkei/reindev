@@ -6,7 +6,7 @@ from . import views#importa desde la raiz las vistas
 
 urlpatterns = [
     
-    path('',views.crearblog, name='crearblog'),
+    path('crearblog/',views.crearblog, name='crearblog'),
     path('blog/',views.blog,name="blog"),
     path('descripcionblog/<pk>',views.mostrarblog.as_view(),name='mostrarblog'),
     path('eliminarblog/<id>',views.eliminarblog,name='eliminarblog'),

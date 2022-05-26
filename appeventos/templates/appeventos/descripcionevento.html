@@ -39,8 +39,9 @@
                    
                         <a  onclick="abrirmodaleditarevento('{% url 'editarevento' datosencontrados.id %}')" class="btn btn-md text-warning" role="button"><i class="fa fa-pen"></i> Editar</a>
                         <a href="{% url 'eliminarevento' datosencontrados.id %}" class="btn btn-md text-danger"><i class="fa fa-trash"></i> Eliminar</a>
-                        <a onclick="abrirmodalagregarcomentarioeventos('{% url 'agregarcomentarioeventos' datosencontrados.id %}')"  class="btn btn-md text-success"><i class="far fa-comment-alt"></i>Comentar</a>
+                        
                     {% endif %}
+                    <a onclick="abrirmodalagregarcomentarioeventos('{% url 'agregarcomentarioeventos' datosencontrados.id %}')"  class="btn btn-md text-success"><i class="far fa-comment-alt"></i>Comentar</a>
                         
                     
                     <a href="{% url 'eventos' %}" class="btn btn-md text-success "><i class="fa fa-arrow-circle-up"></i> Volver</a>

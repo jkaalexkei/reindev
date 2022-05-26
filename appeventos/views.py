@@ -14,19 +14,31 @@ from appcomentarios.models import comentarioseventosm
 def eventos(request):
 
     eventos = eventosm.objects.all()
-    contexto = {'eventos':eventos}
+    com = comentarioseventosm.objects.all()
+    # c = 0
+    # for e in eventos:
+    #     for comentario in com:
+    #         if comentario.comentariosevento_id == e.id:
+    #             print(e.tituloevento)
+    #             c= c+1
+    # print(c)
+    
+    contexto = {'eventos':eventos,'comentarios':com}
     return render(request,'appeventos/eventos.html',contexto)
 
 
 
 def crearevento(request):
     usuario = get_object_or_404(User,pk = request.user.pk)
+    
     if request.method == 'POST':
+        categoria = request.POST['categoriaevento']
         formevento = registrareventosform(request.POST,request.FILES)
         if formevento.is_valid():
             evento = formevento.save(commit=False)
             evento.autorevento = usuario
             evento.save()
+            evento.categoriaevento.add(categoria)
             messages.success(request,'Evento creado con éxito')
             
             return redirect('eventos')

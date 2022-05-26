@@ -11,7 +11,8 @@
         <div class="modal-body">
             <form action="{% url 'crearblog' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{formblog | crispy }}
+
+                {{formblognuevo | crispy }}
                
                 
                 

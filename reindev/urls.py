@@ -29,7 +29,8 @@ urlpatterns = [
     path('appforo/', include('appforo.urls')),
     path('appcategorias/', include('appcategorias.urls')),
     path('appeventos/',include('appeventos.urls')),
-     path('appcomentarios/',include('appcomentarios.urls')),
+    path('appcomentarios/',include('appcomentarios.urls')),
+    path('appchatforo/',include('appchatforo.urls')),
     
     
     
