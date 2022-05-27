@@ -83,7 +83,7 @@ class registrareventosform(forms.ModelForm):
     
     class Meta:
         model = eventosm
-        fields = ['tituloevento','contenidoevento','imagenevento','categoriaevento','eventolink','fechaevento','tipodeevento']
+        fields = ['tituloevento','contenidoevento','imagenevento','categoriaevento','eventolink','fechaevento','horaevento','tipodeevento']
 
 class actualizareventosform(forms.ModelForm):
        

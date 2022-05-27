@@ -100,6 +100,12 @@
 
     }
 
+    function abrirmodaleditarevento(url){
+      $('#editarevento').load(url,function(){
+        $(this).modal('show');
+      })
+    }
+
     function abrirmodalcrearcategorias(url){
       $('#crearcategorias').load(url,function(){
         $(this).modal('show');

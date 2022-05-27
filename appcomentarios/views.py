@@ -22,7 +22,7 @@ def agregarcomentarioblog(request,id):
             comentario.autorcomentario = request.user
             comentario.comentariosblog = blog
             comentario.save()
-            return redirect ('blog')
+            return redirect ('mostrarblog',pk=blog.id)
     else:
         formcomentario = comentariosblogform()
 
@@ -39,7 +39,7 @@ def agregarcomentarioeventos(request,id):
             comentario.autorcomentarioeventos = request.user
             comentario.comentariosevento = evento
             comentario.save()
-            return redirect ('eventos')
+            return redirect ('mostrarevento',pk=evento.id)
     else:
         formcomentario = comentarioseventoform()
 
@@ -50,16 +50,18 @@ def agregarcomentarioeventos(request,id):
 def agregarcomentarioforo(request,id):
     foroart = get_object_or_404(forom,id=id)
     
+    f = forom.objects.get(id = id)
+    print(f.id)
     if request.method=='POST':
         
         formcomentarioforo = comentariosforoform(request.POST)
-        print(formcomentarioforo)
+        # print(formcomentarioforo)
         if formcomentarioforo.is_valid():
             comentario = formcomentarioforo.save(commit=False)
             comentario.autorcomentarioforo = request.user
             comentario.comentariosfororel = foroart
             comentario.save()
-            return redirect ('foro')
+            return redirect ('mostrarforo',pk=foroart.id)
     else:
         formcomentarioforo = comentariosforoform()
 

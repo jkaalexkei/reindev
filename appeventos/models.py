@@ -19,6 +19,8 @@ class eventosm(models.Model):
     
     eventolink = models.CharField(max_length=140,verbose_name='Ubicación')
     fechaevento = models.DateField(verbose_name='Fecha del evento')
+    horaevento = models.TimeField(auto_now=False,verbose_name='Hora del evento')
+
     tipodeevento = models.CharField(max_length=50,choices=opciones,verbose_name='Tipo de Evento')
     created=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField(auto_now_add=True)

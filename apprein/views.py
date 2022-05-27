@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login,logout
 from appeventos.models import eventosm
+from appforo.models import forom
 from reindev.forms import crearcuentaform, actualizarperfilform,registrareventosform
 from .models import perfil
 from appblog.models import blogm
@@ -12,6 +13,7 @@ from appblog.models import blogm
 from appcategorias.models import categorias
 from django.core.paginator import Paginator
 from django.http import Http404
+# from django.db.models import Q
 
 # from appblog.models import blog #importamos los modelos de la appblog
 # Create your views here.
@@ -150,8 +152,25 @@ def eliminarperfil(request,usuario):
      return redirect('home')
 
 
+def buscardorgeneral(request):
+     valor = request.GET.get('buscar')
+     articulosblog = blogm.objects.filter(tituloblog__contains = valor).order_by('-created')
+     articuloforo = forom.objects.filter(tituloforo__contains = valor).order_by('-created')
+     articuloevento = eventosm.objects.filter(tituloevento__contains = valor).order_by('-created')
 
-
+     contexto = {
+          'articuloblog':articulosblog,
+          'articuloforo':articuloforo,
+          'articuloevento':articuloevento,
+          'resultadosblog': blogm.objects.filter(tituloblog__contains = valor).count(),
+          'resultadosforo': forom.objects.filter(tituloforo__contains = valor).count(),
+          'resultadosevento': eventosm.objects.filter(tituloevento__contains = valor).count(),
+          'valor':valor,
+          
+          
+     }
+    
+     return render(request,'apprein/buscadorglobal.html',contexto)
 
 
      # if request.method=='POST':
