@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'appchatforo',
     'crispy_forms',
     'admin_interface',
+    'widget_tweaks',
     'django.contrib.admin',
     'django.contrib.humanize',
     'django.contrib.auth',
@@ -133,7 +134,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'es'
+LANGUAGE_CODE = 'es-US'
 
 TIME_ZONE = 'UTC'
 

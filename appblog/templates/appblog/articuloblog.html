@@ -41,8 +41,9 @@
             class="btn btn-md text-warning" role="button"><i class="fa fa-pen"></i> Editar</a>
           <a href="{% url 'eliminarblog' datosencontrados.id %}" class="btn btn-md text-danger"><i
               class="fa fa-trash"></i> Eliminar</a>
-          <a onclick="abrirmodalagregarcomentarioblog('{% url 'agregarcomentarioblog' datosencontrados.id %}')"  class="btn btn-md text-success"><i class="far fa-comment-alt"></i>Comentar</a>
+          
           {% endif %}
+          <a onclick="abrirmodalagregarcomentarioblog('{% url 'agregarcomentarioblog' datosencontrados.id %}')"  class="btn btn-md text-success"><i class="far fa-comment-alt"></i>&nbsp;Comentar</a>
 
 
           <a href="{% url 'blog' %}" class="btn btn-md text-success "><i class="fa fa-arrow-circle-up"></i> Volver</a>

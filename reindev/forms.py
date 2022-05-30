@@ -38,7 +38,7 @@ class regitroentradaforo(forms.ModelForm):
 
    class Meta:
         model =forom
-        fields='__all__'
+        fields=['tituloforo','contenidoforo','imagenforo','categoriasforo']
 
 class actualizarforoform(forms.ModelForm):
     class Meta:
@@ -56,7 +56,7 @@ class actualizarperfilform(forms.ModelForm):
 
 class comentariosblogform(forms.ModelForm):
     
-    comentario = forms.CharField(required=True,widget=forms.TextInput(attrs={'class':'form-control border-dark my-2'}))
+    comentario = forms.CharField(label="Comentario",widget=forms.Textarea(attrs={'class':'form-control','rows':'3'}))
 
     class Meta:
         model = comentariosblogm
@@ -64,7 +64,7 @@ class comentariosblogform(forms.ModelForm):
 
 class comentariosforoform(forms.ModelForm):
     
-    comentarioforo = forms.CharField(required=True,widget=forms.TextInput(attrs={'class':'form-control border-dark my-2'}))
+    comentarioforo = forms.CharField(label="Comentario",widget=forms.Textarea(attrs={'class':'form-control','rows':'3'}))
 
     class Meta:
         model = comentariosforom
@@ -72,7 +72,7 @@ class comentariosforoform(forms.ModelForm):
 
 class comentarioseventoform(forms.ModelForm):
     
-    comentarioevento = forms.CharField(label='Comentario sobre el evento',required=True,widget=forms.TextInput(attrs={'class':'form-control border-dark my-2'}))
+    comentarioevento = forms.CharField(label='Comentario',widget=forms.Textarea(attrs={'class':'form-control','rows':'3'}))
 
     class Meta:
         model = comentarioseventosm
@@ -83,7 +83,7 @@ class registrareventosform(forms.ModelForm):
     
     class Meta:
         model = eventosm
-        fields = ['tituloevento','contenidoevento','imagenevento','categoriaevento','eventolink','fechaevento','horaevento','tipodeevento']
+        fields = ['tituloevento','contenidoevento','imagenevento','categoriaevento','eventolink','fechaevento','horaevento','tipodeevento','videoevento']
 
 class actualizareventosform(forms.ModelForm):
        

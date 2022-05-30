@@ -149,7 +149,7 @@
           <div class="row">
             <div class="col-12 col-lg-3 p-1">
               <div class="container text-center d-flex flex-column p-0">
-                <img src="{{ articulos.imagen.url }}" class="w-100 border rounded" height="180" alt="...">
+                <img src="{{ articulos.imagenblog.url }}" class="w-100 border rounded" height="180" alt="...">
                 <div class="container d-flex justify-content-center">
                   <a class="navbar-brand mx-3" href="#"><i class="far fa-heart fs-3 mt-1 text-dark"></i></a>
                   <a class="navbar-brand mx-3" href="#"><i class="far fa-comment-alt fs-3 mt-1 text-dark"></i></a>
@@ -160,16 +160,20 @@
               <div class="row">
                 <div class="col-12">
                   <h6 class="py-1 text-start fs-5 fw-bold"><a class="enlace"
-                      href="{% url 'mostrarblog' articulos.id %}">{{ articulos.titulo }}</a></h6>
+                      href="{% url 'mostrarblog' articulos.id %}">{{ articulos.tituloblog }}</a></h6>
                 </div>
                 <div class="col-6">
 
-                  <img src="{{ articulos.autor.perfil.imagenperfil.url }}" alt="" class="rounded-circle" width="50"
+                  <img src="{{ articulos.autorblog.perfil.imagenperfil.url }}" alt="" class="rounded-circle" width="50"
                     height="50">
-                  <p class="py-1">Autor: {{articulos.autor}} </p>
+                  <p class="py-1">Autor: {{articulos.autorblog}} </p>
                 </div>
                 <div class="col-12 d-flex justify-content-between">
-                  <p class="py-2">Categoria: {{articulos.categoria}} </p>
+                  <p class="py-2">Categoria: 
+                      {% for c in articulos.categoriablog.all  %}
+                          {{c.nombre}} /
+                      {% endfor %}  
+                  </p>
                   <p class="py-2 px-4 text-muted">Creado: {{ articulos.created | naturaltime }}</p>
                 </div>
 

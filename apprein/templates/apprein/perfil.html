@@ -14,35 +14,35 @@
     </div>
     <div class="col-12">
         <div class="card text-center" style="width: 100%;">
-            <img src="{{ request.user.perfil.imagenperfil.url }}" class="rounded-circle m-auto" alt="..." width="150" title="{{ request.user.username }}">
+            <img src="{{ request.user.perfil.imagenperfil.url }}" class="rounded-circle m-auto mt-2" alt="..." width="150" height="150" title="{{ request.user.username }}">
             <div class="card-body">
               <!-- <h5 class="card-title">{{ request.user.first_name }}</h5> -->
               <h3 class="card-text">{{ request.user.first_name}}&nbsp;{{request.user.last_name}}</h3>
               <p class="card-text">{{ request.user.username }}</p>
               <p class="card-text">{{ request.user.perfil.biografia }}</p>
               <p class="card-text">{{ request.user.email }}</p>
-              <div class="row mt-3">
+              <div class="row mt-3 ">
                 <div class="col-12 d-flex justify-content-evenly my-3">
                   <a class="btn bg-boton text-white " href="{% url 'editarperfil' %}">Editar Perfil</a>
                   <a class="btn btn-danger text-white" href="{% url 'eliminarperfil' request.user.username %}">Eliminar Perfil</a>
                 </div>
-                <div class="col-2">
-                  <p class="blockquote fw-bold fs-5">{{ request.user.blogms.count }}</p>
+                <div class="col-2 border-top">
+                  <p class="blockquote fw-bold fs-5">{{ articulosblog.count }}</p>
                   <p class="blockquote fw-bold fs-5">Blog</p>
                 </div>
-                <div class="col-2">
-                  <p class="blockquote fw-bold fs-5">{{ request.user.foroms.count }}</p>
+                <div class="col-2 border-top">
+                  <p class="blockquote fw-bold fs-5">{{ articulosforo.count }}</p>
                   <p class="blockquote fw-bold fs-5">Foros</p>
                 </div>
-                <div class="col-2">
-                  <p class="blockquote fw-bold fs-5">{{ request.user.eventosm.count }}</p>
+                <div class="col-2 border-top">
+                  <p class="blockquote fw-bold fs-5">{{ articulosevento.count }}</p>
                   <p class="blockquote fw-bold fs-5">Eventos</p>
                 </div>
-                <div class="col-3 m-auto">
+                <div class="col-3 border-top m-auto">
                   <p class="blockquote fw-bold fs-5">50</p>
                   <p class="blockquote fw-bold fs-5">Seguidores</p>
                 </div>
-                <div class="col-3 justify-content-center">
+                <div class="col-3 justify-content-center border-top">
                   <p class="blockquote fw-bold fs-5">100</p>
                   <p class="blockquote fw-bold fs-5">Seguidos</p>
                 </div>
@@ -77,12 +77,12 @@
         </div>
       </div>
       <div class="accordion-item">
-        <h2 class="accordion-header" id="headingdos">
-          <button class="accordion-button collapsed bg-boton-categoria text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapsedos" aria-expanded="false" aria-controls="collapsedos">
+        <h2 class="accordion-header" id="headingtres">
+          <button class="accordion-button collapsed bg-boton-categoria text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapsetres" aria-expanded="false" aria-controls="collapsetres">
             <p class="fw-bolder">Eventos Publicados</p>
           </button>
         </h2>
-        <div id="collapsedos" class="accordion-collapse collapse" aria-labelledby="headingdos" data-bs-parent="#accordionExample">
+        <div id="collapsetres" class="accordion-collapse collapse" aria-labelledby="headingtres" data-bs-parent="#accordionExample">
           <div class="accordion-body">
             {% include "apprein/snipets/appeventos/eventospublicados.html" %}
           </div>

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from appcategorias.models import categorias
+from django.db.models.signals import post_save
 # from appcategorias.models import categorias
 
 # Create your models here.
@@ -24,3 +25,24 @@ class forom(models.Model):
     def __str__(self):
         return f'{self.autorforo.username}:{self.tituloforo}'
 
+class notificacionesforo(models.Model):
+    
+   
+    tituloforo = models.ForeignKey(forom,on_delete=models.CASCADE,related_name='notificaciontituloforo')
+
+    class Meta:
+        
+        verbose_name='notificacionesforo'
+        verbose_name_plural='notificacionesforos'
+       
+
+    def __str__(self):
+        return f'{self.tituloforo}'    
+
+
+def crearnotificacionforo(sender,instance,created,**kwargs):
+    
+    if created:
+        notificacionesforo.objects.create(tituloforo=instance)
+
+post_save.connect(crearnotificacionforo,sender=forom)

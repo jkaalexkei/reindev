@@ -13,6 +13,7 @@ from appblog.models import blogm
 from appcategorias.models import categorias
 from django.core.paginator import Paginator
 from django.http import Http404
+from appblog.models import notificacionesblog
 # from django.db.models import Q
 
 # from appblog.models import blog #importamos los modelos de la appblog
@@ -23,6 +24,7 @@ def home(request):
 
      articulospublicados = blogm.objects.all()
      eventos = eventosm.objects.all().order_by('created')
+     
 
      page = request.GET.get('page',1)
 
@@ -35,7 +37,8 @@ def home(request):
      contexto = {
           'articulospublicados':articulospublicados,
           'eventos':eventos,
-          'paginator':paginator,          
+          'paginator':paginator,
+                
           
      }
 
@@ -109,10 +112,10 @@ def crearcuenta(request):
      return render(request,'apprein/crearcuenta.html',contexto)
 
 def perfil(request,usuario):
-     usuario = User.objects.get(username = usuario )
-     articulosbloguser = usuario.blogms.all()
-     articulosforouser = usuario.foroms.all()
-     articuloseventouser = usuario.eventosm.all()
+     us = User.objects.get(username = usuario )
+     articulosbloguser = blogm.objects.filter(autorblog_id = us.id)
+     articulosforouser = forom.objects.filter(autorforo_id=us.id)
+     articuloseventouser = eventosm.objects.filter(autorevento_id=us.id)
      contexto ={
           'usuario':usuario, 
           'articulosblog':articulosbloguser,
@@ -172,6 +175,10 @@ def buscardorgeneral(request):
     
      return render(request,'apprein/buscadorglobal.html',contexto)
 
+
+def actividad(request):
+     pass
+     return render(request,'apprein/actividad.html')
 
      # if request.method=='POST':
      #      formcategorias = crearcategoriasform(request.POST)

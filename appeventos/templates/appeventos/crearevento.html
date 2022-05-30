@@ -1,5 +1,6 @@
 {% load static %}
 {% load crispy_forms_tags %}
+{% load widget_tweaks %}
 <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
         <div class="modal-header">
@@ -11,8 +12,24 @@
         <div class="modal-body">
             <form action="{% url 'crearevento' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{formevento | crispy }}
-               
+                <label for="">Titulo</label>
+                {% render_field formevento.tituloevento class="form-control" %}
+                <label for="">Contenido</label>
+                {% render_field formevento.contenidoevento class="form-control" %}
+                <label for="">Categoria</label>
+                {% render_field formevento.categoriaevento class="form-control" %}
+                <label for="">Link del Evento</label>
+                {% render_field formevento.eventolink class="form-control" %}
+                <label for="">Tipo de Evento</label>
+                {% render_field formevento.tipodeevento class="form-control" %}
+                <label for="">Imagen del evento</label>
+                {% render_field formevento.imagenevento class="form-control" %}
+                <label for="">Video del evento</label>
+                {% render_field formevento.videoevento class="form-control" %}
+                <label for="">Fecha de realización</label>
+                {% render_field formevento.fechaevento type='date' class="form-control" %}
+                <label for="">Hora de realización <i>formato (HH:MM a.m/p.m.)</i></label>
+                {% render_field formevento.horaevento type='time' class="form-control" %}
                 
                 
                 <div class="modal-footer">

@@ -28,10 +28,16 @@ def foro(request):
         })
 
 def agregarforo(request):
+    usuario = get_object_or_404(User,pk=request.user.pk)
     if request.method == 'POST':
+        categoria = request.POST['categoriasforo']
         formularioforo = regitroentradaforo(request.POST,request.FILES)
         if formularioforo.is_valid():
-            formularioforo.save()
+            foro = formularioforo.save(commit=False)
+            foro.autorforo = usuario
+            foro.save()
+            foro.categoriasforo.add(categoria)
+            
             return redirect('foro')
     else:
         formularioforo = regitroentradaforo()

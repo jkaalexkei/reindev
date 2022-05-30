@@ -7,6 +7,8 @@ from django.db import models
 
 from django.contrib.auth.models import User
 from appcategorias.models import categorias
+from django.db.models.signals import post_save
+
 
         
 class blogm(models.Model):
@@ -28,15 +30,28 @@ class blogm(models.Model):
     
     def __str__(self):
         return f'{self.autorblog.username}:{self.tituloblog}'
-    
-    # titulo=models.CharField(max_length=140)
-    # descripcion=models.TextField()
-    # imagen=models.ImageField(default='img/logo.jpg',upload_to='blogs',null=True,blank=True)
-    # autor=models.ForeignKey(User, on_delete=models.CASCADE,null=True,related_name='blogms')#establece relacion entre el post y el usuario que crea el post
-    # categoriablog = models.ManyToManyField(categorias,related_name='categoriasblog',verbose_name='Categorias')
-    # created=models.DateTimeField(auto_now_add=True)
-    # updated=models.DateTimeField(auto_now_add=True)
 
+class notificacionesblog(models.Model):
+    
+   
+    tituloblog = models.ForeignKey(blogm,on_delete=models.CASCADE,related_name='notificaciontituloblog')
+
+    class Meta:
+        
+        verbose_name='notificacionesblog'
+        verbose_name_plural='notificacionesblogs'
+       
+
+    def __str__(self):
+        return f'{self.tituloblog}'    
+
+
+def crearnotificacionblog(sender,instance,created,**kwargs):
+    
+    if created:
+        notificacionesblog.objects.create(tituloblog=instance)
+
+post_save.connect(crearnotificacionblog,sender=blogm)
 
     
 

@@ -36,7 +36,7 @@
                       {% endfor %}
                   </p>
                   <p class="m-1 ps-2">Publicado : {{ forotema.created | naturaltime }}</p>
-                  <p class=" m-0 ps-2"><strong>Autor:</strong> {{ forotema.autorforo.username }}&nbsp;<img src="{{ forotema.autorforo.perfil.imagenperfil.url }}" alt="" width="50" height="50"></p>
+                  <p class=" m-0 ps-2"><strong>Autor:</strong> {{ forotema.autorforo.username }}&nbsp;<img src="{{ forotema.autorforo.perfil.imagenperfil.url }}" class="rounded-circle" alt="" width="50" height="50"></p>
                   <p class="m-1 ps-2">Descripción: {{forotema.contenidoforo}}</p>
               </div>
                     
@@ -73,22 +73,28 @@
                           {% if r.mensajerelforo_id == m.id %}
                               <p><img class="rounded-circle" src="{{r.autorrespuesta.perfil.imagenperfil.url}}" alt="" width="25" height="25">&nbsp;{{r.autorrespuesta.username}}:&nbsp;<cite>{{r.respuesta}}</cite>&nbsp;<br>Publicado: {{r.created | naturaltime }}</p>
                               <hr>
+                      
                           {% endif %}
                             
                       {% endfor %}
-                    {% endif %}
+                  
+                  {% endif %}
                   </div>
                 </div>
               </div>
 
             </div>
             
-            
-              
           </div>
+          
+          {% if request.user.id != m.autormensaje_id %}
           <div class="card-footer text-end">
             <a class="btn bg-boton text-white" onclick="abrirmodalagregarrespuestachatforo('{% url 'agregarrespuesta' m.id %}')">Responder</a>
           </div>
+        
+            
+          {% endif %}
+            
         </div>
         
       {% endif %}
