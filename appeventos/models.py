@@ -23,7 +23,7 @@ class eventosm(models.Model):
     horaevento = models.TimeField(auto_now=False,verbose_name='Hora del evento')
 
     tipodeevento = models.CharField(max_length=50,choices=opciones,verbose_name='Tipo de Evento')
-    videoevento  = models.FileField(max_length=200,upload_to='videos'verbose_name='Video del evento:')
+    videoevento  = models.FileField(max_length=200,upload_to='videos',verbose_name='Video del evento:')
     created=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField(auto_now_add=True)
 
