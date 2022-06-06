@@ -27,7 +27,7 @@
                     <a class="nav-link fw-bolder m-auto" href="{% url 'calendario' %}">Calendario</a>
                   </li>
                   <li class="nav-item mx-3 rounded-1 d-flex {% if request.path == '/eventos' %}active{% endif %}">
-                    <a class="nav-link fw-bolder m-auto" href="{% url 'eventos' %}">Eventos</a>
+                    <a class="nav-link fw-bolder m-auto" href="{% url 'eventos' %}">Dale Play</a>
                   </li>
                   <li class="nav-item mx-3 rounded-1 d-flex">
                     <a class="nav-link fw-bolder d-flex m-auto" href="{% url 'logout' %}">Logout&nbsp;<i class="fa fa-sign-out-alt m-auto"></i></a>
@@ -41,8 +41,10 @@
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" onclick="abrirmodalcrearcategorias('{% url 'crearcategorias' %}')">Agregar Categoria</a></li>
                              <li><a class="dropdown-item" href="{% url 'listarcategorias' %}">Consultar Categorias</a></li>
-                            <li><a class="dropdown-item" onclick="abrirmodalcrearnuevoevento('{% url 'crearevento' %}')">Nuevo Evento</a></li>
-                           
+                            <li><a class="dropdown-item" href="">Agregar nueva empresa</a></li>
+                            <li><a class="dropdown-item" href="">Consultar empresa</a></li>
+                            <li><a class="dropdown-item" href="">Agregar usuario</a></li>
+                            <li><a class="dropdown-item" href="">Consultar usuario</a></li>
                           
                           </ul>
                         </div>    
@@ -71,7 +73,7 @@
                     <a class="nav-link fw-bolder" href="{% url 'calendario' %}">Calendario</a>
                   </li>
                    <li class="nav-item mx-3 rounded-1 d-flex {% if request.path == '/eventos' %}active{% endif %}">
-                    <a class="nav-link fw-bolder m-auto" href="{% url 'eventos' %}">Eventos</a>
+                    <a class="nav-link fw-bolder m-auto" href="{% url 'eventos' %}">Dale play</a>
                   </li>
                   <li class="nav-item mx-2 rounded-1 flex-grow-1 text-sm-start text-md-start text-lg-end text-xl-end">
                     <a class="nav-link fw-bolder" href="{% url 'login' %}"> <i class="fa fa-user"></i> Login</a>

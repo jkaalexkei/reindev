@@ -20,11 +20,12 @@
 
   {% endif %}
   <div class="col-12">
-      <p class="h2 mb-2 fw-bold py-2">Eventos ReIN</p>
+      <p class="h2 mb-2 fw-bold py-2">Dale Play</p>
   </div>
   <div class="col-12">
     <div class="row mb-4">
       <div class="col-8">
+          <p class="fs-6">Si te perdiste algún taller, conversatorio o evento búscalo aquí y dale play</p>
           <form action="/appeventos/buscareventos/" method="get" class="d-flex">
             
            
@@ -38,7 +39,7 @@
       </div>
       <div class="col-4 d-flex align-items-center justify-content-end">
         {% if user.is_authenticated %}
-          <span class="">Añadir Evento&nbsp;</span>&nbsp;<a class="enlace" onclick="abrirmodalcrearnuevoevento('{% url 'crearevento' %}')"><i class="fa fa-plus-square fs-2"></i></a>
+          <span class="">Añadir Video&nbsp;</span>&nbsp;<a class="enlace" onclick="abrirmodalcrearnuevoevento('{% url 'crearevento' %}')"><i class="fa fa-plus-square fs-2"></i></a>
 
           <!-- <a class="dropdown-item" onclick="abrirmodalcrearnuevoevento('{% url 'crearevento' %}')">Nuevo Evento</a> -->
       

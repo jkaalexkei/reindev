@@ -1,0 +1,62 @@
+{% load static %}
+{% load humanize %}
+<div class="col-12 col-lg-12 mt-3">
+    <h4 class="h4">Foros publicados recientemente</h4>
+    {% if foros %}
+    {% for articulosforo in foros  %}
+    <div class="card mb-2 p-3 border-0">
+      <div class="row">
+        <div class="col-12 col-lg-3 p-1">
+          <div class="container text-center d-flex flex-column p-0">
+            <img src="{{ articulosforo.imagenforo.url }}" class="w-100 border rounded" height="180" alt="...">
+            <div class="container d-flex justify-content-center">
+              <a class="navbar-brand mx-3" href="#"><i class="far fa-heart fs-3 mt-1 text-dark"></i></a>
+              <a class="navbar-brand mx-3" href="#"><i class="far fa-comment-alt fs-3 mt-1 text-dark"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-9">
+          <div class="row">
+            <div class="col-12">
+              <h6 class="py-1 text-start fs-5 fw-bold"><a class="enlace"
+                  href="{% url 'mostrarblog' articulosforo.id %}">{{ articulosforo.tituloforo }}</a></h6>
+            </div>
+            <div class="col-12">
+              <p>Descripción: {{articulos.contenidoforo | slice:":60"}}...</p>
+            </div>
+            <div class="col-6">
+
+              <img src="{{ articulosforo.autorforo.perfil.imagenperfil.url }}" alt="" class="rounded-circle" width="50"
+                height="50">
+              <p class="py-1">Autor: {{articulosforo.autorforo}} </p>
+            </div>
+            <div class="col-12 d-flex justify-content-between">
+              <p class="py-2">Categoria:
+                {% for c in articulosforo.categoriasforo.all  %}
+                {{c.nombre}} /
+                {% endfor %}
+              </p>
+              <p class="py-2 px-4 text-muted">Creado: {{ articulosforo.created | naturaltime }}</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- {% if user.is_authenticated %}
+
+      {% if request.user == articulos.autorforo %}
+      <div class="card-footer text-end">
+        <a href="" class="btn btn-sm text-warning"><i class="fa fa-pen"></i>&nbsp;Editar</a>
+        <a href="" class="btn btn-sm text-danger"><i class="fa fa-trash"></i>&nbsp;Eliminar</a>
+      </div>
+
+      {% endif %}
+
+
+      {% endif %} -->
+
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>

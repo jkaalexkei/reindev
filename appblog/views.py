@@ -14,8 +14,8 @@ from appcomentarios.models import comentariosblogm
 # from proyecto_rein.forms import Inputimagen
 
 def blog(request):
-    
     blogs = blogm.objects.all()
+    
     comentariosblog = comentariosblogm.objects.all()
     
 

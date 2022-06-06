@@ -85,7 +85,7 @@
           aria-labelledby="panelsStayOpen-heading{{blogpublicados.id}}">
           <div class="accordion-body">
             <a class="fs-5 fw-bold enlace" href="{% url 'mostrarblog' blogpublicados.id %}">{{blogpublicados.tituloblog}}</a>
-            <p style="text-overflow: ellipsis; text-align: justify;white-space: nowrap;overflow: hidden; font-size: 1rem;">{{blogpublicados.contenidoblog}}</p>
+            <p style="text-overflow: ellipsis; text-align: justify;white-space: nowrap;overflow: hidden; font-size: 1rem;">{{blogpublicados.contenidoblog | slice:":2"}}</p>
             <p style="text-align:justify;">Categoria:
                   {% for listadocategorias in blogpublicados.categoriablog.all %}
                 <span class="d-inline">{{listadocategorias.nombre}} / </span>  

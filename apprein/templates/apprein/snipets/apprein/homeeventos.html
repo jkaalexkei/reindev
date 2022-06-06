@@ -1,0 +1,42 @@
+{% load static %}
+{% load humanize %}
+{% if eventos %}
+<div class="col-lg-12">
+  <h4 class="h4">Eventos Nuevos</h4>
+</div>
+{% for eventospublicados in eventos %}
+<div class="col-lg-4 d-flex justify-content-around mb-2">
+  <div class="card border" style="width: 100%;">
+    <img src="{{ eventospublicados.imagenevento.url }}" class="rounded-3 imgevento " alt="...">
+    <div class=" d-flex p-0 flex-column">
+      <p class="titulo text-start mb-0 fs-5">
+        <a class="enlace"
+          href="{% url 'mostrarevento' eventospublicados.id %}">{{ eventospublicados.tituloevento}}</a>
+      </p>
+      
+        <p>Descripción: {{eventospublicados.contenidoevento | slice:":60"}}...</p>
+     
+
+      <p class="subtitulo text-start mb-1">Acceder: <a class="text-decoration-none"
+          href="{{eventospublicados.eventolink }}" target="_blank">Haz click aquí</a></p>
+      <p class="subtitulo text-start mb-1">Fecha evento: <br>{{eventospublicados.fechaevento}}</p>
+      <p class="fs-6">Creado: {{ eventospublicados.created | naturaltime }}</p>
+      <p style="text-align:right;">Por {{ eventospublicados.autorevento }}&nbsp;<img class="border rounded-circle"
+          src="{{eventospublicados.autorevento.perfil.imagenperfil.url}}" alt="" width="50" height="50"></p>
+      {% if user.is_authenticated %}
+
+
+      <div class="container text-end p-0">
+        <a href="" class="btn btn-sm text-warning"><i class="fa fa-pen"></i></a>
+        <a href="" class="btn btn-sm text-danger"><i class="fa fa-trash"></i></a>
+      </div>
+
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+
+
+{% endif %}

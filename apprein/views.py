@@ -22,8 +22,10 @@ from appblog.models import notificacionesblog
 
 def home(request):
 
-     articulospublicados = blogm.objects.all()
-     eventos = eventosm.objects.all().order_by('created')
+     articulospublicados = blogm.objects.all()[:3]
+     eventos = eventosm.objects.all()[:3]
+     
+
      
 
      page = request.GET.get('page',1)
@@ -37,6 +39,7 @@ def home(request):
      contexto = {
           'articulospublicados':articulospublicados,
           'eventos':eventos,
+          'foros':forom.objects.all()[:3],
           'paginator':paginator,
                 
           

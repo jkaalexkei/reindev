@@ -21,7 +21,7 @@
             <div class="card-body">
               <h5 class="card-title">{{ datosencontrados.tituloevento }}</h5>
               <p class="card-text texto-justificado">{{ datosencontrados.contenidoevento }}</p>
-              <p class="card-text fw-bold">Fecha del Evento: {{ datosencontrados.fechaevento|date }} Hora: {{datosencontrados.horaevento | time}}</p>
+              <p class="card-text fw-bold">Fecha del Evento: {{ datosencontrados.fechaevento|date }} Hora: {{datosencontrados.horaevento | time:'hh:ii'}}</p>
               <p>Inscripción: <a  class="enlace" href="{{ datosencontrados.eventolink}}">Click Aquí</a></p>
               <p class="card-text"><img class="border rounded-circle" src="{{datosencontrados.autorevento.perfil.imagenperfil.url}}" alt="" width="50" height="50"> <small class="text-muted">Autor: {{ datosencontrados.autorevento }}</small></p>
               <p style="text-align:justify;">Categoria:

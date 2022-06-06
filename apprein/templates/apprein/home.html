@@ -10,7 +10,7 @@
     /* border-radius: 15px; */
   }
 
-  .bordescontenedorslider{
+  .bordescontenedorslider {
     border-radius: 8px;
   }
 
@@ -29,12 +29,13 @@
     border-bottom-left-radius: 15px;
   }
 
-  .imagenwidth{
+  .imagenwidth {
     width: 100%;
     height: 30rem;
   }
-  .imgevento{
-    width:100%;
+
+  .imgevento {
+    width: 100%;
     height: 13rem;
   }
 </style>
@@ -45,166 +46,37 @@
   <div class="col-12">
     {% if messages %}
 
-  {% for mensaje in messages  %}
+    {% for mensaje in messages  %}
 
-  <div class="alert alert-success alert-dismissible fade show" role="alert">
-    {{ mensaje }}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-  {% endfor %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ mensaje }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
 
-  {% endif %}
+    {% endif %}
   </div>
   <div class="col-12 col-lg-12">
-    <div class="row">
+    <div class="row d-flex">
+
+      {% include "apprein/snipets/apprein/homeslider.html" %}
+
       
-      <div class="col-12 ">
-        <p class="h2 mb-3 fw-bold py-2 otro-texto">Nuevos eventos y articulos de la semana</p>
-      </div>
-      <div class="col-12 col-lg-12 mb-3 justify-content-center">
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-              aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-              aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-              aria-label="Slide 3"></button>
-          </div>
-          <div class="carousel-inner border bordescontenedorslider">
-            <div class="carousel-item active">
-              <img src="{% static 'apprein/img/foto.jpg' %}" width="" height="" class="d-block bordes-imagen imagenwidth"
-                alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="{% static 'apprein/img/down.jpg' %}" width="" height="" class="d-block bordes-imagen imagenwidth"
-                alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="{% static 'apprein/img/racismo.jpg' %}" width="" height="" class="d-block bordes-imagen imagenwidth"
-                alt="...">
-            </div>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
-       
-      </div>
     </div>
     <div class="row">
-      {% if eventos %}
-      <div class="col-lg-12">
-        <h4 class="h4">Eventos Nuevos</h4>
-      </div>
-      {% for eventospublicados in eventos %}
-      <div class="col-lg-4 d-flex justify-content-around mb-2">
-        <div class="card border" style="width: 100%;">
-          <img src="{{ eventospublicados.imagenevento.url }}" class="rounded-3 imgevento " alt="...">
-          <div class=" d-flex p-0 flex-column">
-            <p class="titulo text-start mb-0 fs-5">
-              <a class="enlace" href="{% url 'mostrarevento' eventospublicados.id %}">{{ eventospublicados.tituloevento}}</a>
-            </p>
-
-            <p class="subtitulo text-start mb-1">Acceder: <a class="text-decoration-none" href="{{eventospublicados.eventolink }}" target="_blank">Haz click aquí</a></p>
-            <p class="subtitulo text-start mb-1">Fecha evento: <br>{{eventospublicados.fechaevento}}</p>
-            <p class="fs-6">Creado: {{ eventospublicados.created | naturaltime }}</p>
-            <p style="text-align:right;">Por {{ eventospublicados.autorevento }}&nbsp;<img class="border rounded-circle" src="{{eventospublicados.autorevento.perfil.imagenperfil.url}}" alt="" width="50" height="50"></p>         
-              {% if user.is_authenticated %}
+     {% include 'apprein/snipets/apprein/homeeventos.html' %}
 
 
-            <div class="container text-end p-0">
-              <a href="" class="btn btn-sm text-warning"><i class="fa fa-pen"></i></a>
-              <a href="" class="btn btn-sm text-danger"><i class="fa fa-trash"></i></a>
-            </div>
-
-            {% endif %}
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-
-      <div class="col-lg-12">
-        {% include 'apprein/snipets/apprein/paginadorhome.html' %}
-      </div>
-        
-      {% endif %}
-      
- 
     </div>
     <!-- COLUMNAS LARGAS -->
     <div class="row">
-      <div class="col-12 col-lg-12 mt-3">
-        <h4 class="h4">Entradas de blog publicadas recientemente</h4>
-        {% if articulospublicados %}
-        {% for articulos in articulospublicados  %}
-        <div class="card mb-2 p-3 border-0">
-          <div class="row">
-            <div class="col-12 col-lg-3 p-1">
-              <div class="container text-center d-flex flex-column p-0">
-                <img src="{{ articulos.imagenblog.url }}" class="w-100 border rounded" height="180" alt="...">
-                <div class="container d-flex justify-content-center">
-                  <a class="navbar-brand mx-3" href="#"><i class="far fa-heart fs-3 mt-1 text-dark"></i></a>
-                  <a class="navbar-brand mx-3" href="#"><i class="far fa-comment-alt fs-3 mt-1 text-dark"></i></a>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-lg-9">
-              <div class="row">
-                <div class="col-12">
-                  <h6 class="py-1 text-start fs-5 fw-bold"><a class="enlace"
-                      href="{% url 'mostrarblog' articulos.id %}">{{ articulos.tituloblog }}</a></h6>
-                </div>
-                <div class="col-6">
-
-                  <img src="{{ articulos.autorblog.perfil.imagenperfil.url }}" alt="" class="rounded-circle" width="50"
-                    height="50">
-                  <p class="py-1">Autor: {{articulos.autorblog}} </p>
-                </div>
-                <div class="col-12 d-flex justify-content-between">
-                  <p class="py-2">Categoria: 
-                      {% for c in articulos.categoriablog.all  %}
-                          {{c.nombre}} /
-                      {% endfor %}  
-                  </p>
-                  <p class="py-2 px-4 text-muted">Creado: {{ articulos.created | naturaltime }}</p>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-          {% if user.is_authenticated %}
-
-                {% if request.user == articulos.autor %}
-                <div class="card-footer text-end">
-                  <a href="" class="btn btn-sm text-warning"><i
-                      class="fa fa-pen"></i>&nbsp;Editar</a>
-                  <a href="" class="btn btn-sm text-danger"><i
-                      class="fa fa-trash"></i>&nbsp;Eliminar</a>
-                </div>
-
-                {% endif %}
-
-
-          {% endif %}
-
-        </div>
-        {% endfor %}
-        {% endif %}
-      </div>
+     {% include 'apprein/snipets/apprein/entradasrecienteblog.html' %}
     </div>
+    <div class="row">
+      {% include 'apprein/snipets/apprein/homeforo.html' %}
+     </div>
   </div>
 </div>
 
-      {% endblock  %}
-      <!-- Columna derecha -->
-     
-     
+{% endblock  %}
+<!-- Columna derecha -->
