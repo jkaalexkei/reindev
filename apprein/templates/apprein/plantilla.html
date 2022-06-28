@@ -59,6 +59,7 @@
             <div class="modal fade" id="agregarcomentarioforo" role="dialog"></div>
             <div class="modal fade" id="agregarmensajechatforo" role="dialog"></div>
             <div class="modal fade" id="agregarrespuestachatforo" role="dialog"></div>
+            <div class="modal fade" id="agregaremmpresa" role="dialog"></div>
 
             
 
@@ -169,6 +170,12 @@
 
     function abrirmodalagregarrespuestachatforo(url){
       $('#agregarrespuestachatforo').load(url,function(){
+        $(this).modal('show');
+      })
+      
+    }
+    function abrirmodalcrearempresa(url){
+      $('#agregaremmpresa').load(url,function(){
         $(this).modal('show');
       })
       

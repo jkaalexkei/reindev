@@ -41,10 +41,10 @@
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" onclick="abrirmodalcrearcategorias('{% url 'crearcategorias' %}')">Agregar Categoria</a></li>
                              <li><a class="dropdown-item" href="{% url 'listarcategorias' %}">Consultar Categorias</a></li>
-                            <li><a class="dropdown-item" href="">Agregar nueva empresa</a></li>
-                            <li><a class="dropdown-item" href="">Consultar empresa</a></li>
-                            <li><a class="dropdown-item" href="">Agregar usuario</a></li>
-                            <li><a class="dropdown-item" href="">Consultar usuario</a></li>
+                            <li><a class="dropdown-item" onclick="abrirmodalcrearempresa('{% url 'crearempresas' %}')">Agregar nueva empresa</a></li>
+                            <li><a class="dropdown-item" href="{% url 'empresasregistradas' %}">Consultar empresa</a></li>
+                            <li><a class="dropdown-item" href="#">Agregar usuario</a></li>
+                            <li><a class="dropdown-item" href="#">Consultar usuario</a></li>
                           
                           </ul>
                         </div>    

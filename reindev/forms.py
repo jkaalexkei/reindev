@@ -13,6 +13,7 @@ from appeventos.models import eventosm
 from django.contrib.auth.models import User
 from django.shortcuts import render,redirect,get_object_or_404
 from appchatforo.models import mensajechatforom,respuestachatforom
+from appempresas.models import empresasm
 
 class crearcategoriasform(forms.ModelForm):
     nombre = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-pill fs-5 fw-bolder mb-3','placeholder':'Ingrese Nombre de la Categoria'}))
@@ -126,3 +127,9 @@ class formrespuestachatforom(forms.ModelForm):
     class Meta:
         model=respuestachatforom
         fields = ['respuesta']
+
+class formcrearempresas(forms.ModelForm):
+    class Meta:
+        model=empresasm
+        fields = ['nombreempresa','razonsocialempresa','correoempresa','imagenempresa']
+        
