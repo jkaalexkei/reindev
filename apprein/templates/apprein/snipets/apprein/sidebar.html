@@ -38,7 +38,7 @@
                         {% if user.is_authenticated %}                               
         
                             {% if user.username == 'administrador' %}
-                                <a class="bg-subcategoria text-white text-decoration-none d-block text-end p-2 fs-6" onclick="abrirmodalcrearsubcategorias('{% url 'crearsubcategorias' %}')" role="button">Ver Categoria gral</a>
+                                <a class="bg-subcategoria text-white text-decoration-none d-block text-end p-2 fs-6" onclick="abrirmodalcrearsubcategorias('{% url 'crearsubcategorias' %}')" role="button">Ver Categorias</a>
                                 <a class="bg-subcategoria text-white text-decoration-none d-block text-end p-2 fs-6" onclick="abrirmodalcrearsubcategorias('{% url 'crearsubcategorias' %}')" role="button">Agregar SubCategoria &nbsp;<i class="fas fa-plus-circle"></i></a>
                             {% endif %}                     
                         {% endif %}
