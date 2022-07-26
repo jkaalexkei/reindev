@@ -1,0 +1,29 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <img src="{% static 'apprein/img/logoreintres.png' %}" class="rounded"
+            alt="..." width="250px">
+            
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <h2 class="">Angregar Información al Calendario</h2>
+            <form action="{% url 'crearcalendario' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {{formcalendarionuevo | crispy }}
+               
+                
+                
+                <div class="modal-footer">
+                    <button class="btn btn-danger" type="button" data-bs-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-primary" type="submit" data-dismiss="modal">Confirmar</button>
+                </div>
+            </form>
+        </div>
+       
+    </div>
+
+</div>

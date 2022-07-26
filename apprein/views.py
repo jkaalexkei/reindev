@@ -48,14 +48,14 @@ def home(request):
      return render(request,"apprein/home.html",contexto)
 
 
-def calendario(request):
-     categoriasb = categorias.objects.all()
+# def calendario(request):
+#      categoriasb = categorias.objects.all()
 
-     contexto= {
-          # 'miscategorias':categoriasb
-     }
+#      contexto= {
+#           # 'miscategorias':categoriasb
+#      }
 
-     return render(request,"apprein/calendario.html",contexto)
+#      return render(request,"apprein/calendario.html",contexto)
 
 def iniciarsesion(request):
 

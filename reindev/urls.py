@@ -32,6 +32,7 @@ urlpatterns = [
     path('appcomentarios/',include('appcomentarios.urls')),
     path('appchatforo/',include('appchatforo.urls')),
     path('appempresas/',include('appempresas.urls')),
+    path('appcalendario/',include('appcalendario.urls')),
     
     
     

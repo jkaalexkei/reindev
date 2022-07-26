@@ -10,7 +10,7 @@ urlpatterns = [
     path('',views.home, name='home'),
     
     # path('foro/',views.foro, name='foro'),
-    path('calendario/',views.calendario, name='calendario'),
+  
     path('login/',views.iniciarsesion,name='login'),
     path('cerrarsesion/',views.cerrarsesion,name='logout'),
     path('crearcuenta/',views.crearcuenta,name='crearcuenta'),

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'appcomentarios',
     'appchatforo',
     'appempresas',
+    'appcalendario',
     'crispy_forms',
     'admin_interface',
     'widget_tweaks',

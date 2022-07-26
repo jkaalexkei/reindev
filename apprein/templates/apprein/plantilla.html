@@ -53,6 +53,7 @@
             <div class="modal fade" id="agregarforo" role="dialog"></div>
             <div class="modal fade" id="editarforo" role="dialog"></div>
             <div class="modal fade" id="agregarblog" role="dialog"></div>
+            
             <div class="modal fade" id="editarblog" role="dialog"></div>
             <div class="modal fade" id="agregarcomentarioblog" role="dialog"></div>
             <div class="modal fade" id="agregarcomentarioeventos" role="dialog"></div>
@@ -60,6 +61,7 @@
             <div class="modal fade" id="agregarmensajechatforo" role="dialog"></div>
             <div class="modal fade" id="agregarrespuestachatforo" role="dialog"></div>
             <div class="modal fade" id="agregaremmpresa" role="dialog"></div>
+            <div class="modal fade" id="agregarcalendario" role="dialog"></div>
 
             
 
@@ -100,6 +102,7 @@
       })
 
     }
+
 
     function abrirmodaleditarevento(url){
       $('#editarevento').load(url,function(){
@@ -180,6 +183,15 @@
       })
       
     }
+
+    function abrirmodalcrearnuevocalendario(url){
+      $('#agregarcalendario').load(url,function(){
+        $(this).modal('show');
+      })
+
+    }
+
+    
   </script>
   
   </body>

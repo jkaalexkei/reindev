@@ -90,7 +90,7 @@
                 </p>
             
             {% if user.is_authenticated %}
-                <p>Ingresa a conversación: <a href="{% url 'chatforo' foropublicados.id %}" class="text-decoration-none enlace">Click Aquí</a></p>
+                <p>Ingresar a la conversación: <a href="{% url 'chatforo' foropublicados.id %}" class="text-decoration-none enlace">Click Aquí</a></p>
             {% endif %}
               
             
@@ -105,7 +105,7 @@
               <a href="{% url 'eliminarforo' foropublicados.id %}" class="btn btn-lg text-danger"><i class="fa fa-trash"></i></a>
 
           {% endif %}
-          <a href="" class="btn btn-lg text-danger"><i class="far fa-heart">&nbsp;1</i></a>
+          <!-- <a href="" class="btn btn-lg text-danger"><i class="far fa-heart">&nbsp;1</i></a> -->
           
         </div>
         {% endif %}

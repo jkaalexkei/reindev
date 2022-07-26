@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from requests import request
 
 from appblog.models import blogm
+from appcalendario.models import calendariom
 from appcategorias.models import categorias, subcategorias
 from appforo.models import forom
 from apprein.models import perfil
@@ -14,6 +15,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render,redirect,get_object_or_404
 from appchatforo.models import mensajechatforom,respuestachatforom
 from appempresas.models import empresasm
+from appcalendario.models import calendariom
 
 class crearcategoriasform(forms.ModelForm):
     nombre = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-pill fs-5 fw-bolder mb-3','placeholder':'Ingrese Nombre de la Categoria'}))
@@ -129,7 +131,12 @@ class formrespuestachatforom(forms.ModelForm):
         fields = ['respuesta']
 
 class formcrearempresas(forms.ModelForm):
+    razonsocialempresa = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','rows':'3'}))
     class Meta:
         model=empresasm
-        fields = ['nombreempresa','razonsocialempresa','correoempresa','imagenempresa']
-        
+        fields = '__all__'
+
+class formcalendario(forms.ModelForm):
+    class Meta:
+        model =calendariom
+        fields = '__all__'

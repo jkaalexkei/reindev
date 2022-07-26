@@ -51,9 +51,9 @@
 
                       {% endif %}
                       <a class="text-decoration-none fs-5 fw-bolder text-capitalize d-block me-1 d-flex justify-content-center" href="{% url 'perfil' request.user.username %}"><img src="{{ request.user.perfil.imagenperfil.url }}" class="img rounded-circle me-2" width="50" height="50" alt="..." title="{{ request.user.username | capfirst }}"></a>
-                      <a class="nav-link d-block position-relative" href="{% url 'actividad' %}"><i class="far fa-bell text-dark fs-2"></i>
+                      <!-- <a class="nav-link d-block position-relative" href="{% url 'actividad' %}"><i class="far fa-bell text-dark fs-2"></i>
                         <span class="badge bg-danger position-absolute">{{notificaciones}}</span>
-                      </a>
+                      </a> -->
                       
                       
                       </div>
