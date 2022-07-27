@@ -62,7 +62,7 @@
           
         <img src="{{ calendariopublicado.imagencalendario.url }}" class="card-img-top position-relative" alt="...">
         <div class="card-body bg-light p-1 border-0 border-card position-static top-50 translate-middle-y mt-4">
-            <p class="card-title fs-5 fw-bolder">{{calendariopublicado.titulocalendario}}</p>
+            <a class="fs-5 fw-bold enlace" href="{% url 'mostrarcalendario' calendariopublicado.id  %}">{{calendariopublicado.titulocalendario}}</a>
             <p class="card-title fs-5 fw-bolder">{{calendariopublicado.horacalendario}}</p>
         </div>
         </div>
