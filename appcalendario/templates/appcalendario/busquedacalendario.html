@@ -1,0 +1,147 @@
+{% extends "apprein/plantilla.html" %}
+{% load humanize %}
+{% load static %}
+
+{% block title %} Calendario ReIN {% endblock %}
+
+{% block content %}
+<style>
+    .imagen{
+        width: 100%;
+        height: 10rem;
+    }
+</style>
+
+<h2>Calendario ReIN</h2>
+
+<div class="row mb-4 mt-3">
+    <div class="col-12 d-flex align-items-center justify-content-end mb-3">
+        {% if user.is_authenticated %}
+          <span class="enlace">Agregar&nbsp;</span>&nbsp;<a class="enlace" onclick="abrirmodalcrearnuevocalendario('{% url 'crearcalendario' %}')"><i class="fa fa-plus-square fs-2"></i></a>
+          
+        {% endif %}
+      </div>
+<div class="col-12">
+    <div class="row">
+        <div class="col-6">
+            <form action="/appcalendario/busquedacalendario/" method="get" class="d-flex" >
+      
+                <div class="input-group input-group-sm mb-3 mb-3 d-flex align-items-center">
+                  <input type="text" name="buscar" class="form-control" value="{{ query }}"  placeholder="Buscar información" aria-label="Recipient's username" aria-describedby="button-addon2" required>
+                  <button class="btn btn-outline-light border" type="submit" id="button-addon2"><i class="fas fa-search fs-5 text-dark"></i></button>
+                </div>
+              </form>
+              
+        </div>
+        <div class="col-3">
+            <form action="/appcalendario/busquedacalendariomes/" method="get" class="d-flex">
+                
+                <div class="input-group input-group-sm mb-3 d-flex align-items-center">
+                    
+                  <input type="text" name="buscar" class="form-control" value="{{ querymes }}"  placeholder="Buscar por mes" aria-label="Recipient's username" aria-describedby="button-addon2" required>
+                  <button class="btn btn-outline-light border" type="submit" id="button-addon2"><i class="fas fa-search fs-5 text-dark"></i></button>
+                </div>
+              </form>
+              
+        </div>
+        <div class="col-3">
+            <form action="/appcalendario/busquedacalendarioagno/" method="get" class="d-flex">
+              
+                <div class="input-group input-group-sm mb-3">
+                    
+                  <input type="text" name="buscar" class="form-control" value="{{ queryagno }}"  placeholder="Buscar por año" aria-label="Recipient's username" aria-describedby="button-addon2" required>
+                  <button class="btn btn-outline-light border" type="submit" id="button-addon2"><i class="fas fa-search fs-5 text-dark"></i></button>
+                </div>
+              </form>
+        </div>
+    </div>
+    
+    
+</div>
+
+
+</div>
+
+{% if datosencontrados %}
+ 
+    <p class="mb-3 fw-bold py-2 fs-5">Se encontraron {{ cantidad }} resultados por {{ query}}</p>
+    {% for datoscalendario in datosencontrados  %}
+        <div class="row p-0 border m-0 d-flex align-items-center mb-2">
+            <div class="col-3 p-0">
+                <img src="{{ datoscalendario.imagencalendario.url }}" class="rounded-2 imagen" alt="...">
+            </div>
+            <div class="col-9 p-0">
+                
+                        <div class="container-fluid p-0">
+                            <p class="fs-5 fw-bold m-0 ps-2"><a href="{% url 'mostrarcalendario' datoscalendario.id %}" class="enlace">{{ datoscalendario.titulocalendario}}</a></p>
+                            <p style="text-align:justify;" class="m-0 ps-2">Categoria:
+                                {% for listadocategorias in datoscalendario.categoriacalendario.all %}
+                            <span class="d-inline">{{listadocategorias.nombre}} / </span> 
+                            
+                                {% endfor %}
+                            </p>
+                            
+                            <p class="m-0 ps-2">Publicado : {{ datoscalendario.created | naturaltime }}</p>
+                            <div class="container-fluid d-flex justify-content-between align-items-center m-0 p-0">
+                                <p class=" m-0 ps-2"><strong>Usuario:</strong> {{ datoscalendario.autorcalendario.username }}&nbsp;<img src="{{ datoscalendario.autorcalendario.perfil.imagenperfil.url }}" alt="" width="50" height="50"></p>
+                                <span class="p-0">
+                                    {% if user.is_authenticated %}
+                        
+                            
+                                        {% if request.user == datoscalendario.autorcalendario %}
+                                            <a onclick="abrirmodaleditarcalendario('{% url 'editarcalendario' datoscalendario.id %}')" class="btn btn-lg text-warning" role="button"><i class="fa fa-pen"></i></a>
+                                            <a href="{% url 'eliminarcalendario' datoscalendario.id %}" class="btn btn-lg text-danger"><i class="fa fa-trash"></i></a>
+                                        {% endif %}
+                                            
+                                
+                                {% endif %}
+                                </span>
+                            </div>
+                        </div>
+            </div>
+            
+        </div>              
+    {% endfor %}
+    <div class="row mt-3">
+        <div class="col-12">
+            <div class="card-footer">
+                {% if user.is_authenticated %}
+                    <div class="text-end">
+                    
+                            <a href="{% url 'calendario' %}" class="btn btn-lg text-success "><i class="fa fa-arrow-circle-up"></i> Volver</a>
+                    </div>
+                {% else %}
+                        <div class="text-end">
+                            <a href="{% url 'calendario' %}" class="btn btn-lg text-success "><i class="fa fa-arrow-circle-up"></i> Volver</a>
+                        </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% else %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <p>No se encontraron coincidencias</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card-footer">
+                {% if user.is_authenticated %}
+                    <div class="text-end">
+                            <a href="{% url 'calendario' %}" class="btn btn-lg text-success "><i class="fa fa-arrow-circle-up"></i> Volver</a>
+                    </div>
+                {% else %}
+                        <div class="text-end">
+                            <a href="{% url 'calendario' %}" class="btn btn-lg text-success "><i class="fa fa-arrow-circle-up"></i> Volver</a>
+                        </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% endblock  %}
+
+
+

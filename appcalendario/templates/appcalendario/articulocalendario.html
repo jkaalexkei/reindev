@@ -1,0 +1,111 @@
+{% extends "apprein/plantilla.html" %}
+{% load humanize %}
+{% load static %}
+
+{% block title %} Calendario REIN {% endblock %}
+
+
+
+{% block content %}
+<style>
+  .imagenprincipal {
+    width: 100%;
+    height: 30rem;
+  }
+</style>
+
+<div class="row justify-content-center">
+  <div class="col-10">
+    <div class="card mb-3 border-0">
+      <img src="{{ datosencontrados.imagencalendario.url }}" class="card-img-top imagenprincipal" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{ datosencontrados.titulocalendario }}</h5>
+        <!-- <p class="card-text texto-justificado">{{ datosencontrados.contenidocalendario }}</p> -->
+        <p class="card-text"><img class="border rounded-circle" src="{{datosencontrados.autorcalendario.perfil.imagenperfil.url}}"
+            alt="" width="50" height="50"> <small class="text-muted">Autor: {{ datosencontrados.autorcalendario }}</small></p>
+        <p style="text-align:justify;">Categoria:
+          {% for listadocategorias in datosencontrados.categoriacalendario.all %}
+          <span class="d-inline">{{listadocategorias.nombre}} / </span>
+
+          {% endfor %}
+        </p>
+        
+      </div>
+      <div class="card-footer mb-3">
+        {% if user.is_authenticated %}
+        <div class="text-end">
+
+          {% if request.user == datosencontrados.autorcalendario %}
+
+          <a onclick="abrirmodaleditarcalendario('{% url 'editarcalendario' datosencontrados.id %}')"
+            class="btn btn-md text-warning" role="button"><i class="fa fa-pen"></i> Editar</a>
+          <a href="{% url 'eliminarcalendario' datosencontrados.id %}" class="btn btn-md text-danger"><i
+              class="fa fa-trash"></i> Eliminar</a>
+          
+          {% endif %}
+          <!-- <a onclick="abrirmodalagregarcomentariocalendario('{% url 'agregarcomentariocalendario' datosencontrados.id %}')"  class="btn btn-md text-success"><i class="far fa-comment-alt"></i>&nbsp;Comentar</a> -->
+
+
+          <a href="{% url 'calendario' %}" class="btn btn-md text-success "><i class="fa fa-arrow-circle-up"></i> Volver</a>
+        </div>
+        {% else %}
+        <div class="text-end">
+          <a href="{% url 'calendario' %}" class="btn btn-lg text-success "><i class="fa fa-arrow-circle-up"></i> Volver</a>
+        </div>
+        {% endif %}
+      </div>
+     
+      <!-- {% for c in comentario %}
+      {% if c.comentarioscalendario_id == datosencontrados.id %}
+        <div class="card mb-3">
+          <div class="card-header align-content-center">
+            <p class="d-flex align-items-center"><img class="rounded-circle" src="{{c.autorcomentario.perfil.imagenperfil.url}}" alt="" width="25" height="25">&nbsp;{{c.autorcomentario.username}}</p>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{c.comentario}}</h5>
+            <p class="card-text text-end">{{ c.created | naturaltime}}</p>
+          </div>
+        </div>
+         
+        
+      {% endif %}
+      {% endfor %} -->
+      
+      
+        
+        
+      <div>
+        <!-- {% if comentarios %}
+
+                    <h2 class="my-5">Comentarios Publicados</h2>
+                    
+
+                        {% for comentariosart in comentarios  %}
+                            {% if comentariosart.entradacalendarios_id == articulo.id %}
+                            <div class="card">
+                              <div class="card-body">
+                                <h5 class="card-title">{{ comentariosart.titulocomentario}}</h5>
+                                
+                                <p class="card-text">{{ comentariosart.comentario}}</p>
+                                <p class="card-text">Creado: {{comentariosart.created | naturaltime}}</p>
+                                <p class="card-text">Comentado por: <img src="{{comentariosart.autorcoment.perfil.imagenperfil.url}}" class="rounded-circle" width="50" height="50" alt="">&nbsp;{{comentariosart.autorcoment}}</p>
+                              </div>
+                            </div>
+                            {% endif %}
+
+                        {% endfor %}    
+                 
+               {% else %}
+                    <div class="alert alert-warning" role="alert">
+                      <p>Esta publicacion aun no tiene comentarios</p>
+                    </div>
+               {% endif %} -->
+  </div>
+
+
+  </div>
+
+</div>
+</div>
+
+{% endblock %}

@@ -140,3 +140,15 @@ class formcalendario(forms.ModelForm):
     class Meta:
         model =calendariom
         fields = '__all__'
+
+
+class actualizarcalendariosform(forms.ModelForm):
+    
+    class Meta:
+        model = calendariom
+        fields = '__all__'
+
+class formbusquedacalendariomes(forms.ModelForm):
+    class Meta:
+        model = calendariom
+        fields = ['fechacalendario_mes']

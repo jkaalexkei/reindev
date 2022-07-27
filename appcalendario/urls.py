@@ -8,10 +8,12 @@ urlpatterns = [
     
     path('crearcalendario/',views.crearcalendario, name='crearcalendario'),
     path('calendario/',views.calendario,name="calendario"),
-    # path('descripcionblog/<pk>',views.mostrarblog.as_view(),name='mostrarblog'),
-    # path('eliminarblog/<id>',views.eliminarblog,name='eliminarblog'),
-    # path('editarblog/<id>/',views.editarblog,name="editarblog"),
-    # path('busquedablog/',views.busquedablog.as_view(),name='busquedablog'),
+    path('descripcioncalendario/<pk>',views.mostrarcalendario.as_view(),name='mostrarcalendario'),
+    path('eliminarcalendario/<id>',views.eliminarcalendario,name='eliminarcalendario'),
+    path('editarcalendario/<id>/',views.editarcalendario,name="editarcalendario"),
+    path('busquedacalendario/',views.busquedacalendario.as_view(),name='busquedacalendario'),
+    path('busquedacalendariomes/',views.busquedacalendariomes.as_view(),name='busquedacalendariomes'),
+     path('busquedacalendarioagno/',views.busquedacalendarioagno.as_view(),name='busquedacalendarioagno'),
     
     
     

@@ -160,17 +160,17 @@ def eliminarperfil(request,usuario):
 
 def buscardorgeneral(request):
      valor = request.GET.get('buscar')
-     articulosblog = blogm.objects.filter(tituloblog__contains = valor).order_by('-created')
-     articuloforo = forom.objects.filter(tituloforo__contains = valor).order_by('-created')
-     articuloevento = eventosm.objects.filter(tituloevento__contains = valor).order_by('-created')
+     articulosblog = blogm.objects.filter(tituloblog__icontains = valor).order_by('-created')
+     articuloforo = forom.objects.filter(tituloforo__icontains = valor).order_by('-created')
+     articuloevento = eventosm.objects.filter(tituloevento__icontains = valor).order_by('-created')
 
      contexto = {
           'articuloblog':articulosblog,
           'articuloforo':articuloforo,
           'articuloevento':articuloevento,
-          'resultadosblog': blogm.objects.filter(tituloblog__contains = valor).count(),
-          'resultadosforo': forom.objects.filter(tituloforo__contains = valor).count(),
-          'resultadosevento': eventosm.objects.filter(tituloevento__contains = valor).count(),
+          'resultadosblog': blogm.objects.filter(tituloblog__icontains = valor).count(),
+          'resultadosforo': forom.objects.filter(tituloforo__icontains = valor).count(),
+          'resultadosevento': eventosm.objects.filter(tituloevento__icontains = valor).count(),
           'valor':valor,
           
           
