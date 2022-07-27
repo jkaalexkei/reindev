@@ -43,8 +43,7 @@
               class="fa fa-trash"></i> Eliminar</a>
           
           {% endif %}
-          <!-- <a onclick="abrirmodalagregarcomentariocalendario('{% url 'agregarcomentariocalendario' datosencontrados.id %}')"  class="btn btn-md text-success"><i class="far fa-comment-alt"></i>&nbsp;Comentar</a> -->
-
+         
 
           <a href="{% url 'calendario' %}" class="btn btn-md text-success "><i class="fa fa-arrow-circle-up"></i> Volver</a>
         </div>
@@ -55,51 +54,13 @@
         {% endif %}
       </div>
      
-      <!-- {% for c in comentario %}
-      {% if c.comentarioscalendario_id == datosencontrados.id %}
-        <div class="card mb-3">
-          <div class="card-header align-content-center">
-            <p class="d-flex align-items-center"><img class="rounded-circle" src="{{c.autorcomentario.perfil.imagenperfil.url}}" alt="" width="25" height="25">&nbsp;{{c.autorcomentario.username}}</p>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">{{c.comentario}}</h5>
-            <p class="card-text text-end">{{ c.created | naturaltime}}</p>
-          </div>
-        </div>
-         
-        
-      {% endif %}
-      {% endfor %} -->
+     
       
       
         
         
       <div>
-        <!-- {% if comentarios %}
-
-                    <h2 class="my-5">Comentarios Publicados</h2>
-                    
-
-                        {% for comentariosart in comentarios  %}
-                            {% if comentariosart.entradacalendarios_id == articulo.id %}
-                            <div class="card">
-                              <div class="card-body">
-                                <h5 class="card-title">{{ comentariosart.titulocomentario}}</h5>
-                                
-                                <p class="card-text">{{ comentariosart.comentario}}</p>
-                                <p class="card-text">Creado: {{comentariosart.created | naturaltime}}</p>
-                                <p class="card-text">Comentado por: <img src="{{comentariosart.autorcoment.perfil.imagenperfil.url}}" class="rounded-circle" width="50" height="50" alt="">&nbsp;{{comentariosart.autorcoment}}</p>
-                              </div>
-                            </div>
-                            {% endif %}
-
-                        {% endfor %}    
-                 
-               {% else %}
-                    <div class="alert alert-warning" role="alert">
-                      <p>Esta publicacion aun no tiene comentarios</p>
-                    </div>
-               {% endif %} -->
+        
   </div>
 
 
