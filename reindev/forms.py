@@ -25,12 +25,12 @@ class crearcategoriasform(forms.ModelForm):
 
 
 class crearcuentaform(UserCreationForm):
-    first_name=forms.CharField(label='Nombre:',widget=forms.TextInput(attrs={'class':'form-control rounded-pill fs-5 fw-bolder mb-3','placeholder':'Ingrese un nombre'}))
-    last_name=forms.CharField(label='Apellido: ',widget=forms.TextInput(attrs={'class':'form-control rounded-pill fs-5 fw-bolder mb-3','placeholder':'Ingrese un apellido'}))
-    email = forms.EmailField(label='Email: ',widget=forms.EmailInput(attrs={'class':'form-control rounded-pill fs-5 fw-bolder mb-3','placeholder':'Ingrese un email'}))
-    username=forms.CharField(label='Usuario: ',widget=forms.TextInput(attrs={'class':'form-control rounded-pill fs-5 fw-bolder mb-3','placeholder':'Ingrese un Usuario'}))
-    password1 = forms.CharField(label='Contraseña',widget=forms.PasswordInput(attrs={'class':'form-control rounded-pill fs-5 fw-bolder mb-3','placeholder':'Ingrese una Contraseña'}))
-    password2 = forms.CharField(label='Confirme Password',widget=forms.PasswordInput(attrs={'class':'form-control rounded-pill fs-5 fw-bolder mb-3','placeholder':'Confirme la contraseña'}))
+    first_name=forms.CharField(label='Nombre:',widget=forms.TextInput(attrs={'class':'form-control fs-5 fw-bolder mb-3','placeholder':'Ingrese un nombre'}))
+    last_name=forms.CharField(label='Apellido: ',widget=forms.TextInput(attrs={'class':'form-control fs-5 fw-bolder mb-3','placeholder':'Ingrese un apellido'}))
+    email = forms.EmailField(label='Email: ',widget=forms.EmailInput(attrs={'class':'form-control fs-5 fw-bolder mb-3','placeholder':'Ingrese un email'}))
+    username=forms.CharField(label='Usuario: ',widget=forms.TextInput(attrs={'class':'form-control fs-5 fw-bolder mb-3','placeholder':'Ingrese un Usuario'}))
+    password1 = forms.CharField(label='Contraseña',widget=forms.PasswordInput(attrs={'class':'form-control fs-5 fw-bolder mb-3','placeholder':'Ingrese una Contraseña'}))
+    password2 = forms.CharField(label='Confirme Password',widget=forms.PasswordInput(attrs={'class':'form-control fs-5 fw-bolder mb-3','placeholder':'Confirme la contraseña'}))
 
     class Meta:
         model= User
@@ -50,12 +50,13 @@ class actualizarforoform(forms.ModelForm):
 
 
 class actualizarperfilform(forms.ModelForm):
-    biografia = forms.CharField(required=True,label='Biografía:',widget=forms.TextInput(attrs={'class':'form-control rounded-pill fs-5 fw-bolder mb-3','name':'biografiaperfil'}))
-    imagenperfil =forms.ImageField(required=True,label='Ingrese una imagen',widget=forms.FileInput(attrs={'class':'form-control rounded-pill fs-5 fw-bolder mb-3','name':'imagenperfil'}))
+    # biografia = forms.CharField(required=True,label='Biografía:',widget=forms.TextInput(attrs={'class':'form-control rounded-pill fs-5 fw-bolder mb-3','name':'biografiaperfil'}))
+    # imagenperfil =forms.ImageField(required=True,label='Ingrese una imagen',widget=forms.FileInput(attrs={'class':'form-control rounded-pill fs-5 fw-bolder mb-3','name':'imagenperfil'}))
+    # nombreempesauser = forms.CharField(required=False,label='Elija la empresa',widget=forms.(attrs={'class':'form-control rounded-pill fs-5 fw-bolder mb-3','name':'nombreempesauser'}))
 
     class Meta:
         model = perfil
-        fields = ['biografia','imagenperfil']
+        fields = ['biografia','imagenperfil','nombreempesauser','puesto_cargo']
 
 class comentariosblogform(forms.ModelForm):
     

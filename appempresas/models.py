@@ -20,4 +20,4 @@ class empresasm(models.Model):
         ordering = ['-created']
     
     def __str__(self):
-        return f'{self.usuarioempresa.username}:{self.nombreempresa}'
+        return f'{self.nombreempresa}'
