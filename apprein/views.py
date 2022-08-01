@@ -14,6 +14,8 @@ from appcategorias.models import categorias
 from django.core.paginator import Paginator
 from django.http import Http404
 from appblog.models import notificacionesblog
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 # from django.db.models import Q
 
 # from appblog.models import blog #importamos los modelos de la appblog
@@ -178,10 +180,75 @@ def buscardorgeneral(request):
     
      return render(request,'apprein/buscadorglobal.html',contexto)
 
+# def resultadosporcategoria(request):
+#      return render(request,'apprein/resultadosporcategoria.html',{'mensaje':'hola mundo'})
 
-def actividad(request):
-     pass
-     return render(request,'apprein/actividad.html')
+def resultadosporcategoria(request,id):   
+    
+     articuloblog = blogm.objects.filter(categoriablog = id)
+     
+     articuloforo = forom.objects.filter(categoriasforo = id)
+     articuloevento = eventosm.objects.filter(categoriaevento = id)
+     valor = categorias.objects.get(id=id)
+     contexto = {
+          
+          'articuloblog': articuloblog,
+          'articuloforo': articuloforo,
+          'articuloevento': articuloevento,
+          'valor':valor,
+          'resultadosblog': blogm.objects.filter(categoriablog = id).count(),
+          'resultadosforo': forom.objects.filter(categoriasforo = id).count(),
+          'resultadosevento': eventosm.objects.filter(categoriaevento = valor).count(),
+     }
+
+     return render(request,'apprein/resultadosporcategoria.html',contexto)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# def actividad(request):
+#      pass
+#      return render(request,'apprein/actividad.html')
 
      # if request.method=='POST':
      #      formcategorias = crearcategoriasform(request.POST)

@@ -79,9 +79,7 @@ def eliminarblog(request,id):
     return redirect ('blog')
 
 
-class mostrarblog(DetailView):
-
-    
+class mostrarblog(DetailView):   
     
     model = blogm
 
