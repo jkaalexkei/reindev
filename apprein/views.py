@@ -204,6 +204,15 @@ def resultadosporcategoria(request,id):
      return render(request,'apprein/resultadosporcategoria.html',contexto)
 
 
+def listarusuarios(request):
+     usuarios = User.objects.all()
+
+     contexto = {
+          'usuarios':usuarios
+     }
+
+     return render(request,'apprein/listadousuarios.html',contexto)
+
 
 
 

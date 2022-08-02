@@ -47,7 +47,7 @@
     </div>
         
   </div>
-
+  {% if user.is_authenticated %}
   {% if foro %}    
   
   {% for foropublicados in foro %}
@@ -89,9 +89,9 @@
                   {% endfor %}
                 </p>
             
-            {% if user.is_authenticated %}
+            
                 <p>Ingresar a la conversación: <a href="{% url 'chatforo' foropublicados.id %}" class="text-decoration-none enlace">Click Aquí</a></p>
-            {% endif %}
+            
               
             
             <p style="text-align:right;">Creado {{foropublicados.created|naturaltime }}</p>
@@ -114,6 +114,7 @@
   </div>
 
   {% endfor %}
+  {% endif %}
   {% endif %}
 </div>
 
