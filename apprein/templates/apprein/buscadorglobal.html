@@ -11,7 +11,7 @@
 </style>
 <div class="row">
     <div class="col-lg-12">
-
+       
         <h3 class="mb-4 py-1">Resultados encontrados para la busqueda: '{{valor}}'</h3>
         <div class="accordion mt-4" id="accordionExample">
             <div class="accordion-item">
@@ -226,6 +226,16 @@
             </div>
         </div>
 
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        {% if prueba %}
+        {% for p in prueba  %}
+          <p>{{p.nombre}}</p>
+        {% endfor %}
+          
+        {% endif %}
     </div>
 </div>
 {% endblock  %}

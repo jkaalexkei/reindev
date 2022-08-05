@@ -12,13 +12,13 @@
 <div class="row">
     <div class="col-lg-12">
 
-        <h3 class="mb-4 py-1">Resultados encontrados para la categoria: '{{valor.nombre}}'</h3>
+        <h3 class="mb-4 py-1">Resultados encontrados para la categoria: '{{valorporcategorias.nombre}}'</h3>
         <div class="accordion mt-4" id="accordionExample">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
                     <button class="accordion-button fw-bold enlace" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Blog encontrados {{resultadosblog}}
+                        Blog encontrados {{resultadosblogporcat}}
                     </button>
                 </h2>
                 <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
@@ -26,8 +26,8 @@
                     <div class="accordion-body">
                         <div class="row">
                             <div class="col-lg-12">
-                                {% if articuloblog %}
-                                {% for datosblog in articuloblog  %}
+                                {% if articuloblogporcat %}
+                                {% for datosblog in articuloblogporcat  %}
                                 <div class="row p-0 border m-0 d-flex align-items-center mb-2">
                                     <div class="col-3 p-0">
                                         <img src="{{ datosblog.imagenblog.url }}" class="rounded-2 imagen" alt="...">
@@ -75,7 +75,7 @@
                                 {% endfor %}
                                 {% else %}
                                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                    <p>No se encontraron coincidencias por {{valor.nombre}}</p>
+                                    <p>No se encontraron coincidencias por {{valorporcategorias.nombre}}</p>
                                     <button type="button" class="btn-close" data-bs-dismiss="alert"
                                         aria-label="Close"></button>
                                 </div>
@@ -89,7 +89,7 @@
                 <h2 class="accordion-header" id="headingTwo">
                     <button class="accordion-button collapsed fw-bold enlace" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Foros encontrados {{resultadosforo}}
+                        Foros encontrados {{resultadosforoporcat}}
                     </button>
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
@@ -98,8 +98,8 @@
 
                         <div class="row">
                             <div class="col-lg-12">
-                                {% if articuloforo %}
-                                {% for datosforo in articuloforo  %}
+                                {% if articuloforoporcat %}
+                                {% for datosforo in articuloforoporcat  %}
                                 <div class="row p-0 border m-0 d-flex align-items-center mb-2">
                                     <div class="col-3 p-0">
                                         <img src="{{ datosforo.imagenforo.url }}" class="rounded-2 imagen" alt="...">
@@ -147,7 +147,7 @@
                                 {% endfor %}
                                 {% else %}
                                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                    <p>No se encontraron coincidencias por {{valor.nombre}}</p>
+                                    <p>No se encontraron coincidencias por {{valorporcategorias.nombre}}</p>
                                     <button type="button" class="btn-close" data-bs-dismiss="alert"
                                         aria-label="Close"></button>
                                 </div>
@@ -161,16 +161,16 @@
                 <h2 class="accordion-header" id="headingThree">
                     <button class="accordion-button collapsed fw-bold enlace" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Eventos encontrados {{resultadosevento}}
+                        Eventos encontrados {{resultadoseventoporcat}}
                     </button>
                 </h2>
                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        {% if articuloevento %}
+                        {% if articuloeventoporcat %}
 
                     
-                        {% for datoseventos in articuloevento  %}
+                        {% for datoseventos in articuloeventoporcat  %}
                         <div class="row p-0 border m-0 d-flex align-items-center mb-2">
                             <div class="col-3 p-0">
                                 <img src="{{ datoseventos.imagenevento.url }}" class="rounded-2 imagen" alt="...">
@@ -217,7 +217,7 @@
                         {% endfor %}
                         {% else %}
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            <p>No se encontraron coincidencias por {{valor.nombre}}</p>
+                            <p>No se encontraron coincidencias por {{valorporcategorias.nombre}}</p>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                         {% endif%}

@@ -16,7 +16,7 @@ from django.http import Http404
 from appblog.models import notificacionesblog
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-# from django.db.models import Q
+from django.db.models import Q
 
 # from appblog.models import blog #importamos los modelos de la appblog
 # Create your views here.
@@ -165,6 +165,7 @@ def buscardorgeneral(request):
      articulosblog = blogm.objects.filter(tituloblog__icontains = valor).order_by('-created')
      articuloforo = forom.objects.filter(tituloforo__icontains = valor).order_by('-created')
      articuloevento = eventosm.objects.filter(tituloevento__icontains = valor).order_by('-created')
+     
 
      contexto = {
           'articuloblog':articulosblog,
@@ -174,6 +175,7 @@ def buscardorgeneral(request):
           'resultadosforo': forom.objects.filter(tituloforo__icontains = valor).count(),
           'resultadosevento': eventosm.objects.filter(tituloevento__icontains = valor).count(),
           'valor':valor,
+          
           
           
      }
@@ -192,13 +194,13 @@ def resultadosporcategoria(request,id):
      valor = categorias.objects.get(id=id)
      contexto = {
           
-          'articuloblog': articuloblog,
-          'articuloforo': articuloforo,
-          'articuloevento': articuloevento,
-          'valor':valor,
-          'resultadosblog': blogm.objects.filter(categoriablog = id).count(),
-          'resultadosforo': forom.objects.filter(categoriasforo = id).count(),
-          'resultadosevento': eventosm.objects.filter(categoriaevento = valor).count(),
+          'articuloblogporcat': articuloblog,
+          'articuloforoporcat': articuloforo,
+          'articuloeventoporcat': articuloevento,
+          'valorporcategorias':valor,
+          'resultadosblogporcat': blogm.objects.filter(categoriablog = id).count(),
+          'resultadosforoporcat': forom.objects.filter(categoriasforo = id).count(),
+          'resultadoseventoporcat': eventosm.objects.filter(categoriaevento = valor).count(),
      }
 
      return render(request,'apprein/resultadosporcategoria.html',contexto)
