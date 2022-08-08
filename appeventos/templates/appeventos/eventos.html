@@ -57,62 +57,51 @@
  
   {% for eventospublicados in eventos %}
 
-  <div class="col-12 col-lg-6 mb-2">
-    <div class="accordion" id="accordionPanelsStayOpenExample">
-      <div class="card">
-       
-       {% if eventospublicados.imagenevento %}
-       <img src="{{ eventospublicados.imagenevento.url }}" class="img-fluid rounded-3" alt="..." style="width:100%; height:20rem;">
-               
-       {% endif %}
-         
+
+  <div class="col-12 col-lg-4 mb-3 d-flex justify-content-between">
+
+    <div class="card border rounded" style="width: 20rem;">
+      {% if eventospublicados.imagenevento %}
+      <img src="{{ eventospublicados.imagenevento.url }}" class="card-img-top" alt="..." style="width:100%; height:15rem;">
+      {% endif %}
+      <div class="card-body">
+        <h5 class="card-title"><a class="fs-5 fw-bold enlace"
+            href="{% url 'mostrarevento' eventospublicados.id %}">{{eventospublicados.tituloevento}}</a></h5>
+
+        <p class="card-text">Categoria:
+          {% for listadocategorias in eventospublicados.categoriaevento.all %}
+          <span class="d-inline">{{listadocategorias.nombre}} / </span>
+          {% endfor %}
+        </p>
+        <p class="card-text">Creado {{eventospublicados.created|naturaltime }}</p>
+        
+          <p style="text-align:right;" class="card-text"></p>Por {{ eventospublicados.autorevento}}&nbsp;<img
+          class="border rounded-circle" src="{{eventospublicados.autorevento.perfil.imagenperfil.url}}" alt="" width="50"
+          height="50"></p>
+          {% if user.is_authenticated %}
+          <p style="text-align:justify;">Dale Play: <a class="text-decoration-none" href="{{eventospublicados.eventolink}}" target="_blank">Click Aquí</a> </p>
+          {% endif %}
+          <p class="card-text" style="text-align:justify;">Fecha del Evento: <br>{{eventospublicados.fechaevento }}</p>
+          <p class="card-text" style="text-align:right;">Creado {{eventospublicados.created|naturaltime }}</p>
+          <p class="card-text" style="text-align:right;">Por {{ eventospublicados.autorevento }}&nbsp;<img class="border rounded-circle" src="{{eventospublicados.autorevento.perfil.imagenperfil.url}}" alt="" width="50" height="50"></p>
 
       </div>
-      <div class="accordion-item border-0">
-        <h2 class="accordion-header" id="panelsStayOpen-heading{{eventospublicados.id}}">
-          <div class="container d-flex">
-            <div class="w-100">
-              <p class="h5 fw-bold enlace">Leer detalles</p><!--Agregar la vista para el articulo completo-->
-            </div>
-            <div class="flex-shrink-1 m-auto">
-              <button class="accordion-button bg-white text-dark p-0" type="button" data-bs-toggle="collapse"
-                data-bs-target="#panelsStayOpen-collapse{{eventospublicados.id}}" aria-expanded="true"
-                aria-controls="panelsStayOpen-collapse{{eventospublicados.id}}">
-              </button>
-            </div>
-          </div>
-        </h2>
-        <div id="panelsStayOpen-collapse{{eventospublicados.id}}" class="accordion-collapse collapse border-0"
-          aria-labelledby="panelsStayOpen-heading{{eventospublicados.id}}">
-          <div class="accordion-body">
-            <a class="fs-5 fw-bold enlace" href="{% url 'mostrarevento' eventospublicados.id %}">{{eventospublicados.tituloevento}}</a>
-            <p style="text-overflow: ellipsis; text-align: justify;white-space: nowrap;overflow: hidden; font-size: 1rem;">{{eventospublicados.contenidoevento}}</p>
-            <p style="text-align:justify;">Categoria:
-                  {% for listadocategorias in eventospublicados.categoriaevento.all %}
-                <span class="d-inline">{{listadocategorias.nombre}} / </span> 
-                
-                  {% endfor %}
-                </p>
-            {% if user.is_authenticated %}
-                 <p style="text-align:justify;">Dale Play: <a class="text-decoration-none" href="{{eventospublicados.eventolink}}" target="_blank">Click Aquí</a> </p>
-            {% endif %}
-            <p style="text-align:justify;">Fecha del Evento: {{eventospublicados.fechaevento }}</p>
-            <p style="text-align:right;">Creado {{eventospublicados.created|naturaltime }}</p>
-            <p style="text-align:right;">Por {{ eventospublicados.autorevento }}&nbsp;<img class="border rounded-circle" src="{{eventospublicados.autorevento.perfil.imagenperfil.url}}" alt="" width="50" height="50"></p>
-          </div>
-          
-        </div>
-        {% if user.is_authenticated %}
-        <div>
-          {% if request.user == eventospublicados.autorevento %}
-              <a onclick="abrirmodaleditarevento('{% url 'editarevento' eventospublicados.id %}')" class="btn btn-lg text-warning" role="button"><i class="fa fa-pen"></i></a>
-              <a href="{% url 'eliminarevento' eventospublicados.id %}" class="btn btn-lg text-danger"><i class="fa fa-trash"></i></a>
-          {% endif %}
-        </div>
+      {% if user.is_authenticated %}
+      <div class="card-footer d-flex justify-content-end">
+        {% if request.user == eventospublicados.autorevento %}
+        <a onclick="abrirmodaleditareventos('{% url 'editarevento' eventospublicados.id %}')" class="btn btn-lg text-warning"
+          role="button"><i class="fa fa-pen"></i></a>
+        <a href="{% url 'eliminarevento' eventospublicados.id %}" class="btn btn-lg text-danger"><i
+            class="fa fa-trash"></i></a>
         {% endif %}
       </div>
+      {% endif %}
     </div>
+
+
+
   </div>
+
 
   {% endfor %}
  

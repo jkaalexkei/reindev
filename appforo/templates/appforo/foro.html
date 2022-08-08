@@ -52,66 +52,43 @@
   
   {% for foropublicados in foro %}
 
-  <div class="col-12 col-lg-6 mb-2">
-    <div class="accordion" id="accordionPanelsStayOpenExample">
-      <div class="card">
-       
-       {% if foropublicados.imagenforo %}
-       <img src="{{ foropublicados.imagenforo.url }}" class="img-fluid rounded-3" alt="..." style="width:100%; height:20rem;">
-               
-       {% endif %}
-         
+  <div class="col-12 col-lg-4 mb-3 d-flex justify-content-between">
 
+    <div class="card border rounded" style="width: 20rem;">
+      {% if foropublicados.imagenforo %}
+      <img src="{{ foropublicados.imagenforo.url }}" class="card-img-top" alt="..." style="width:100%; height:15rem;">
+      {% endif %}
+      <div class="card-body">
+        <h5 class="card-title"><a class="fs-5 fw-bold enlace"
+            href="{% url 'mostrarforo' foropublicados.id %}">{{foropublicados.tituloforo}}</a></h5>
+
+        <p class="card-text">Categoria:
+          {% for listadocategorias in foropublicados.categoriasforo.all %}
+          <span class="d-inline">{{listadocategorias.nombre}} / </span>
+          {% endfor %}
+        </p>
+        <p class="card-text">Creado {{foropublicados.created|naturaltime }}</p>
+        <p style="text-align:right;" class="card-text"></p>Por {{ foropublicados.autorforo}}&nbsp;<img
+          class="border rounded-circle" src="{{foropublicados.autorforo.perfil.imagenperfil.url}}" alt="" width="50"
+          height="50"></p>
+          <p  class="card-text">Ingresar a la conversación: <a href="{% url 'chatforo' foropublicados.id %}" class="text-decoration-none enlace">Click Aquí</a></p>
       </div>
-      <div class="accordion-item border-0">
-        <h2 class="accordion-header" id="panelsStayOpen-heading{{foropublicados.id}}">
-          <div class="container d-flex">
-            <div class="w-100">
-              <p class="h5 fw-bold enlace">Leer detalles</p><!--Agregar la vista para el articulo completo-->
-            </div>
-            <div class="flex-shrink-1 m-auto">
-              <button class="accordion-button bg-white text-dark p-0" type="button" data-bs-toggle="collapse"
-                data-bs-target="#panelsStayOpen-collapse{{foropublicados.id}}" aria-expanded="true"
-                aria-controls="panelsStayOpen-collapse{{foropublicados.id}}">
-              </button>
-            </div>
-          </div>
-        </h2>
-        <div id="panelsStayOpen-collapse{{foropublicados.id}}" class="accordion-collapse collapse border-0"
-          aria-labelledby="panelsStayOpen-heading{{foropublicados.id}}">
-          <div class="accordion-body">
-            <a class="fs-5 fw-bold enlace" href="{% url 'mostrarforo' foropublicados.id  %}">{{foropublicados.tituloforo}}</a>
-            <p style="text-overflow: ellipsis; text-align: justify;white-space: nowrap;overflow: hidden; font-size: 1rem;">{{foropublicados.contenidoforo}}</p>
-            <p style="text-align:justify;">Categoria:
-                  {% for listadocategorias in foropublicados.categoriasforo.all %}
-                <span class="d-inline">{{listadocategorias.nombre}} / </span> 
-                
-                  {% endfor %}
-                </p>
-            
-            
-                <p>Ingresar a la conversación: <a href="{% url 'chatforo' foropublicados.id %}" class="text-decoration-none enlace">Click Aquí</a></p>
-            
-              
-            
-            <p style="text-align:right;">Creado {{foropublicados.created|naturaltime }}</p>
-            <p style="text-align:right;">Por {{ foropublicados.autorforo }}&nbsp;<img class="border rounded-circle" src="{{foropublicados.autorforo.perfil.imagenperfil.url}}" alt="" width="50" height="50"></p>
-          </div>
-        </div>
-        {% if user.is_authenticated %}
-        <div>
-          {% if request.user == foropublicados.autorforo %}
-              <a onclick="abrirmodaleditarforo('{% url 'editarforo' foropublicados.id %}')" class="btn btn-lg text-warning" role="button"><i class="fa fa-pen"></i></a>
-              <a href="{% url 'eliminarforo' foropublicados.id %}" class="btn btn-lg text-danger"><i class="fa fa-trash"></i></a>
-
-          {% endif %}
-          <!-- <a href="" class="btn btn-lg text-danger"><i class="far fa-heart">&nbsp;1</i></a> -->
-          
-        </div>
+      {% if user.is_authenticated %}
+      <div class="card-footer d-flex justify-content-end">
+        {% if request.user == foropublicados.autorforo %}
+        <a onclick="abrirmodaleditarforo('{% url 'editarforo' foropublicados.id %}')" class="btn btn-lg text-warning"
+          role="button"><i class="fa fa-pen"></i></a>
+        <a href="{% url 'eliminarforo' foropublicados.id %}" class="btn btn-lg text-danger"><i
+            class="fa fa-trash"></i></a>
         {% endif %}
       </div>
+      {% endif %}
     </div>
+
+
+
   </div>
+
 
   {% endfor %}
   {% endif %}
