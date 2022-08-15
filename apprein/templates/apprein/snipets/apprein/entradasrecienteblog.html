@@ -33,7 +33,12 @@
             <div class="col-12 d-flex justify-content-between">
               <p class="py-2">Categoria:
                 {% for c in articulos.categoriablog.all  %}
-                {{c.nombre}} /
+                {{c.nombre}},
+                {% endfor %}
+              </p>
+              <p class="py-2">SubCategoria:
+                {% for c in articulos.subcategoriablog.all  %}
+                {{c.nombre}},
                 {% endfor %}
               </p>
               <p class="py-2 px-4 text-muted">Creado: {{ articulos.created | naturaltime }}</p>

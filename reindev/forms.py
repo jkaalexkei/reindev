@@ -41,7 +41,7 @@ class regitroentradaforo(forms.ModelForm):
 
    class Meta:
         model =forom
-        fields=['tituloforo','contenidoforo','imagenforo','categoriasforo']
+        fields=['tituloforo','contenidoforo','imagenforo','categoriasforo','subcategoriasforo']
 
 class actualizarforoform(forms.ModelForm):
     class Meta:
@@ -87,7 +87,7 @@ class registrareventosform(forms.ModelForm):
     
     class Meta:
         model = eventosm
-        fields = ['tituloevento','contenidoevento','imagenevento','categoriaevento','eventolink','fechaevento','horaevento','tipodeevento','videoevento']
+        fields = ['tituloevento','contenidoevento','imagenevento','categoriaevento','subcategoriaevento','eventolink','fechaevento','horaevento','tipodeevento','videoevento']
 
 class actualizareventosform(forms.ModelForm):
        
@@ -109,13 +109,13 @@ class formblognuevo(forms.ModelForm):
 
     class Meta:
         model = blogm
-        fields = ['tituloblog','contenidoblog','imagenblog','categoriablog']
+        fields = ['tituloblog','contenidoblog','imagenblog','categoriablog','subcategoriablog']
 
 class actualizarblogsform(forms.ModelForm):
     
     class Meta:
         model = blogm
-        fields = ['tituloblog','contenidoblog','imagenblog','categoriablog']
+        fields = ['tituloblog','contenidoblog','imagenblog','categoriablog','subcategoriablog']
 
 
 class formmensajechatforom(forms.ModelForm):

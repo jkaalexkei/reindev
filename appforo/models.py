@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from appcategorias.models import categorias
+from appcategorias.models import categorias,subcategorias
 from django.db.models.signals import post_save
 # from appcategorias.models import categorias
 
@@ -13,6 +13,7 @@ class forom(models.Model):
     imagenforo=models.ImageField(default='img/logo.jpg', upload_to='foro',verbose_name='Imagen del foro:')
     autorforo=models.ForeignKey(User,on_delete=models.CASCADE,related_name='foroms', verbose_name='Autor del foro:')
     categoriasforo=models.ManyToManyField(categorias,related_name='categoriasforo',verbose_name='Categorias')
+    subcategoriasforo=models.ManyToManyField(subcategorias,related_name='subcategoriasforo',verbose_name='Subategorias')
     created=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField(auto_now_add=True)
 

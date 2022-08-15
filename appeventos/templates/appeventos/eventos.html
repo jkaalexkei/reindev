@@ -70,7 +70,12 @@
 
         <p class="card-text">Categoria:
           {% for listadocategorias in eventospublicados.categoriaevento.all %}
-          <span class="d-inline">{{listadocategorias.nombre}} / </span>
+          <span class="d-inline">{{listadocategorias.nombre}}, </span>
+          {% endfor %}
+        </p>
+        <p class="card-text">SubCategoria:
+          {% for listadosubcategorias in eventospublicados.subcategoriaevento.all %}
+          <span class="d-inline">{{listadosubcategorias.nombre}}, </span>
           {% endfor %}
         </p>
         <p class="card-text">Creado {{eventospublicados.created|naturaltime }}</p>

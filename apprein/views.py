@@ -10,7 +10,7 @@ from reindev.forms import crearcuentaform, actualizarperfilform,registrareventos
 from .models import perfil
 from appblog.models import blogm
 # from appblog.models import categorias
-from appcategorias.models import categorias
+from appcategorias.models import categorias,subcategorias
 from django.core.paginator import Paginator
 from django.http import Http404
 from appblog.models import notificacionesblog
@@ -204,6 +204,26 @@ def resultadosporcategoria(request,id):
      }
 
      return render(request,'apprein/resultadosporcategoria.html',contexto)
+
+def resultadosporsubcategoria(request,id):   
+    
+     articuloblog = blogm.objects.filter(subcategoriablog = id)
+     
+     articuloforo = forom.objects.filter(subcategoriasforo = id)
+     articuloevento = eventosm.objects.filter(subcategoriaevento = id)
+     valor = subcategorias.objects.get(id=id)
+     contexto = {
+          
+          'articuloblogporsubcat': articuloblog,
+          'articuloforoporsubcat': articuloforo,
+          'articuloeventoporsubcat': articuloevento,
+          'valorporsubcategorias':valor,
+          'resultadosblogporsubcat': blogm.objects.filter(subcategoriablog = id).count(),
+          'resultadosforoporsubcat': forom.objects.filter(subcategoriasforo = id).count(),
+          'resultadoseventoporsubcat': eventosm.objects.filter(subcategoriaevento = valor).count(),
+     }
+
+     return render(request,'apprein/resultadosporsubcategoria.html',contexto)
 
 
 def listarusuarios(request):

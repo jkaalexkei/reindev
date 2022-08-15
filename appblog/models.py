@@ -6,7 +6,7 @@
 from django.db import models
 
 from django.contrib.auth.models import User
-from appcategorias.models import categorias
+from appcategorias.models import categorias,subcategorias
 from django.db.models.signals import post_save
 
 
@@ -18,7 +18,7 @@ class blogm(models.Model):
     autorblog=models.ForeignKey(User,on_delete=models.CASCADE,related_name='blogm',verbose_name='Autor')
     imagenblog=models.ImageField(default='logo.jpg',upload_to='blog',null=True,blank=True,verbose_name='Imagen del blog')
     categoriablog = models.ManyToManyField(categorias,related_name='categoriasblog',verbose_name='Categorias')
-    
+    subcategoriablog = models.ManyToManyField(subcategorias,related_name='subcategoriasblog',verbose_name='Subcategorias')
     created=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField(auto_now_add=True)
     

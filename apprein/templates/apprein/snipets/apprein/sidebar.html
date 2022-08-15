@@ -55,7 +55,7 @@
                 
                     {% for subc in subcat  %}                            
                         {% if subc.categoriarel_id == cat.id %}
-                        <li class="list-group-item"><a href="" class="bg-subcat text-dark text-decoration-none d-block p-2">{{subc.nombre}}</a></li>
+                        <li class="list-group-item"><a href="{% url 'resultadosporsubcategoria' subc.id %}" class="bg-subcat text-dark text-decoration-none d-block p-2">{{subc.nombre}}</a></li>
                         {% endif %}    
                     {% endfor %}
                 

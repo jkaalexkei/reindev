@@ -33,12 +33,14 @@ def crearevento(request):
     
     if request.method == 'POST':
         categoria = request.POST['categoriaevento']
+        subcategoria = request.POST['subcategoriaevento']
         formevento = registrareventosform(request.POST,request.FILES)
         if formevento.is_valid():
             evento = formevento.save(commit=False)
             evento.autorevento = usuario
             evento.save()
             evento.categoriaevento.add(categoria)
+            evento.subcategoriaevento.add(subcategoria)
             messages.success(request,'Evento creado con éxito')
             
             return redirect('eventos')

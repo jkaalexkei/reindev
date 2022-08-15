@@ -30,6 +30,12 @@
               
                 {% endfor %}
               </p>
+              <p style="text-align:justify;">SubCategoria:
+                {% for listadosubcategorias in datosencontrados.subcategoriaevento.all %}
+              <span class="d-inline">{{listadosubcategorias.nombre}} / </span> 
+              
+                {% endfor %}
+              </p>
              <!-- Button trigger modal -->
               <a role='button' class="enlace" data-bs-toggle="modal" data-bs-target="#video">
                 Ver video del evento

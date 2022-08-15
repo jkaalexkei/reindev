@@ -72,7 +72,12 @@
 
         <p class="card-text">Categoria:
           {% for listadocategorias in blogpublicados.categoriablog.all %}
-          <span class="d-inline">{{listadocategorias.nombre}} / </span>
+          <span class="d-inline">{{listadocategorias.nombre}},  </span>
+          {% endfor %}
+        </p>
+        <p class="card-text">Subcategorias:
+          {% for listadosubcategorias in blogpublicados.subcategoriablog.all %}
+          <span class="d-inline">{{listadosubcategorias.nombre}},  </span>
           {% endfor %}
         </p>
         <p class="card-text">Creado {{blogpublicados.created|naturaltime }}</p>

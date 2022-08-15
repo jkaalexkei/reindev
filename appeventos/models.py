@@ -17,7 +17,7 @@ class eventosm(models.Model):
     autorevento=models.ForeignKey(User,on_delete=models.CASCADE,related_name='eventosm',verbose_name='Autor')
     imagenevento=models.ImageField(default='logo.jpg',upload_to='eventos',null=True,blank=True,verbose_name='Imagen del evento')
     categoriaevento = models.ManyToManyField(categorias,related_name='categoriasevento',verbose_name='Categorias')
-    
+    subcategoriaevento = models.ManyToManyField(subcategorias,related_name='subcategoriasevento',verbose_name='Subcategorias')
     eventolink = models.CharField(max_length=200,verbose_name='Link evento')
     fechaevento = models.DateField(verbose_name='Fecha del evento')
     horaevento = models.TimeField(auto_now=False,verbose_name='Hora del evento')

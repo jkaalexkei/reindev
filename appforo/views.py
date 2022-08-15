@@ -31,12 +31,14 @@ def agregarforo(request):
     usuario = get_object_or_404(User,pk=request.user.pk)
     if request.method == 'POST':
         categoria = request.POST['categoriasforo']
+        subcategoria = request.POST['subcategoriasforo']
         formularioforo = regitroentradaforo(request.POST,request.FILES)
         if formularioforo.is_valid():
             foro = formularioforo.save(commit=False)
             foro.autorforo = usuario
             foro.save()
             foro.categoriasforo.add(categoria)
+            foro.subcategoriasforo.add(subcategoria)
             
             return redirect('foro')
     else:

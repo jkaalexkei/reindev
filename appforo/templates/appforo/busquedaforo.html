@@ -51,7 +51,13 @@
                             <p class="fs-5 fw-bold m-1 ps-2"><a href="" class="enlace">{{ datosforo.tituloforo}}</a></p>
                             <p style="text-align:justify;" class="m-1 ps-2">Categoria:
                                 {% for listadocategorias in datosforo.categoriasforo.all %}
-                            <span class="d-inline">{{listadocategorias.nombre}} / </span> 
+                            <span class="d-inline">{{listadocategorias.nombre}}, </span> 
+                            
+                                {% endfor %}
+                            </p>
+                            <p style="text-align:justify;" class="m-1 ps-2">SubCategoria:
+                                {% for listadosubcategorias in datosforo.subcategoriasforo.all %}
+                            <span class="d-inline">{{listadosubcategorias.nombre}}, </span> 
                             
                                 {% endfor %}
                             </p>

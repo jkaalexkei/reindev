@@ -53,6 +53,12 @@
                             
                                 {% endfor %}
                             </p>
+                            <p style="text-align:justify;" class="m-0 ps-2">Subcategoria:
+                                {% for listadosubcategorias in datoseventos.subcategoriaevento.all %}
+                            <span class="d-inline">{{listadosubcategorias.nombre}} / </span> 
+                            
+                                {% endfor %}
+                            </p>
                             <p class="m-0 ps-2">Fecha del evento: {{datoseventos.fechaevento}}</p>
                             <p class="m-0 ps-2">Publicado : {{ datoseventos.created | naturaltime }}</p>
                             <div class="container-fluid d-flex justify-content-between align-items-center m-0 p-0">

@@ -32,14 +32,16 @@ def crearblog(request):
         # categoria = request.POST['categoriablog']
         # cat = categorias.objects.get(id=categoria)
         categoria = request.POST['categoriablog']
+        subcategoria = request.POST['subcategoriablog']
         formblog = formblognuevo(request.POST,request.FILES)
         if formblog.is_valid():
             blog = formblog.save(commit=False)
             blog.autorblog = usuario            
             blog.save()
             blog.categoriablog.add(categoria)
+            blog.subcategoriablog.add(subcategoria)
             # blog.save()
-            print(categoria)
+            
             messages.success(request,'Blog creado con éxito')
             
             return redirect('blog')

@@ -19,6 +19,7 @@ urlpatterns = [
     path('eliminarperfil/<str:usuario>',views.eliminarperfil,name='eliminarperfil'),
     path('buscador/',views.buscardorgeneral,name='buscadorglobal'),
     path('resultadosporcategoria/<id>',views.resultadosporcategoria,name='resultadosporcategoria'),
+    path('resultadosporsubcategoria/<id>',views.resultadosporsubcategoria,name='resultadosporsubcategoria'),
     path('listarusuarios/',views.listarusuarios,name='listarusuarios')
     # path('actividad/',views.actividad,name='actividad')
     # path('crearcategorias/',views.crearcategorias,name='crearcategorias'),

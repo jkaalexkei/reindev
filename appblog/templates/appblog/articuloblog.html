@@ -25,7 +25,13 @@
             alt="" width="50" height="50"> <small class="text-muted">Autor: {{ datosencontrados.autorblog }}</small></p>
         <p style="text-align:justify;">Categoria:
           {% for listadocategorias in datosencontrados.categoriablog.all %}
-          <span class="d-inline">{{listadocategorias.nombre}} / </span>
+          <span class="d-inline">{{listadocategorias.nombre}}, </span>
+
+          {% endfor %}
+        </p>
+        <p style="text-align:justify;">Subcategoria:
+          {% for listadosubcategorias in datosencontrados.subcategoriablog.all %}
+          <span class="d-inline">{{listadosubcategorias.nombre}}, </span>
 
           {% endfor %}
         </p>
