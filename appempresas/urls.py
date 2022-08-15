@@ -8,10 +8,10 @@ urlpatterns = [
     
     path('crearempresa/',views.crearempresas, name='crearempresas'),
     path('empresasregistradas/',views.empresasregistradas,name="empresasregistradas"),
-    # path('descripcionblog/<pk>',views.mostrarblog.as_view(),name='mostrarblog'),
-    # path('eliminarblog/<id>',views.eliminarblog,name='eliminarblog'),
-    # path('editarblog/<id>/',views.editarblog,name="editarblog"),
-    # path('busquedablog/',views.busquedablog.as_view(),name='busquedablog'),
+    path('eliminarempresa/<id>',views.eliminarempresa,name='eliminarempresa'),
+    path('editarempresa/<id>/',views.editarempresa,name="editarempresa"),
+    path('busquedaempresa/',views.busquedaempresa.as_view(),name='busquedaempresa'),
+    path('descripcionempresa/<pk>',views.mostrarempresa.as_view(),name='mostrarempresa'),
     
     
     

@@ -135,7 +135,13 @@ class formcrearempresas(forms.ModelForm):
     razonsocialempresa = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','rows':'3'}))
     class Meta:
         model=empresasm
-        fields = '__all__'
+        fields = ['nombreempresa','razonsocialempresa','imagenempresa']
+
+class actualizarempresasform(forms.ModelForm):
+    razonsocialempresa = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','rows':'3'}))
+    class Meta:
+        model=empresasm
+        fields = ['nombreempresa','razonsocialempresa','imagenempresa']
 
 class formcalendario(forms.ModelForm):
     class Meta:

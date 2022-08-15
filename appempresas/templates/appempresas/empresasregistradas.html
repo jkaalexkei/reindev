@@ -22,6 +22,16 @@
               <p class="card-text">Descripción: {{e.razonsocialempresa}}</p>
               <!-- <p class="card-text">Email: {{e.correoempresa}}</p> -->
             </div>
+            {% if user.is_authenticated %}
+                <div class="card-footer d-flex justify-content-end">
+                    {% if request.user == e.usuarioempresa %}
+                    <a onclick="abrirmodaleditarempresa('{% url 'editarempresa' e.id %}')" class="btn btn-lg text-warning"
+                    role="button"><i class="fa fa-pen"></i></a>
+                    <a href="{% url 'eliminarempresa' e.id %}" class="btn btn-lg text-danger"><i
+                        class="fa fa-trash"></i></a>
+                    {% endif %}
+                </div>
+            {% endif %}
           </div>
           {% endfor %}
         

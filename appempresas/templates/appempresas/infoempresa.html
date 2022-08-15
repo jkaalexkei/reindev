@@ -1,0 +1,67 @@
+{% extends "apprein/plantilla.html" %}
+{% load humanize %}
+{% load static %}
+
+{% block title %} Empresas REIN {% endblock %}
+
+
+
+{% block content %}
+<style>
+    .imagenprincipal {
+        width: 100%;
+        height: 30rem;
+    }
+</style>
+
+<div class="row justify-content-center">
+    <div class="col-10">
+        <div class="card mb-3 border-0">
+            <img src="{{ datosencontrados.imagenempresa.url }}" class="card-img-top imagenprincipal" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ datosencontrados.nombreempresa }}</h5>
+                <p class="card-text texto-justificado">{{ datosencontrados.razonsocialempresa }}</p>
+                <p class="card-text"><img class="border rounded-circle"
+                        src="{{datosencontrados.usuarioempresa.perfil.imagenperfil.url}}" alt="" width="50" height="50">
+                    <small class="text-muted">Autor: {{ datosencontrados.autorempresa }}</small></p>
+
+
+            </div>
+            <div class="card-footer mb-3">
+                {% if user.is_authenticated %}
+                <div class="text-end">
+
+                    {% if request.user == datosencontrados.usuarioempresa %}
+
+                    <a onclick="abrirmodaleditarempresa('{% url 'editarempresa' datosencontrados.id %}')"
+                        class="btn btn-md text-warning" role="button"><i class="fa fa-pen"></i> Editar</a>
+                    <a href="{% url 'eliminarempresa' datosencontrados.id %}" class="btn btn-md text-danger"><i
+                            class="fa fa-trash"></i> Eliminar</a>
+
+                    {% endif %}
+
+
+
+                    <a href="{% url 'empresasregistradas' %}" class="btn btn-md text-success "><i class="fa fa-arrow-circle-up"></i> Volver</a>
+                </div>
+                {% else %}
+                <div class="text-end">
+                    <a href="{% url 'empresasregistradas' %}" class="btn btn-lg text-success "><i class="fa fa-arrow-circle-up"></i> Volver</a>
+                </div>
+                {% endif %}
+            </div>
+
+
+
+
+            <div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,5 +1,6 @@
 {% load static %}
 {% load crispy_forms_tags %}
+{% load widget_tweaks %}
 <div class="modal-dialog modal-md" role="document">
     <div class="modal-content">
         <div class="modal-header">
@@ -13,7 +14,12 @@
             <form action="{% url 'crearempresas' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
 
-                {{formempresa | crispy }}
+                <label for="">Nombre</label>
+                {% render_field formempresa.nombreempresa class="form-control mb-2" %}
+                <label for="">Descripción</label>
+                {% render_field formempresa.razonsocialempresa class="form-control mb-2" rows="3" %}
+                <label for="">Imagen Empresa</label>
+                {% render_field formempresa.imagenempresa class="form-control mb-2" %}
                
                 
                 

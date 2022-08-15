@@ -61,6 +61,7 @@
             <div class="modal fade" id="agregarmensajechatforo" role="dialog"></div>
             <div class="modal fade" id="agregarrespuestachatforo" role="dialog"></div>
             <div class="modal fade" id="agregaremmpresa" role="dialog"></div>
+            <div class="modal fade" id="editarempresa" role="dialog"></div>
             <div class="modal fade" id="agregarcalendario" role="dialog"></div>
             <div class="modal fade" id="editarcalendario" role="dialog"></div>
 
@@ -204,6 +205,14 @@
         $(this).modal('show');
       })
     }
+    
+
+    function abrirmodaleditarempresa(url){
+      $('#editarempresa').load(url,function(){
+        $(this).modal('show');
+      })
+    }
+
 
     
   </script>
