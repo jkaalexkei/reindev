@@ -58,6 +58,7 @@
             <div class="modal fade" id="agregarcomentarioblog" role="dialog"></div>
             <div class="modal fade" id="agregarcomentarioeventos" role="dialog"></div>
             <div class="modal fade" id="agregarcomentarioforo" role="dialog"></div>
+            <div class="modal fade" id="editarcomentarioforo" role="dialog"></div>
             <div class="modal fade" id="agregarmensajechatforo" role="dialog"></div>
             <div class="modal fade" id="agregarrespuestachatforo" role="dialog"></div>
             <div class="modal fade" id="agregaremmpresa" role="dialog"></div>
@@ -168,6 +169,11 @@
         $(this).modal('show');
       })
     }
+    function abrirmodaleditarcomentarioforo(url){
+      $('#editarcomentarioforo').load(url,function(){
+        $(this).modal('show');
+      })
+    }
     function abrirmodalagregarmensajechatforo(url){
       $('#agregarmensajechatforo').load(url,function(){
         $(this).modal('show');
@@ -212,6 +218,8 @@
         $(this).modal('show');
       })
     }
+
+
 
 
     

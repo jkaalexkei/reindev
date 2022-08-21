@@ -11,5 +11,7 @@ urlpatterns = [
     path('agregarcomentarioblog/<id>',views.agregarcomentarioblog,name='agregarcomentarioblog'),
     path('agregarcomentarioevento/<id>',views.agregarcomentarioeventos,name='agregarcomentarioeventos'),
     path('agregarcomentarioforo/<id>',views.agregarcomentarioforo,name='agregarcomentarioforo'),
+    path('editarcomentarioforo/<id>',views.editarcomentarioforo,name='editarcomentarioforo'),
+    path('eliminarcomentarioforo/<id>',views.eliminarcomentarioforo,name='eliminarcomentarioforo'),
    
 ]

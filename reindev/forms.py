@@ -66,6 +66,14 @@ class comentariosblogform(forms.ModelForm):
         model = comentariosblogm
         fields = ['comentario']
 
+class editarcomentariosforoform(forms.ModelForm):
+    
+    # comentario = forms.CharField(label="Comentario",widget=forms.Textarea(attrs={'class':'form-control','rows':'3'}))
+
+    class Meta:
+        model = comentariosforom
+        fields = ['comentarioforo']
+
 class comentariosforoform(forms.ModelForm):
     
     comentarioforo = forms.CharField(label="Comentario",widget=forms.Textarea(attrs={'class':'form-control','rows':'3'}))

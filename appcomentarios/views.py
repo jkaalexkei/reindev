@@ -7,10 +7,20 @@ from django.views.generic.detail import DetailView
 from appblog.models import blogm
 from appeventos.models import eventosm
 from appforo.models import forom
+from appcomentarios.models import comentariosblogm, comentariosforom,comentarioseventosm
 
-from reindev.forms import comentariosblogform,comentarioseventoform,comentariosforoform
+from reindev.forms import comentariosblogform,comentarioseventoform,comentariosforoform,editarcomentariosforoform
 from . models import comentariosblogm,comentarioseventosm,comentariosforom
 # Create your views here.
+
+# def comentariosblog(request):
+#     coment_blog = comentariosblogm.objects.all()
+
+#     contexto = {
+#         'comentariosblog':coment_blog
+#     }
+
+#     return render('appcoment')
 
 
 def agregarcomentarioblog(request,id):
@@ -29,6 +39,41 @@ def agregarcomentarioblog(request,id):
     contexto = {'formcomentario':formcomentario, 'blog':blog}
 
     return render(request,'appcomentarios/agregarcomentariosblog.html',contexto)
+
+def editarcomentarioforo(request,id):
+    
+    f = comentariosforom.objects.get(id=id)
+    comentarioforo = get_object_or_404(comentariosforom,id=id)
+    foro = get_object_or_404(forom,id=comentarioforo.comentariosfororel_id)
+
+
+    datos = {
+        'comentarioforo':f,
+        'formcomentarioforo':editarcomentariosforoform(instance=comentarioforo)
+       
+    }
+
+    if request.method == 'POST':
+        formulario = editarcomentariosforoform(data=request.POST,instance=comentarioforo)
+        if formulario.is_valid():
+            comentario = formulario.save(commit=False)
+            comentario.autorcomentario = request.user
+            comentario.comentariosfororel = foro
+            comentario.save()
+            # messages.success(request,'Información del blog Actualizada')
+            return redirect ('mostrarforo',pk=comentarioforo.comentariosfororel_id)
+    else:
+        formulario = editarcomentariosforoform()
+
+
+    return render(request,'appcomentarios/editarcomentariosforo.html',datos)
+
+
+def eliminarcomentarioforo(request,id):
+    comentarioforo = comentariosforom.objects.get(id=id)
+    comentarioforo.delete()
+    # messages.success(request,'Blog Eliminado con éxito')
+    return redirect ('mostrarforo',pk=comentarioforo.comentariosfororel_id)
 
 def agregarcomentarioeventos(request,id):
     evento = get_object_or_404(eventosm,id=id)
@@ -68,6 +113,14 @@ def agregarcomentarioforo(request,id):
     contexto = {'formcomentarioforo':formcomentarioforo, 'foroart':foroart}
 
     return render(request,'appcomentarios/agregarcomentariosforo.html',contexto)
+
+
+
+
+
+
+
+
 
 # def actualizarcategorias(request):
 #      if request.method == 'POST':

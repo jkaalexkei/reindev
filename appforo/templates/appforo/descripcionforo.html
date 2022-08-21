@@ -19,8 +19,9 @@
       <div class="card-body">
         <h5 class="card-title">{{ datosencontrados.tituloforo }}</h5>
         <p class="card-text texto-justificado">{{ datosencontrados.contenidoforo }}</p>
-        <p class="card-text"><img class="border rounded-circle" src="{{datosencontrados.autorforo.perfil.imagenperfil.url}}"
-            alt="" width="50" height="50"> <small class="text-muted">Autor: {{ datosencontrados.autorforo }}</small></p>
+        <p class="card-text"><img class="border rounded-circle"
+            src="{{datosencontrados.autorforo.perfil.imagenperfil.url}}" alt="" width="50" height="50"> <small
+            class="text-muted">Autor: {{ datosencontrados.autorforo }}</small></p>
         <p style="text-align:justify;">Categoria:
           {% for listadocategorias in datosencontrados.categoriasforo.all %}
           <span class="d-inline">{{listadocategorias.nombre}}, </span>
@@ -35,15 +36,16 @@
         </p>
 
         {% if user.is_authenticated %}
-            <p>Ingresa a la conversación: <a href="{% url 'chatforo' datosencontrados.id %}" class="text-decoration-none enlace">Click Aquí</a></p>
+        <p>Ingresa a la conversación: <a href="{% url 'chatforo' datosencontrados.id %}"
+            class="text-decoration-none enlace">Click Aquí</a></p>
         {% endif %}
         <!-- <div class="container d-flex">
           <a class="navbar-brand mx-3" href="#"><i class="far fa-heart fs-3 mt-1 text-dark"></i></a>
         </div> -->
-        
+
       </div>
       <div class="card-footer mb-3">
-       
+
         {% if user.is_authenticated %}
         <div class="text-end">
 
@@ -51,10 +53,12 @@
 
           <a onclick="abrirmodaleditarblog('{% url 'editarblog' datosencontrados.id %}')"
             class="btn btn-md text-warning" role="button"><i class="fa fa-pen"></i> Editar</a>
-          <a href="{% url 'eliminarblog' datosencontrados.id %}" class="btn btn-md text-danger"><i class="fa fa-trash"></i> Eliminar</a>
-          
+          <a href="{% url 'eliminarblog' datosencontrados.id %}" class="btn btn-md text-danger"><i
+              class="fa fa-trash"></i> Eliminar</a>
+
           {% endif %}
-          <a onclick="abrirmodalagregarcomentarioforo('{% url 'agregarcomentarioforo' datosencontrados.id %}')"  class="btn btn-md text-success"><i class="far fa-comment-alt"></i>Comentar</a>
+          <a onclick="abrirmodalagregarcomentarioforo('{% url 'agregarcomentarioforo' datosencontrados.id %}')"
+            class="btn btn-md text-success"><i class="far fa-comment-alt"></i>Comentar</a>
 
 
           <a href="{% url 'foro' %}" class="btn btn-md text-success "><i class="fa fa-arrow-circle-up"></i> Volver</a>
@@ -65,31 +69,54 @@
         </div>
         {% endif %}
       </div>
-     
-        
-      <h5 class="my-2">Comentarios publicados</h5>
-        {% for c in comentarioforo %}
-        {% if c.comentariosfororel_id == datosencontrados.id %}
-          <div class="card mb-3">
-            
-            <div class="card-header align-content-center">
-              <p class="d-flex align-items-center"><img class="rounded-circle" src="{{c.autorcomentarioforo.perfil.imagenperfil.url}}" alt="" width="25" height="25">&nbsp;{{c.autorcomentarioforo.username}}</p>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">{{c.comentarioforo}}</h5>
-              <p class="card-text text-end">{{ c.created | naturaltime}}</p>
-            </div>
-          </div>
-          
-          
-        {% endif %}
-      {% endfor %}
-  
 
+
+      <h5 class="my-2">Comentarios publicados</h5>
+      {% for c in comentarioforo %}
+      {% if c.comentariosfororel_id == datosencontrados.id %}
+      <div class="card mb-3">
+
+        <div class="card-header align-content-center">
+          <p class="d-flex align-items-center"><img class="rounded-circle"
+              src="{{c.autorcomentarioforo.perfil.imagenperfil.url}}" alt="" width="25"
+              height="25">&nbsp;{{c.autorcomentarioforo.username}}</p>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{c.comentarioforo}}</h5>
+          <p class="card-text text-end">{{ c.created | naturaltime}}</p>
+        </div>
+        <div class="card-footer mb-3">
+
+          {% if user.is_authenticated %}
+          <div class="text-end">
+
+            {% if request.user.username == 'administrador' %}
+            <!-- <a href="{% url 'editarcomentarioforo' c.id %}">editar</a> -->
+            <a onclick="abrirmodaleditarcomentarioforo('{% url 'editarcomentarioforo' c.id %}')" class="btn btn-md text-warning" role="button"><i class="fa fa-pen"></i> Editar</a>
+            <a href="{% url 'eliminarcomentarioforo' c.id %}" class="btn btn-md text-danger"><i
+                class="fa fa-trash"></i>Eliminar</a>
+            {% elif request.user == c.autorcomentarioforo  %}
+            <a onclick="abrirmodaleditarcomentarioforo('{% url 'editarcomentarioforo' c.id %}')" class="btn btn-md text-warning" role="button"><i class="fa fa-pen"></i> Editar</a>
+            <a href="{% url 'eliminarcomentarioforo' c.id %}" class="btn btn-md text-danger"><i
+                class="fa fa-trash"></i>Eliminar</a>
+            
+            {% endif %}
+          </div>
+          {% else %}
+
+          {% endif %}
+        </div>
+      </div>
+
+
+      {% endif %}
+      {% endfor %}
+
+
+
+    </div>
 
   </div>
-
-</div>
 </div>
 
 {% endblock %}
