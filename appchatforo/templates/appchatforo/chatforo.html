@@ -79,7 +79,7 @@
                           
                           {% if r.mensajerelforo_id == m.id %}
                               <p><img class="rounded-circle" src="{{r.autorrespuesta.perfil.imagenperfil.url}}" alt="" width="25" height="25">&nbsp;{{r.autorrespuesta.username}}:&nbsp;<cite>{{r.respuesta}}</cite>&nbsp;<br>Publicado: {{r.created | naturaltime }}</p>
-                              <p><a class="btn btn-warning btn-sm" onclick="abrirmodaleditarrespuestachatforo('{% url 'editarrespuestachatforo' r.id %}')">Editar</a>&nbsp;<a class="btn btn-danger btn-sm" href="{% url 'eliminarmensajechatforo' m.id %}">Eliminar</a></p>
+                              <!-- <p><a class="btn btn-warning btn-sm" onclick="abrirmodaleditarrespuestachatforo('{% url 'editarrespuestachatforo' r.id %}')">Editar</a>&nbsp;<a class="btn btn-danger btn-sm" href="{% url 'eliminarmensajechatforo' m.id %}">Eliminar</a></p> -->
                               <hr>
                       
                           {% endif %}
