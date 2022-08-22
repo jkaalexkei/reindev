@@ -58,6 +58,13 @@
           <div class="card-body">
             <h5 class="card-title">{{m.mensaje}}</h5>
             <p class="card-text text-end">{{ m.created | naturaltime}}</p>
+
+            {% if request.user.username == 'administrador' %}
+                <p><a class="btn btn-warning btn-sm" onclick="abrirmodaleditarmensajechatforo('{% url 'editarmensajechatforo' m.id %}')">Editar</a>&nbsp;<a class="btn btn-danger btn-sm" href="{% url 'eliminarmensajechatforo' m.id %}">Eliminar</a></p>
+            {% elif request.user == m.autormensaje  %}
+                <p><a class="btn btn-warning btn-sm" onclick="abrirmodaleditarmensajechatforo('{% url 'editarmensajechatforo' m.id %}')">Editar</a>&nbsp;<a class="btn btn-danger btn-sm" href="{% url 'eliminarmensajechatforo' m.id %}">Eliminar</a></p>
+            {% endif %}
+           
             <div class="accordion accordion-flush" id="accordionFlushExample">
               <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-heading{{m.id}}">
@@ -72,6 +79,7 @@
                           
                           {% if r.mensajerelforo_id == m.id %}
                               <p><img class="rounded-circle" src="{{r.autorrespuesta.perfil.imagenperfil.url}}" alt="" width="25" height="25">&nbsp;{{r.autorrespuesta.username}}:&nbsp;<cite>{{r.respuesta}}</cite>&nbsp;<br>Publicado: {{r.created | naturaltime }}</p>
+                              <p><a class="btn btn-warning btn-sm" onclick="abrirmodaleditarrespuestachatforo('{% url 'editarrespuestachatforo' r.id %}')">Editar</a>&nbsp;<a class="btn btn-danger btn-sm" href="{% url 'eliminarmensajechatforo' m.id %}">Eliminar</a></p>
                               <hr>
                       
                           {% endif %}

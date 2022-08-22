@@ -1,8 +1,8 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from appforo.models import forom
 from . models import mensajechatforom,respuestachatforom
-from reindev.forms import formmensajechatforom,formrespuestachatforom
-
+from reindev.forms import formeditarmensajechatforom, formmensajechatforom,formrespuestachatforom,formeditarrespuestachatforom
+from django.contrib import messages
 # Create your views here.
 
 def chatforo(request,id):
@@ -34,6 +34,40 @@ def guardarmensajechatforo(request,id):
 
     return render(request,'appchatforo/agregarmensaje.html',contexto)
 
+
+def editarmensajechatforo(request,id):
+
+    mensajechat = get_object_or_404(mensajechatforom,id=id)
+    foro = get_object_or_404(forom,id=mensajechat.fororel_id)
+
+    datos = {
+        'mensajechat':mensajechat,
+        'formmensajechatforo': formeditarmensajechatforom(instance=mensajechat)
+    }
+
+    if request.method == 'POST':
+        formmensajechat = formeditarmensajechatforom(request.POST,instance=mensajechat)
+        if formmensajechat.is_valid():
+            msg = formmensajechat.save(commit=False)
+            msg.autormensaje = request.user
+            msg.fororel = foro
+            msg.save()
+            return redirect('chatforo',id=mensajechat.fororel_id)
+            
+    else:
+        formmensajechat = formeditarmensajechatforom()
+
+
+    return render(request,'appchatforo/editarmensajechat.html',datos)
+
+def eliminarmensajechatforo(request,id):
+    mensajechat = mensajechatforom.objects.get(id=id)
+    foro = get_object_or_404(forom,id =mensajechat.fororel_id)
+    mensajechat.delete()
+    messages.success(request,'Mensaje Eliminado')
+    return redirect('chatforo',id=mensajechat.fororel_id)
+
+
 def guardarrespuestachatforo(request,id):
     
     # foroarticulo = get_object_or_404(forom,id=id)
@@ -56,3 +90,37 @@ def guardarrespuestachatforo(request,id):
     contexto = {'formrespuesta':formrespuesta,'foroarticulo':foroarticulo,'mensajes':mensaje}
 
     return render(request,'appchatforo/agregarrespuesta.html',contexto)
+
+
+def editarrespuestachatforo(request,id):
+    
+    respuestachat = get_object_or_404(respuestachatforom,id=id)
+    mensajechat = get_object_or_404(mensajechatforom,id=respuestachat.mensajerelforo_id)
+    foroarticulo = forom.objects.get(id = mensajechat.fororel_id)
+
+    datos = {
+        'respuestachat':respuestachat,
+        'formrespuestachatforo': formeditarrespuestachatforom(instance=respuestachat)
+    }
+
+    if request.method == 'POST':
+        formrespuestachat = formeditarrespuestachatforom(request.POST,instance=respuestachat)
+        if formrespuestachat.is_valid():
+            msg = formrespuestachat.save(commit=False)
+            msg.autorrespuesta = request.user
+            msg.fororel = foroarticulo
+            msg.save()
+            return redirect('chatforo',id=mensajechat.fororel_id)
+            
+    else:
+        formrespuestachat = formeditarrespuestachatforom()
+
+
+    return render(request,'appchatforo/editarrespuestachat.html',datos)
+
+def eliminarrespuestachatforo(request,id):
+    mensajechat = mensajechatforom.objects.get(id=id)
+    foro = get_object_or_404(forom,id =mensajechat.fororel_id)
+    mensajechat.delete()
+    messages.success(request,'Mensaje Eliminado')
+    return redirect('chatforo',id=mensajechat.fororel_id)

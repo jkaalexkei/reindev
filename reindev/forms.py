@@ -133,11 +133,26 @@ class formmensajechatforom(forms.ModelForm):
         fields = ['mensaje']
 
 
+class formeditarmensajechatforom(forms.ModelForm):
+    # mensaje = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','rows':'3'}))
+    class Meta:
+        model=mensajechatforom
+        fields = ['mensaje']
+
+
 class formrespuestachatforom(forms.ModelForm):
     respuesta = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','rows':'3'}))
     class Meta:
         model=respuestachatforom
         fields = ['respuesta']
+
+
+class formeditarrespuestachatforom(forms.ModelForm):
+    # respuesta = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','rows':'3'}))
+    class Meta:
+        model=respuestachatforom
+        fields = ['respuesta']
+
 
 class formcrearempresas(forms.ModelForm):
     razonsocialempresa = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','rows':'3'}))

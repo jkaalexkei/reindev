@@ -8,7 +8,12 @@ urlpatterns = [
     
     path('chatforo/<id>',views.chatforo, name='chatforo'),
     path('agregarmensaje/<id>',views.guardarmensajechatforo,name='agregarmensaje'),
+    path('editarmensaje/<id>',views.editarmensajechatforo,name="editarmensajechatforo"),
+    path('eliminarmensaje/<id>',views.eliminarmensajechatforo,name="eliminarmensajechatforo"),
+
     path('agregarrespuesta/<id>',views.guardarrespuestachatforo,name='agregarrespuesta'),
+    path('editarrespuesta/<id>',views.editarrespuestachatforo,name="editarrespuestachatforo"),
+     
     
     
     

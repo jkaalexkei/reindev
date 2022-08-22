@@ -59,8 +59,14 @@
             <div class="modal fade" id="agregarcomentarioeventos" role="dialog"></div>
             <div class="modal fade" id="agregarcomentarioforo" role="dialog"></div>
             <div class="modal fade" id="editarcomentarioforo" role="dialog"></div>
+
             <div class="modal fade" id="agregarmensajechatforo" role="dialog"></div>
+            <div class="modal fade" id="editarmensajechatforo" role="dialog"></div>
+
             <div class="modal fade" id="agregarrespuestachatforo" role="dialog"></div>
+            <div class="modal fade" id="editarrespuestachatforo" role="dialog"></div>
+
+
             <div class="modal fade" id="agregaremmpresa" role="dialog"></div>
             <div class="modal fade" id="editarempresa" role="dialog"></div>
             <div class="modal fade" id="agregarcalendario" role="dialog"></div>
@@ -181,12 +187,28 @@
       
     }
 
+    function abrirmodaleditarmensajechatforo(url){
+      $('#editarmensajechatforo').load(url,function(){
+        $(this).modal('show');
+      })
+      
+    }
+
     function abrirmodalagregarrespuestachatforo(url){
       $('#agregarrespuestachatforo').load(url,function(){
         $(this).modal('show');
       })
       
     }
+
+    function abrirmodaleditarrespuestachatforo(url){
+      $('#editarrespuestachatforo').load(url,function(){
+        $(this).modal('show');
+      })
+      
+    }
+
+
     function abrirmodalcrearempresa(url){
       $('#agregaremmpresa').load(url,function(){
         $(this).modal('show');
