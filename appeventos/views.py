@@ -7,7 +7,7 @@ from django.contrib import messages
 from .models import eventosm
 from reindev.forms import registrareventosform,actualizareventosform
 from appcomentarios.models import comentarioseventosm
-
+from appusuario.models import usuariosm
 
 # Create your views here.
 
@@ -29,7 +29,7 @@ def eventos(request):
 
 
 def crearevento(request):
-    usuario = get_object_or_404(User,pk = request.user.pk)
+    usuario = get_object_or_404(usuariosm,pk = request.user.pk)
     
     if request.method == 'POST':
         categoria = request.POST['categoriaevento']

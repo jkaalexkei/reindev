@@ -7,7 +7,9 @@ from django.contrib.auth.models import User
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.contrib.auth import authenticate, login,logout
+from appusuario.models import usuariosm
 from reindev.forms import formcrearempresas,actualizarempresasform
+from appusuario.models import usuariosm
 
 def empresasregistradas(request):
     empresas = empresasm.objects.all()
@@ -15,7 +17,7 @@ def empresasregistradas(request):
     return render(request,'appempresas/empresasregistradas.html',contexto)
     
 def crearempresas(request):
-    usuario = get_object_or_404(User,id = request.user.pk)
+    usuario = get_object_or_404(usuariosm,id = request.user.pk)
     if request.method == 'POST':
         formempresa = formcrearempresas(request.POST, request.FILES)
         if formempresa.is_valid():

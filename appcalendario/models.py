@@ -4,14 +4,14 @@ from django.db import models
 from django.contrib.auth.models import User
 from appcategorias.models import categorias, subcategorias
 # from django.db.models.signals import post_save
-
+from appusuario.models import usuariosm
 
 
 class calendariom(models.Model):
    
     titulocalendario=models.CharField(max_length=120,verbose_name='Titulo')
     # contenidocalendario=models.TextField(verbose_name='Descripción del calendario')
-    autorcalendario=models.ForeignKey(User,on_delete=models.CASCADE,related_name='calendariosm',verbose_name='Autor')
+    autorcalendario=models.ForeignKey(usuariosm,on_delete=models.CASCADE,related_name='calendariosm',verbose_name='Autor')
     imagencalendario=models.ImageField(default='logo.jpg',upload_to='calendarios',null=True,blank=True,verbose_name='Imagen del calendario')
     categoriacalendario = models.ManyToManyField(categorias,related_name='categoriascalendario',verbose_name='Categorias')
 

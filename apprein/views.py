@@ -17,6 +17,8 @@ from appblog.models import notificacionesblog
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.db.models import Q
+from appusuario.models import usuariosm
+from django.contrib.auth.forms import UserCreationForm
 
 # from appblog.models import blog #importamos los modelos de la appblog
 # Create your views here.
@@ -73,12 +75,12 @@ def iniciarsesion(request):
           if user:
                login(request,user)
               
-               nombreusuario=User.objects.all()
+               nombreusuario=usuariosm.objects.all()
 
                for usr in nombreusuario:
                     if usr.username == usuario:
                          request.session['usuario'] = usr.username
-                         messages.success(request,'Hola {}'.format(usr.first_name))
+                         messages.success(request,'Hola {}'.format(usr.nombres))
                          
                          return redirect ('home')
                          
@@ -117,7 +119,7 @@ def crearcuenta(request):
      return render(request,'apprein/crearcuenta.html',contexto)
 
 def perfil(request,usuario):
-     us = User.objects.get(username = usuario )
+     us = usuariosm.objects.get(username = usuario )
      articulosbloguser = blogm.objects.filter(autorblog_id = us.id)
      articulosforouser = forom.objects.filter(autorforo_id=us.id)
      articuloseventouser = eventosm.objects.filter(autorevento_id=us.id)
@@ -154,7 +156,7 @@ def editarperfil(request):
      return render(request,'apprein/editarperfil.html',contexto)
 
 def eliminarperfil(request,usuario):
-     usuario = User.objects.get(username = usuario)
+     usuario = usuariosm.objects.get(username = usuario)
      usuario.delete()
 
      return redirect('home')
@@ -227,7 +229,7 @@ def resultadosporsubcategoria(request,id):
 
 
 def listarusuarios(request):
-     usuarios = User.objects.all()
+     usuarios = usuariosm.objects.all()
 
      contexto = {
           'usuarios':usuarios

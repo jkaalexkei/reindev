@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'appcomentarios',
     'appchatforo',
     'appempresas',
+    'appusuario',
     'appcalendario',
     'crispy_forms',
     'admin_interface',
@@ -134,6 +135,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+AUTH_USER_MODEL ='appusuario.usuariosm'
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 

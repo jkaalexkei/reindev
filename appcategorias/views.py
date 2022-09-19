@@ -6,6 +6,7 @@ from django.views.generic.detail import DetailView
 
 from reindev.forms import registrarsubcategoriasform
 from .models import categorias, subcategorias
+from appusuario.models import usuariosm
 # Create your views here.
 
 def actualizarcategorias(request):

@@ -9,6 +9,7 @@ from django.views.generic.detail import DetailView
 from django.contrib.auth import authenticate, login,logout
 from reindev.forms import formblognuevo,actualizarblogsform
 from appcomentarios.models import comentariosblogm
+from appusuario.models import usuariosm
 # from django.http import HttpResponseRedirect
 # Create your views here.
 # from proyecto_rein.forms import Inputimagen
@@ -26,7 +27,7 @@ def blog(request):
 
 
 def crearblog(request):
-    usuario = get_object_or_404(User,pk=request.user.pk)
+    usuario = get_object_or_404(usuariosm,pk=request.user.pk)
     
     if request.method == 'POST':
         # categoria = request.POST['categoriablog']

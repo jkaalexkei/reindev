@@ -4,13 +4,13 @@ from django.contrib.auth.models import User
 from appblog.models import blogm
 from appeventos.models import eventosm
 from appforo.models import forom
-
+from appusuario.models import usuariosm
 
 # Create your models here.
 
 class comentariosblogm(models.Model):
     comentario=models.CharField(max_length=140)
-    autorcomentario = models.ForeignKey(User,on_delete=models.CASCADE,related_name='users')
+    autorcomentario = models.ForeignKey(usuariosm,on_delete=models.CASCADE,related_name='users')
     comentariosblog = models.ForeignKey(blogm,on_delete=models.CASCADE,related_name='comentariosblog',null=True,blank=True)
     created=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField(auto_now_add=True)
@@ -26,7 +26,7 @@ class comentariosblogm(models.Model):
 
 class comentarioseventosm(models.Model):
     comentarioevento=models.CharField(max_length=140)
-    autorcomentarioeventos = models.ForeignKey(User,on_delete=models.CASCADE,related_name='usersrel')
+    autorcomentarioeventos = models.ForeignKey(usuariosm,on_delete=models.CASCADE,related_name='usersrel')
     comentariosevento = models.ForeignKey(eventosm,on_delete=models.CASCADE,related_name='comentarioseventosrel',null=True,blank=True)
     created=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField(auto_now_add=True)
@@ -41,7 +41,7 @@ class comentarioseventosm(models.Model):
 
 class comentariosforom(models.Model):
     comentarioforo=models.CharField(max_length=140)
-    autorcomentarioforo = models.ForeignKey(User,on_delete=models.CASCADE,related_name='usersrelforo')
+    autorcomentarioforo = models.ForeignKey(usuariosm,on_delete=models.CASCADE,related_name='usersrelforo')
     comentariosfororel = models.ForeignKey(forom,on_delete=models.CASCADE,related_name='comentariosfororel',null=True,blank=True)
     created=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField(auto_now_add=True)

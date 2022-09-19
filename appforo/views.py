@@ -14,7 +14,7 @@ from appforo.models import forom
 from reindev.forms import regitroentradaforo,actualizarforoform
 from appcategorias.models import categorias
 from appcomentarios.models import comentariosforom
-
+from appusuario.models import usuariosm
 # Create your views here.
 
 def foro(request):
@@ -28,7 +28,7 @@ def foro(request):
         })
 
 def agregarforo(request):
-    usuario = get_object_or_404(User,pk=request.user.pk)
+    usuario = get_object_or_404(usuariosm,pk=request.user.pk)
     if request.method == 'POST':
         categoria = request.POST['categoriasforo']
         subcategoria = request.POST['subcategoriasforo']

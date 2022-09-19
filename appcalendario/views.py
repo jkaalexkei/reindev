@@ -10,6 +10,7 @@ from django.contrib.auth import authenticate, login,logout
 from reindev.forms import formcalendario,actualizarcalendariosform
 
 from appcalendario.models import calendariom
+from appusuario.models import usuariosm
 # from django.http import HttpResponseRedirect
 # Create your views here.
 # from proyecto_rein.forms import Inputimagen
@@ -23,7 +24,7 @@ def calendario(request):
 
 
 def crearcalendario(request):
-    usuario = get_object_or_404(User,pk=request.user.pk)
+    usuario = get_object_or_404(usuariosm,pk=request.user.pk)
     
     if request.method == 'POST':
         # categoria = request.POST['categoriacalendario']
