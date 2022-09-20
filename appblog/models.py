@@ -17,7 +17,7 @@ class blogm(models.Model):
     tituloblog=models.CharField(max_length=120,verbose_name='Titulo')
     contenidoblog=models.TextField(verbose_name='Descripción del blog')
     autorblog=models.ForeignKey(usuariosm,on_delete=models.CASCADE,related_name='blogm',verbose_name='Autor')
-    imagenblog=models.ImageField(default='logo.jpg',upload_to='blog',null=True,blank=True,verbose_name='Imagen del blog')
+    imagenblog=models.ImageField(default='blog/logo.png',upload_to='blog',null=True,blank=True,verbose_name='Imagen del blog')
     categoriablog = models.ManyToManyField(categorias,related_name='categoriasblog',verbose_name='Categorias')
     subcategoriablog = models.ManyToManyField(subcategorias,related_name='subcategoriasblog',verbose_name='Subcategorias')
     created=models.DateTimeField(auto_now_add=True)

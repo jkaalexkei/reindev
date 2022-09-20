@@ -16,7 +16,7 @@ class eventosm(models.Model):
     tituloevento=models.CharField(max_length=120,verbose_name='Titulo')
     contenidoevento=models.TextField(verbose_name='Descripción del Evento')
     autorevento=models.ForeignKey(usuariosm,on_delete=models.CASCADE,related_name='eventosm',verbose_name='Autor')
-    imagenevento=models.ImageField(default='logo.jpg',upload_to='eventos',null=True,blank=True,verbose_name='Imagen del evento',null=True, blank=True)
+    imagenevento=models.ImageField(default='eventos/logo.png',upload_to='eventos',verbose_name='Imagen del evento',null=True, blank=True)
     categoriaevento = models.ManyToManyField(categorias,related_name='categoriasevento',verbose_name='Categorias')
     subcategoriaevento = models.ManyToManyField(subcategorias,related_name='subcategoriasevento',verbose_name='Subcategorias')
     eventolink = models.CharField(max_length=200,verbose_name='Link evento',null=True, blank=True)

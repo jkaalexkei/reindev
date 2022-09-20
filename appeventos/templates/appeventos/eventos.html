@@ -84,7 +84,11 @@
           class="border rounded-circle" src="{{eventospublicados.autorevento.perfil.imagenperfil.url}}" alt="" width="50"
           height="50"></p>
           {% if user.is_authenticated %}
-          <p style="text-align:justify;">Dale Play: <a class="text-decoration-none" href="{{eventospublicados.eventolink}}" target="_blank">Click Aquí</a> </p>
+            {% if eventospublicados.videoevento %}
+            <p style="text-align:justify;">Dale Play: <a class="text-decoration-none" href="{{eventospublicados.eventolink}}" target="_blank">Click Aquí</a> </p>
+            {% else %}
+            <p>No tiene video publicado</p>
+            {% endif %}
           {% endif %}
           <p class="card-text" style="text-align:justify;">Fecha del Evento: <br>{{eventospublicados.fechaevento }}</p>
           <p class="card-text" style="text-align:right;">Creado {{eventospublicados.created|naturaltime }}</p>
@@ -94,7 +98,7 @@
       {% if user.is_authenticated %}
       <div class="card-footer d-flex justify-content-end">
         {% if request.user == eventospublicados.autorevento %}
-        <a onclick="abrirmodaleditareventos('{% url 'editarevento' eventospublicados.id %}')" class="btn btn-lg text-warning"
+        <a onclick="abrirmodaleditarevento('{% url 'editarevento' eventospublicados.id %}')" class="btn btn-lg text-warning"
           role="button"><i class="fa fa-pen"></i></a>
         <a href="{% url 'eliminarevento' eventospublicados.id %}" class="btn btn-lg text-danger"><i
             class="fa fa-trash"></i></a>

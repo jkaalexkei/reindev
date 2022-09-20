@@ -37,10 +37,11 @@
                 {% endfor %}
               </p>
              <!-- Button trigger modal -->
+             {% if datosencontrados.videoevento %}
               <a role='button' class="enlace" data-bs-toggle="modal" data-bs-target="#video">
                 Ver video del evento
               </a>
-
+              {% endif %}
               <!-- Modal -->
               <div class="modal" id="video" tabindex="-1"">
                 <div class="modal-dialog modal-lg" role="document" >

@@ -9,7 +9,7 @@ class empresasm(models.Model):
     razonsocialempresa=models.TextField(verbose_name='Descripción:')
     usuarioempresa=models.ForeignKey(usuariosm,on_delete=models.CASCADE,related_name='usuarioempresa',verbose_name='Usuario')
     # correoempresa = models.CharField(max_length=120,verbose_name='Correo')
-    imagenempresa = models.ImageField(default='logo.jpg',upload_to='empresa',null=True,blank=True,verbose_name='Imagen de la empresa')
+    imagenempresa = models.ImageField(default='empresa/logo.png',upload_to='empresa',null=True,blank=True,verbose_name='Imagen de la empresa')
     created=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField(auto_now_add=True)
     
