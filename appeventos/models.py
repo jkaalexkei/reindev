@@ -16,15 +16,15 @@ class eventosm(models.Model):
     tituloevento=models.CharField(max_length=120,verbose_name='Titulo')
     contenidoevento=models.TextField(verbose_name='Descripción del Evento')
     autorevento=models.ForeignKey(usuariosm,on_delete=models.CASCADE,related_name='eventosm',verbose_name='Autor')
-    imagenevento=models.ImageField(default='logo.jpg',upload_to='eventos',null=True,blank=True,verbose_name='Imagen del evento')
+    imagenevento=models.ImageField(default='logo.jpg',upload_to='eventos',null=True,blank=True,verbose_name='Imagen del evento',null=True, blank=True)
     categoriaevento = models.ManyToManyField(categorias,related_name='categoriasevento',verbose_name='Categorias')
     subcategoriaevento = models.ManyToManyField(subcategorias,related_name='subcategoriasevento',verbose_name='Subcategorias')
-    eventolink = models.CharField(max_length=200,verbose_name='Link evento')
+    eventolink = models.CharField(max_length=200,verbose_name='Link evento',null=True, blank=True)
     fechaevento = models.DateField(verbose_name='Fecha del evento')
     horaevento = models.TimeField(auto_now=False,verbose_name='Hora del evento')
 
     tipodeevento = models.CharField(max_length=50,choices=opciones,verbose_name='Tipo de Evento')
-    videoevento  = models.FileField(max_length=200,upload_to='videos',verbose_name='Video del evento:')
+    videoevento  = models.FileField(max_length=200,upload_to='videos',verbose_name='Video del evento:', null=True, blank=True)
     created=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField(auto_now_add=True)
 
