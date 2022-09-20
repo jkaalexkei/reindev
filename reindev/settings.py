@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-*csxruv2j-9f9j&tgy*vq)jn=0of-1b2qda5w1_4g)96pf3-$t
 DEBUG = True
 
 ALLOWED_HOSTS = ['reindev.herokuapp.com']
-ALLOWED_HOSTS =[]
+# ALLOWED_HOSTS =[]
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
