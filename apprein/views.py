@@ -80,9 +80,9 @@ def iniciarsesion(request):
                for usr in nombreusuario:
                     if usr.username == usuario:
                          request.session['usuario'] = usr.username
-                         messages.success(request,'Hola {}'.format(usr.nombres))
+                         # messages.success(request,'Hola {}'.format(usr.nombres))
                          
-                         return redirect ('home')
+                         return redirect ('eventos')
                          
                     
                

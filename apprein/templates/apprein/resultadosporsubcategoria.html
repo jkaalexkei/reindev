@@ -13,237 +13,66 @@
     <div class="col-lg-12">
 
         <h3 class="mb-4 py-1">Resultados encontrados para la subcategoria: '{{valorporsubcategorias.nombre}}'</h3>
-        <div class="accordion mt-4" id="accordionExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button fw-bold enlace" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Blog encontrados {{resultadosblogporsubcat}}
-                    </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
-                    data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                {% if articuloblogporsubcat %}
-                                {% for datosblog in articuloblogporsubcat  %}
-                                <div class="row p-0 border m-0 d-flex align-items-center mb-2">
-                                    <div class="col-3 p-0">
-                                        <img src="{{ datosblog.imagenblog.url }}" class="rounded-2 imagen" alt="...">
-                                    </div>
-                                    <div class="col-9 p-0">
-
-                                        <div class="container-fluid p-0">
-                                            <p class="fs-5 fw-bold m-0 ps-2"><a
-                                                    href="{% url 'mostrarblog' datosblog.id %}"
-                                                    class="enlace">{{ datosblog.tituloblog}}</a></p>
-                                            <p style="text-align:justify;" class="m-0 ps-2">Categoria:
-                                                {% for listadocategorias in datosblog.categoriablog.all %}
-                                                <span class="d-inline">{{listadocategorias.nombre}} / </span>
-
-                                                {% endfor %}
-                                            </p>
-                                            <p style="text-align:justify;" class="m-0 ps-2">Categoria:
-                                                {% for listadosubcategorias in datosblog.subcategoriablog.all %}
-                                                <span class="d-inline">{{listadosubcategorias.nombre}} / </span>
-
-                                                {% endfor %}
-                                            </p>
-
-                                            <p class="m-0 ps-2">Publicado : {{ datosblog.created | naturaltime }}</p>
-                                            <div
-                                                class="container-fluid d-flex justify-content-between align-items-center m-0 p-0">
-                                                <p class=" m-0 ps-2"><strong>Usuario:</strong>
-                                                    {{ datosblog.autorblog.username }}&nbsp;<img
-                                                        src="{{ datosblog.autorblog.perfil.imagenperfil.url }}" alt=""
-                                                        width="50" height="50"></p>
-                                                <span class="p-0">
-                                                    {% if user.is_authenticated %}
+        <h4 class="">Eventos encontrados {{resultadoseventoporsubcat}}</h4>
+        {% if articuloeventoporsubcat %}
 
 
-                                                    {% if request.user == datosblog.autorblog %}
-                                                    <a onclick="abrirmodaleditarblog('{% url 'editarblog' datosblog.id %}')"
-                                                        class="btn btn-lg text-warning" role="button"><i
-                                                            class="fa fa-pen"></i></a>
-                                                    <a href="{% url 'eliminarblog' datosblog.id %}"
-                                                        class="btn btn-lg text-danger"><i class="fa fa-trash"></i></a>
-                                                    {% endif %}
+                {% for datoseventos in articuloeventoporsubcat  %}
+                <div class="row p-0 border m-0 d-flex align-items-center mb-2">
+                    <div class="col-3 p-0">
+                        <img src="{{ datoseventos.imagenevento.url }}" class="rounded-2 imagen" alt="...">
+                    </div>
+                    <div class="col-9 p-0">
 
+                        <div class="container-fluid p-0">
+                            <p class="fs-5 fw-bold m-0 ps-2"><a href="{% url 'mostrarevento' datoseventos.id %}"
+                                    class="enlace">{{ datoseventos.tituloevento}}</a></p>
+                            <p style="text-align:justify;" class="m-0 ps-2">Categoria:
+                                {% for listadocategorias in datoseventos.categoriaevento.all %}
+                                <span class="d-inline">{{listadocategorias.nombre}} / </span>
 
-                                                    {% endif %}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
                                 {% endfor %}
-                                {% else %}
-                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                    <p>No se encontraron coincidencias por {{valorporsubcategorias.nombre}}</p>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
-                                </div>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingTwo">
-                    <button class="accordion-button collapsed fw-bold enlace" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Foros encontrados {{resultadosforoporsubcat}}
-                    </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                    data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
+                            </p>
+                            <p style="text-align:justify;" class="m-0 ps-2">Subcategoria:
+                                {% for listadosubcategorias in datoseventos.subcategoriaevento.all %}
+                                <span class="d-inline">{{listadosubcategorias.nombre}} / </span>
 
-                        <div class="row">
-                            <div class="col-lg-12">
-                                {% if articuloforoporsubcat %}
-                                {% for datosforo in articuloforoporsubcat  %}
-                                <div class="row p-0 border m-0 d-flex align-items-center mb-2">
-                                    <div class="col-3 p-0">
-                                        <img src="{{ datosforo.imagenforo.url }}" class="rounded-2 imagen" alt="...">
-                                    </div>
-                                    <div class="col-9 p-0">
-
-                                        <div class="container-fluid p-0">
-                                            <p class="fs-5 fw-bold m-0 ps-2"><a
-                                                    href="{% url 'mostrarforo' datosforo.id %}"
-                                                    class="enlace">{{ datosforo.tituloforo}}</a></p>
-                                            <p style="text-align:justify;" class="m-0 ps-2">Categoria:
-                                                {% for listadocategorias in datosforo.categoriaforo.all %}
-                                                <span class="d-inline">{{listadocategorias.nombre}} / </span>
-
-                                                {% endfor %}
-                                            </p>
-                                            <p style="text-align:justify;" class="m-0 ps-2">Subcategoria:
-                                                {% for listadosubcategorias in datosforo.subcategoriaforo.all %}
-                                                <span class="d-inline">{{listadosubcategorias.nombre}} / </span>
-
-                                                {% endfor %}
-                                            </p>
-
-                                            <p class="m-0 ps-2">Publicado : {{ datosforo.created | naturaltime }}</p>
-                                            <div
-                                                class="container-fluid d-flex justify-content-between align-items-center m-0 p-0">
-                                                <p class=" m-0 ps-2"><strong>Usuario:</strong>
-                                                    {{ datosforo.autorforo.username }}&nbsp;<img
-                                                        src="{{ datosforo.autorforo.perfil.imagenperfil.url }}" alt=""
-                                                        width="50" height="50"></p>
-                                                <span class="p-0">
-                                                    {% if user.is_authenticated %}
-
-
-                                                    {% if request.user == datosforo.autorforo %}
-                                                    <a onclick="abrirmodaleditarforo('{% url 'editarforo' datosforo.id %}')"
-                                                        class="btn btn-lg text-warning" role="button"><i
-                                                            class="fa fa-pen"></i></a>
-                                                    <a href="{% url 'eliminarforo' datosforo.id %}"
-                                                        class="btn btn-lg text-danger"><i class="fa fa-trash"></i></a>
-                                                    {% endif %}
-
-
-                                                    {% endif %}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
                                 {% endfor %}
-                                {% else %}
-                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                    <p>No se encontraron coincidencias por {{valorporsubcategorias.nombre}}</p>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
-                                </div>
-                                {% endif %}
+                            </p>
+                            <p class="m-0 ps-2">Fecha del evento: {{datoseventos.fechaevento}}</p>
+                            <p class="m-0 ps-2">Publicado : {{ datoseventos.created | naturaltime }}</p>
+                            <div class="container-fluid d-flex justify-content-between align-items-center m-0 p-0">
+                                <p class=" m-0 ps-2"><strong>Usuario:</strong>
+                                    {{ datoseventos.autorevento.username }}&nbsp;<img
+                                        src="{{ datoseventos.autorevento.perfil.imagenperfil.url }}" alt="" width="50"
+                                        height="50"></p>
+                                <span class="p-0">
+                                    {% if user.is_authenticated %}
+
+
+                                    {% if request.user == datoseventos.autorevento %}
+                                    <a onclick="abrirmodaleditarevento('{% url 'editarevento' datoseventos.id %}')"
+                                        class="btn btn-lg text-warning" role="button"><i class="fa fa-pen"></i></a>
+                                    <a href="{% url 'eliminarevento' datoseventos.id %}" class="btn btn-lg text-danger"><i
+                                            class="fa fa-trash"></i></a>
+                                    {% endif %}
+
+
+                                    {% endif %}
+                                </span>
                             </div>
                         </div>
                     </div>
+
                 </div>
+                {% endfor %}
+        {% else %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <p>No se encontraron coincidencias por {{valorporsubcategorias.nombre}}</p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingThree">
-                    <button class="accordion-button collapsed fw-bold enlace" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Eventos encontrados {{resultadoseventoporsubcat}}
-                    </button>
-                </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                    data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        {% if articuloeventoporsubcat %}
-
-                    
-                        {% for datoseventos in articuloeventoporsubcat  %}
-                        <div class="row p-0 border m-0 d-flex align-items-center mb-2">
-                            <div class="col-3 p-0">
-                                <img src="{{ datoseventos.imagenevento.url }}" class="rounded-2 imagen" alt="...">
-                            </div>
-                            <div class="col-9 p-0">
-
-                                <div class="container-fluid p-0">
-                                    <p class="fs-5 fw-bold m-0 ps-2"><a href="{% url 'mostrarevento' datoseventos.id %}"
-                                            class="enlace">{{ datoseventos.tituloevento}}</a></p>
-                                    <p style="text-align:justify;" class="m-0 ps-2">Categoria:
-                                        {% for listadocategorias in datoseventos.categoriaevento.all %}
-                                        <span class="d-inline">{{listadocategorias.nombre}} / </span>
-
-                                        {% endfor %}
-                                    </p>
-                                    <p style="text-align:justify;" class="m-0 ps-2">Subcategoria:
-                                        {% for listadosubcategorias in datoseventos.subcategoriaevento.all %}
-                                        <span class="d-inline">{{listadosubcategorias.nombre}} / </span>
-
-                                        {% endfor %}
-                                    </p>
-                                    <p class="m-0 ps-2">Fecha del evento: {{datoseventos.fechaevento}}</p>
-                                    <p class="m-0 ps-2">Publicado : {{ datoseventos.created | naturaltime }}</p>
-                                    <div
-                                        class="container-fluid d-flex justify-content-between align-items-center m-0 p-0">
-                                        <p class=" m-0 ps-2"><strong>Usuario:</strong>
-                                            {{ datoseventos.autorevento.username }}&nbsp;<img
-                                                src="{{ datoseventos.autorevento.perfil.imagenperfil.url }}" alt=""
-                                                width="50" height="50"></p>
-                                        <span class="p-0">
-                                            {% if user.is_authenticated %}
-
-
-                                                {% if request.user == datoseventos.autorevento %}
-                                                <a onclick="abrirmodaleditarevento('{% url 'editarevento' datoseventos.id %}')"
-                                                    class="btn btn-lg text-warning" role="button"><i
-                                                        class="fa fa-pen"></i></a>
-                                                <a href="{% url 'eliminarevento' datoseventos.id %}"
-                                                    class="btn btn-lg text-danger"><i class="fa fa-trash"></i></a>
-                                                {% endif %}
-
-
-                                            {% endif %}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        {% endfor %}
-                        {% else %}
-                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            <p>No se encontraron coincidencias por {{valorporsubcategorias.nombre}}</p>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                        {% endif%}
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        {% endif%}
     </div>
 </div>
-{% endblock  %}
+
+{% endblock %}

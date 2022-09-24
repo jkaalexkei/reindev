@@ -14,18 +14,18 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav w-100 d-flex flex-wrap">
             {% if user.is_authenticated %}
-                  <li class="nav-item mx-3 rounded-1 d-flex  {% if request.path == '/' %}active{% endif %}">
+                  <!-- <li class="nav-item mx-3 rounded-1 d-flex  {% if request.path == '/' %}active{% endif %}">
                     <a class="nav-link fw-bolder m-auto" aria-current="page" href="{% url 'home' %}">Inicio</a>
-                  </li>
-                  <li class="nav-item mx-3 rounded-1 d-flex {% if request.path == '/blog' %}active{% endif %}">
+                  </li> -->
+                  <!-- <li class="nav-item mx-3 rounded-1 d-flex {% if request.path == '/blog' %}active{% endif %}">
                     <a class="nav-link fw-bolder m-auto" href="{% url 'blog' %}">Blog</a>
-                  </li>
-                  <li class="nav-item mx-3 rounded-1 d-flex {% if request.path == '/foro' %}active{% endif %}">
+                  </li> -->
+                  <!-- <li class="nav-item mx-3 rounded-1 d-flex {% if request.path == '/foro' %}active{% endif %}">
                     <a class="nav-link fw-bolder m-auto" href="{% url 'foro' %}">Foro</a>
-                  </li>
-                  <li class="nav-item mx-3 rounded-1 d-flex {% if request.path == '/calendario' %}active{% endif %}">
+                  </li> -->
+                  <!-- <li class="nav-item mx-3 rounded-1 d-flex {% if request.path == '/calendario' %}active{% endif %}">
                     <a class="nav-link fw-bolder m-auto" href="{% url 'calendario' %}">Calendario</a>
-                  </li>
+                  </li> -->
                   <li class="nav-item mx-3 rounded-1 d-flex {% if request.path == '/eventos' %}active{% endif %}">
                     <a class="nav-link fw-bolder m-auto" href="{% url 'eventos' %}">Dale Play</a>
                   </li>
@@ -58,18 +58,18 @@
                     </div>
                   </li>
             {% else %}
-                  <li class="nav-item mx-3 rounded-1 {% if request.path == '/' %}active{% endif %}">
+                  <!-- <li class="nav-item mx-3 rounded-1 {% if request.path == '/' %}active{% endif %}">
                     <a class="nav-link fw-bolder" aria-current="page" href="{% url 'home' %}">Inicio</a>
-                  </li>
-                  <li class="nav-item mx-3 rounded-1 {% if request.path == '/blog' %}active{% endif %}">
+                  </li> -->
+                  <!-- <li class="nav-item mx-3 rounded-1 {% if request.path == '/blog' %}active{% endif %}">
                     <a class="nav-link fw-bolder" href="{% url 'blog' %}">Blog</a>
-                  </li>
-                  <li class="nav-item mx-3 rounded-1 {% if request.path == '/foro' %}active{% endif %}">
+                  </li> -->
+                  <!-- <li class="nav-item mx-3 rounded-1 {% if request.path == '/foro' %}active{% endif %}">
                     <a class="nav-link fw-bolder" href="{% url 'foro' %}">Foro</a>
-                  </li>
-                  <li class="nav-item mx-3 rounded-1 {% if request.path == '/calendario' %}active{% endif %}">
+                  </li> -->
+                  <!-- <li class="nav-item mx-3 rounded-1 {% if request.path == '/calendario' %}active{% endif %}">
                     <a class="nav-link fw-bolder" href="{% url 'calendario' %}">Calendario</a>
-                  </li>
+                  </li> -->
                    <li class="nav-item mx-3 rounded-1 d-flex {% if request.path == '/eventos' %}active{% endif %}">
                     <a class="nav-link fw-bolder m-auto" href="{% url 'eventos' %}">Dale play</a>
                   </li>

@@ -5,6 +5,15 @@
 {% block title %} Eventos ReIN {% endblock %}
 
 {% block content %}
+<style>
+  .dale{
+    color:#D94B2B
+  }
+
+  .play{
+    color: #8c3575;
+  }
+</style>
 
 <div class="row">
   
@@ -20,7 +29,7 @@
 
   {% endif %}
   <div class="col-12">
-      <p class="h2 mb-2 fw-bold py-2">Dale Play</p>
+      <p class="h2 mb-2 fw-bold py-2"><span class="dale">Dale</span> <span class="play">Play</span></p>
   </div>
   <div class="col-12">
     <div class="row mb-4">
@@ -38,8 +47,8 @@
           
       </div>
       <div class="col-4 d-flex align-items-center justify-content-end">
-        {% if user.is_authenticated %}
-          <span class="">Añadir Video&nbsp;</span>&nbsp;<a class="enlace" onclick="abrirmodalcrearnuevoevento('{% url 'crearevento' %}')"><i class="fa fa-plus-square fs-2"></i></a>
+        {% if request.user.username == 'administrador' %}
+          <span class="">Añadir Evento&nbsp;</span>&nbsp;<a class="enlace" onclick="abrirmodalcrearnuevoevento('{% url 'crearevento' %}')"><i class="fa fa-plus-square fs-2"></i></a>
 
           <!-- <a class="dropdown-item" onclick="abrirmodalcrearnuevoevento('{% url 'crearevento' %}')">Nuevo Evento</a> -->
       
@@ -84,10 +93,13 @@
           class="border rounded-circle" src="{{eventospublicados.autorevento.perfil.imagenperfil.url}}" alt="" width="50"
           height="50"></p>
           {% if user.is_authenticated %}
-            {% if eventospublicados.videoevento %}
+            {% if eventospublicados.eventolink %}
             <p style="text-align:justify;">Dale Play: <a class="text-decoration-none" href="{{eventospublicados.eventolink}}" target="_blank">Click Aquí</a> </p>
+                {% if eventospublicados.archivoevento.url is not None or eventospublicados.archivoevento.url is True %}
+                <p style="text-align:justify;">Recurso: <a class="text-decoration-none" href="{{eventospublicados.archivoevento.url}}" target="_blank">Click Aquí</a> </p>
+                {% endif %}
             {% else %}
-            <p>No tiene video publicado</p>
+            <p>No tiene video o recurso publicado</p>
             {% endif %}
           {% endif %}
           <p class="card-text" style="text-align:justify;">Fecha del Evento: <br>{{eventospublicados.fechaevento }}</p>

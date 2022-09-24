@@ -6,7 +6,7 @@
         <div class="modal-header">
             <img src="{% static 'apprein/img/logoreintres.png' %}" class="rounded"
             alt="..." width="250px">
-            <h2 class="modal-title">Crear Nuevo Evento</h2>
+            <h2 class="modal-title">Subir Video</h2>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -26,8 +26,8 @@
                 {% render_field formevento.tipodeevento class="form-control" %}
                 <label for="">Imagen del evento</label>
                 {% render_field formevento.imagenevento class="form-control" %}
-                <label for="">Video del evento</label>
-                {% render_field formevento.videoevento class="form-control" %}
+                <label for="">Recurso del evento</label>
+                {% render_field formevento.archivoevento class="form-control" accept=".pdf" %}
                 <label for="">Fecha de realización</label>
                 {% render_field formevento.fechaevento type='date' class="form-control" %}
                 <label for="">Hora de realización <i>formato (HH:MM a.m/p.m.)</i></label>

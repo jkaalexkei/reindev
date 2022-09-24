@@ -45,7 +45,7 @@
                   {% include "apprein/snipets/apprein/sidebar.html" %}
                   
             </div>
-            <div class="modal fade" id="crearevento" role="dialog"></div>
+            <div class="modal fade" id="crearevento" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"></div>
             <div class="modal fade" id="crearcategorias" role="dialog"></div>
             <div class="modal fade" id="editarcategorias" role="dialog"></div>
             <div class="modal fade" id="crearsubcategorias" role="dialog"></div>
@@ -110,7 +110,11 @@
     function abrirmodalcrearnuevoevento(url){
       $('#crearevento').load(url,function(){
         $(this).modal('show');
+        $(this).modal('backdrop',false);
+        
+
       })
+
 
     }
 

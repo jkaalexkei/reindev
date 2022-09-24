@@ -21,8 +21,8 @@
             <div class="card-body">
               <h5 class="card-title">{{ datosencontrados.tituloevento }}</h5>
               <p class="card-text texto-justificado">{{ datosencontrados.contenidoevento }}</p>
-              <p class="card-text fw-bold">Fecha del Evento: {{ datosencontrados.fechaevento|date }} Hora: {{datosencontrados.horaevento | time:'hh:ii'}}</p>
-              <p>Inscripción: <a  class="enlace" href="{{ datosencontrados.eventolink}}">Click Aquí</a></p>
+              <p class="card-text fw-bold">Fecha del Evento: {{ datosencontrados.fechaevento|date }} Hora: {{datosencontrados.horaevento | time:'h:i'}}</p>
+              <p>Ver video: <a  class="enlace" href="{{ datosencontrados.eventolink}}">Click Aquí</a></p>
               <p class="card-text"><img class="border rounded-circle" src="{{datosencontrados.autorevento.perfil.imagenperfil.url}}" alt="" width="50" height="50"> <small class="text-muted">Autor: {{ datosencontrados.autorevento }}</small></p>
               <p style="text-align:justify;">Categoria:
                 {% for listadocategorias in datosencontrados.categoriaevento.all %}
@@ -61,12 +61,23 @@
                           {% else %}
                           <p>No posee video registrado aún</p>
                           {% endif %}
+                        
                       </div>
                      
                   </div>
               
+                 </div>
               </div>
-              </div>
+              {% if user.is_authenticated %}
+                {% if datosencontrados.eventolink %}
+                
+                    {% if datosencontrados.archivoevento.url is not None or datosencontrados.archivoevento.url is True %}
+                    <p style="text-align:justify;">Recurso: <a class="text-decoration-none" href="{{datosencontrados.archivoevento.url}}" target="_blank">Click Aquí</a> </p>
+                    {% endif %}
+                {% else %}
+                <p>No tiene video o recurso publicado</p>
+                {% endif %}
+              {% endif %}
               
               
                
