@@ -27,7 +27,7 @@
                 {% if datosencontrados.eventolink %}
                 
                     {% if datosencontrados.archivoevento.url is not None or datosencontrados.archivoevento.url is True %}
-                    <p style="text-align:justify;">Material del evento: <a class="text-decoration-none" href="{{datosencontrados.archivoevento.url}}" target="_blank">Click Aquí</a> </p>
+                    <p style="text-align:justify;">Material del evento: <a class="text-decoration-none enlace" href="{{datosencontrados.archivoevento.url}}" target="_blank">Click Aquí</a> </p>
                     {% endif %}
                 {% else %}
                 <p>No tiene video o recurso publicado</p>
