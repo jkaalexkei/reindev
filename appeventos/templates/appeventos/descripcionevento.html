@@ -42,6 +42,16 @@
                 Ver video del evento
               </a>
               {% endif %}
+              {% if user.is_authenticated %}
+                {% if datosencontrados.eventolink %}
+                
+                    {% if datosencontrados.archivoevento.url is not None or datosencontrados.archivoevento.url is True %}
+                    <p style="text-align:justify;">Material del evento: <a class="text-decoration-none" href="{{datosencontrados.archivoevento.url}}" target="_blank">Click Aquí</a> </p>
+                    {% endif %}
+                {% else %}
+                <p>No tiene video o recurso publicado</p>
+                {% endif %}
+              {% endif %}
               <!-- Modal -->
               <div class="modal" id="video" tabindex="-1"">
                 <div class="modal-dialog modal-lg" role="document" >
@@ -68,16 +78,7 @@
               
                  </div>
               </div>
-              {% if user.is_authenticated %}
-                {% if datosencontrados.eventolink %}
-                
-                    {% if datosencontrados.archivoevento.url is not None or datosencontrados.archivoevento.url is True %}
-                    <p style="text-align:justify;">Recurso: <a class="text-decoration-none" href="{{datosencontrados.archivoevento.url}}" target="_blank">Click Aquí</a> </p>
-                    {% endif %}
-                {% else %}
-                <p>No tiene video o recurso publicado</p>
-                {% endif %}
-              {% endif %}
+              
               
               
                
