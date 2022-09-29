@@ -25,7 +25,7 @@ class eventosm(models.Model):
 
     tipodeevento = models.CharField(max_length=50,choices=opciones,verbose_name='Tipo de Evento')
     # videoevento  = models.FileField(max_length=200,upload_to='archivos',verbose_name='Video del evento:', null=True, blank=True)
-    archivoevento  = models.FileField(max_length=500,upload_to='archivos',verbose_name='Video del evento:', null=True, blank=True)
+    archivoevento  = models.FileField(max_length=500,upload_to='archivos/',verbose_name='Archivo del evento:', null=True, blank=True)
     created=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField(auto_now_add=True)
 

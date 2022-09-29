@@ -96,7 +96,7 @@
             {% if eventospublicados.eventolink %}
             <p style="text-align:justify;">Dale Play: <a class="text-decoration-none" href="{{eventospublicados.eventolink}}" target="_blank">Click Aquí</a> </p>
                 {% if eventospublicados.archivoevento.url is not None or eventospublicados.archivoevento.url is True %}
-                <p style="text-align:justify;">Recurso: <a class="text-decoration-none" href="{{eventospublicados.archivoevento.url}}" target="_blank">Click Aquí</a> </p>
+                <p style="text-align:justify;">Material del evento: <a class="text-decoration-none" href="{{eventospublicados.archivoevento.url}}" target="_blank">Click Aquí</a> </p>
                 {% endif %}
             {% else %}
             <p>No tiene video o recurso publicado</p>
