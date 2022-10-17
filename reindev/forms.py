@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from requests import request
+
 
 from appblog.models import blogm
 from appcalendario.models import calendariom
