@@ -99,21 +99,33 @@ WSGI_APPLICATION = 'reindev.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+    DATABASES = {
+        'default':{
+            'ENGINE':'django.db.backends.postgresql_psycopg2',
+            'NAME':'rein',
+            'USER':'rein_admin',
+            'PASSWORD':'rein1234',
+            'HOST':'localhost',
+            'POST':'',
+        }
+    }
+
+# import dj_database_url 
+# from decouple import config
+
 # DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-import dj_database_url 
-from decouple import config
-
-DATABASES = {
-     'default': dj_database_url.config(
-         default=config('DATABASE_URL')
-     )
- }
+#      'default': dj_database_url.config(
+#          default=config('DATABASE_URL')
+#      )
+#  }
 
 
 # Password validation
@@ -158,12 +170,14 @@ USE_TZ = True
 LOGIN_REDIRECT_URL = 'home'
 
 
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+
 
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 
+# STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 
 STATICFILES_DIRS = (
