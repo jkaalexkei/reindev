@@ -25,8 +25,8 @@ SECRET_KEY = 'django-insecure-*csxruv2j-9f9j&tgy*vq)jn=0of-1b2qda5w1_4g)96pf3-$t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['daleplay.reinchile.org']
-ALLOWED_HOSTS =['ns1.digitalocean.com']
+ALLOWED_HOSTS = ['daleplay.reinchile.org']
+# ALLOWED_HOSTS =['ns1.digitalocean.com']
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
